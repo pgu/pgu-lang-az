@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .westArea {
+            padding: 0px;
+            margin: 0px;
+    
+            border: 1px solid blue;
+            float: left;
+        }
+        .score {
+            border: 1px solid pink;
+        }
+    </ui:style>
+    
+    <g:HTMLPanel ui:field="westArea" styleName="{style.westArea}">
+        <g:HTML styleName="{style.score}" ui:field="liveScore" />
+    </g:HTMLPanel>
+    
+</ui:UiBinder> 
