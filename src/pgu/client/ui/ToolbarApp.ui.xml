@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .chat {
+        }
+        .toolbarApp {
+            padding: 0px;
+            margin: 0px;
+            /* 
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px blue solid;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            */
+            
+            min-height: 20px;
+            height: 20px;
+            
+            background-color: yellow;            
+        }
+    </ui:style>
+    
+    <g:HTMLPanel ui:field="toolbarApp" styleName="{style.toolbarApp}">
+        <g:HTML ui:field="chat" styleName="{style.chat}" />
+    </g:HTMLPanel>
+    
+</ui:UiBinder> 

@@ -1,0 +1,11 @@
+.classpath
+.project
+.settings/
+gwt-unitCache/
+war/pgu_game/
+war/WEB-INF/classes
+war/WEB-INF/deploy
+war/WEB-INF/lib
+test/
+test-classes/
+

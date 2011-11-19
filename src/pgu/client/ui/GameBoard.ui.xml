@@ -1,0 +1,70 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .card {
+            cursor: pointer;
+            margin: 3px;
+            
+            position: relative;
+            float: left;
+            
+            box-shadow: 0 3px 5px #003805;
+            -moz-box-shadow: 0 3px 5px #003805;
+            -ms-box-shadow: 0 3px 5px #003805;
+            -o-box-shadow: 0 3px 5px #003805;
+            -webkit-box-shadow: 0 3px 5px #003805;
+            
+            border-top: 1px solid white;
+            background-color: #DBFFE0;
+            
+            border-radius: 3px;
+            -moz-border-radius: 3px; 
+            -webkit-border-radius: 3px; 
+        }
+        .board {
+            margin: 0px;
+            padding: 0px;
+            
+            background-color: #115F18;
+            
+            border-radius: 3px;
+            -moz-border-radius: 3px; 
+            -webkit-border-radius: 3px; 
+        }
+    </ui:style>
+    
+    <g:HTMLPanel ui:field="board" styleName="{style.board}">
+        <g:HTML ui:field="card01" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card02" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card03" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card04" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card05" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card06" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card07" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card08" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card09" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card10" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card11" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card12" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card13" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card14" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card15" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card16" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card17" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card18" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card19" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card20" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card21" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card22" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card23" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card24" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card25" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card26" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card27" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card28" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card29" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card30" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card31" styleName="{style.card}"></g:HTML>
+        <g:HTML ui:field="card32" styleName="{style.card}"></g:HTML>
+    </g:HTMLPanel>
+</ui:UiBinder> 
