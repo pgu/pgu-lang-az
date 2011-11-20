@@ -25,7 +25,7 @@ public class WestArea extends Composite {
     HTML liveScore;
 
     public void resize(final int width, final int height) {
-        westArea.setPixelSize(width - 50, height);
+        westArea.setPixelSize(width, height);
     }
 
 }
