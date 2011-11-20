@@ -6,7 +6,7 @@
             margin: 0px;
             float: left;
 
-            background-color: #F0F0F0;
+            background-color: #C3C3C3;
         }
         .score {
             background-color: lightgreen;

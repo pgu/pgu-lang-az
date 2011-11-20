@@ -35,19 +35,16 @@ public class Pgu_game implements EntryPoint {
 
     private void resize() {
         final int w = Window.getClientWidth();
-        final int h = Window.getClientHeight();
+        final int h = Window.getClientHeight() - toolbarApp.getHeight();
 
         final int gameBoardWidth = w * 70 / 100;
-        final int gameBoardHeight = h * 90 / 100;
-        gameBoard.resize(gameBoardWidth, gameBoardHeight);
+        gameBoard.resize(gameBoardWidth, h);
 
         final int westAreaWidth = w * 30 / 100;
-        final int westAreaHeight = h * 90 / 100;
-        westArea.resize(westAreaWidth, westAreaHeight);
+        westArea.resize(westAreaWidth, h);
 
         final int toolbarWidth = w;
-        final int toolbarHeight = h * 10 / 100;
-        toolbarApp.resize(toolbarWidth, toolbarHeight);
+        toolbarApp.resize(toolbarWidth);
 
     }
 }
