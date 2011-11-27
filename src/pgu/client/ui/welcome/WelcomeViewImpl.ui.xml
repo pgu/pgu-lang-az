@@ -1,0 +1,154 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" 
+    xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <ui:style>
+        .toolbarApp {
+            overflow: hidden;
+            position: relative; 
+            -webkit-transition: height 85ms ease-in;
+            background-color: #F0F0F0;
+            height: 50px;
+        }
+
+        .header-btn {
+            float: left;
+            margin-right: 5px;
+            position: relative;
+            
+            background: white;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border: 1px solid #C3C3C3;
+            border-bottom-color: #999;
+            cursor: pointer;
+            display: block;
+            font-weight: bold;
+            margin-top: 6px;
+            padding: 10px;
+            color: #444;
+        }
+        .header-btn:active {
+            background-color: #34B238; /* #3468B2 */
+            border-color: #174F1B; /* #172E4F */
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.25);
+            -webkit-box-shadow: inset 0 4px 8px rgba(0,0,0,0.25);
+            color: white;
+        }
+        .header-btn:hover {
+            background-color: #53C65B; /* #5383C6 */ 
+            border-color: #2D8630;  /* #2D5286 */
+            color: white;
+            text-shadow: 0 1px rgba(0,0,0,0.4);
+        }
+
+        /* ************************************** */    
+        .logo {
+            margin-left: 5px;
+        }
+        
+        .login {
+            max-width: 30px;
+        }
+        /* ************************************** */    
+        .westArea {
+            padding: 0px;
+            margin: 0px;
+            float: left;
+
+            background-color: #C3C3C3;
+        }
+        .eastArea {
+            padding: 0px;
+            margin: 0px;
+            float: left;
+
+            background-color: #FFA8A8;
+        }
+        .level {
+            height: 100px;
+            width: 100%;
+            
+            padding: 0px;
+            margin: 0px;
+            float: left;
+
+            background-color: #BEA8FF;
+        }
+        .scores {
+            height: 100%;
+            width: 100%;
+            
+            padding: 0px;
+            margin: 0px;
+            float: left;
+
+            background-color: #28F758;
+        }
+        /* ************************************** */    
+        .start {
+            float: left;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            
+            
+            background: white;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border: 1px solid #C3C3C3;
+            border-bottom-color: #999;
+            cursor: pointer;
+            display: block;
+            font-weight: bold;
+            padding: 10px;
+            color: #444;
+        }
+        .start:active {
+            background-color: #34B238; /* #3468B2 */
+            border-color: #174F1B; /* #172E4F */
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.25);
+            -webkit-box-shadow: inset 0 4px 8px rgba(0,0,0,0.25);
+            color: white;
+        }
+        .start:hover {
+            background-color: #53C65B; /* #5383C6 */ 
+            border-color: #2D8630;  /* #2D5286 */
+            color: white;
+            text-shadow: 0 1px rgba(0,0,0,0.4);
+        }
+    
+    </ui:style>
+
+    <g:HTMLPanel>
+    
+    <!-- toolbar -->
+    <g:HTMLPanel ui:field="toolbarApp" styleName="{style.toolbarApp}">
+        <g:HTML ui:field="logo" addStyleNames="{style.header-btn} {style.logo}" />
+        <g:HTML ui:field="login" addStyleNames="{style.header-btn} {style.login}" />
+        <g:HTML ui:field="google" styleName="{style.header-btn}" />
+        <g:HTML ui:field="twitter" styleName="{style.header-btn}" />
+        <g:HTML ui:field="facebook" styleName="{style.header-btn}" />
+        <g:HTML ui:field="linkedin" styleName="{style.header-btn}" />
+    </g:HTMLPanel>
+        
+    <!-- west area -->
+    <g:HTMLPanel ui:field="westArea" styleName="{style.westArea}">    
+        <!-- level selection -->
+        <g:HTMLPanel ui:field="level" styleName="{style.level}">    
+        </g:HTMLPanel>
+        <!-- scores list -->
+        <g:HTMLPanel ui:field="scores" styleName="{style.scores}">    
+        </g:HTMLPanel>
+    </g:HTMLPanel>
+    
+    <!-- east area -->
+    <g:HTMLPanel ui:field="eastArea" styleName="{style.eastArea}">    
+        <!-- button start -->
+        <g:HTML ui:field="start" styleName="{style.start}" />
+    </g:HTMLPanel>
+    
+    
+    </g:HTMLPanel>
+    
+</ui:UiBinder> 
