@@ -9,3 +9,5 @@ war/WEB-INF/lib
 test/
 test-classes/
 
+war/WEB-INF/appengine-web.xml
+
