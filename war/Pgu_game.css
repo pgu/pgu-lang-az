@@ -19,3 +19,9 @@ body {
     z-index: 0;
     position: relative;
 }
+
+body, input, select, textarea {
+    line-height: 1;
+    font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
+    color: #444;
+}

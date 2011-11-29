@@ -8,14 +8,19 @@
             position: relative; 
             -webkit-transition: height 85ms ease-in;
             background-color: #F0F0F0;
+            /*
             height: 50px;
+            margin: 2px;
+            padding: 10px;
+            */
         }
 
         .header-btn {
             float: left;
-            margin-right: 5px;
             position: relative;
-            
+            margin-top: 2px;
+            margin-left: 1px;
+            margin-right: 1px;
             background: white;
             border-radius: 3px;
             -webkit-border-radius: 3px;
@@ -24,8 +29,6 @@
             cursor: pointer;
             display: block;
             font-weight: bold;
-            margin-top: 6px;
-            padding: 10px;
             color: #444;
         }
         .header-btn:active {
@@ -43,14 +46,6 @@
         }
 
         /* ************************************** */    
-        .logo {
-            margin-left: 5px;
-        }
-        
-        .login {
-            max-width: 30px;
-        }
-        /* ************************************** */    
         .westArea {
             padding: 0px;
             margin: 0px;
@@ -65,20 +60,15 @@
 
             background-color: #FFA8A8;
         }
-        .level {
-            height: 100px;
-            width: 100%;
-            
-            padding: 0px;
-            margin: 0px;
+        /* ************************************** */    
+        
+        .logo {
             float: left;
-
-            background-color: #BEA8FF;
+            background-color: #D91BE0;
+            overflow: hidden;
         }
+        
         .scores {
-            height: 100%;
-            width: 100%;
-            
             padding: 0px;
             margin: 0px;
             float: left;
@@ -122,30 +112,18 @@
 
     <g:HTMLPanel>
     
-    <!-- toolbar -->
-    <g:HTMLPanel ui:field="toolbarApp" styleName="{style.toolbarApp}">
-        <g:HTML ui:field="logo" addStyleNames="{style.header-btn} {style.logo}" />
-        <g:HTML ui:field="login" addStyleNames="{style.header-btn} {style.login}" />
-        <g:HTML ui:field="google" styleName="{style.header-btn}" />
-        <g:HTML ui:field="twitter" styleName="{style.header-btn}" />
-        <g:HTML ui:field="facebook" styleName="{style.header-btn}" />
-        <g:HTML ui:field="linkedin" styleName="{style.header-btn}" />
-    </g:HTMLPanel>
-        
     <!-- west area -->
     <g:HTMLPanel ui:field="westArea" styleName="{style.westArea}">    
-        <!-- level selection -->
-        <g:HTMLPanel ui:field="level" styleName="{style.level}">    
-        </g:HTMLPanel>
-        <!-- scores list -->
         <g:HTMLPanel ui:field="scores" styleName="{style.scores}">    
         </g:HTMLPanel>
     </g:HTMLPanel>
     
     <!-- east area -->
     <g:HTMLPanel ui:field="eastArea" styleName="{style.eastArea}">    
-        <!-- button start -->
-        <g:HTML ui:field="start" styleName="{style.start}" />
+        <g:HTML ui:field="logo" addStyleNames="{style.logo}" />
+        <g:HTML ui:field="login" addStyleNames="{style.header-btn}" />
+        <g:HTML ui:field="level" styleName="{style.header-btn}" />
+        <g:HTML ui:field="start" styleName="{style.header-btn}" />
     </g:HTMLPanel>
     
     
