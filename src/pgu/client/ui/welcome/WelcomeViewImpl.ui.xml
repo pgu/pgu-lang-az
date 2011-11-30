@@ -46,19 +46,26 @@
         }
 
         /* ************************************** */    
-        .westArea {
+        .menuArea {
             padding: 0px;
             margin: 0px;
-            float: left;
-
-            background-color: #C3C3C3;
-        }
-        .eastArea {
-            padding: 0px;
-            margin: 0px;
-            float: left;
-
             background-color: #FFA8A8;
+            
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        
+        .listArea {
+            padding: 0px;
+            margin: 0px;
+            background-color: #C3C3C3;
+            
+            position: absolute;
+            top: 50px;
+            left: 0px;
+            
+            overflow: auto;
         }
         /* ************************************** */    
         
@@ -66,15 +73,17 @@
             float: left;
             background-color: #D91BE0;
             overflow: hidden;
+            
+            margin-top: 2px;
+            margin-left: 1px;
+            margin-right: 1px;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border: 1px solid #C3C3C3;
+            border-bottom-color: #999;
+            
         }
         
-        .scores {
-            padding: 0px;
-            margin: 0px;
-            float: left;
-
-            background-color: #28F758;
-        }
         /* ************************************** */    
         .start {
             float: left;
@@ -108,24 +117,25 @@
             text-shadow: 0 1px rgba(0,0,0,0.4);
         }
     
+        .container {
+            position: relative;
+        }
     </ui:style>
 
-    <g:HTMLPanel>
+    <g:HTMLPanel styleName="{style.container}">
     
-    <!-- west area -->
-    <g:HTMLPanel ui:field="westArea" styleName="{style.westArea}">    
-        <g:HTMLPanel ui:field="scores" styleName="{style.scores}">    
+        <!-- menu area -->
+        <g:HTMLPanel ui:field="menuArea" styleName="{style.menuArea}">    
+            <g:HTML ui:field="logo" addStyleNames="{style.logo}" />
+            <g:HTML ui:field="login" addStyleNames="{style.header-btn}" />
+            <g:HTML ui:field="level" styleName="{style.header-btn}" />
+            <g:HTML ui:field="start" styleName="{style.header-btn}" />
         </g:HTMLPanel>
-    </g:HTMLPanel>
-    
-    <!-- east area -->
-    <g:HTMLPanel ui:field="eastArea" styleName="{style.eastArea}">    
-        <g:HTML ui:field="logo" addStyleNames="{style.logo}" />
-        <g:HTML ui:field="login" addStyleNames="{style.header-btn}" />
-        <g:HTML ui:field="level" styleName="{style.header-btn}" />
-        <g:HTML ui:field="start" styleName="{style.header-btn}" />
-    </g:HTMLPanel>
-    
+        
+        <!-- list area -->
+        <g:HTMLPanel ui:field="listArea" styleName="{style.listArea}">    
+        </g:HTMLPanel>
+        
     
     </g:HTMLPanel>
     

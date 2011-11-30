@@ -21,12 +21,9 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     private static WelcomeViewImplUiBinder uiBinder = GWT.create(WelcomeViewImplUiBinder.class);
 
     @UiField
-    HTMLPanel westArea;
+    HTMLPanel listArea;
     @UiField
-    HTMLPanel eastArea;
-
-    @UiField
-    HTMLPanel scores;
+    HTMLPanel menuArea;
 
     @UiField
     HTML logo;
@@ -40,15 +37,18 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     public WelcomeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
 
-        logo.setText("LOGO");
+        // logo.setText("LOGO");
         login.setText("LOGIN");
         level.setText("LEVEL");
         start.setText("START");
 
-        scores.add(new Score("45 sec, Jap/Hir/20, Toto"));
-        scores.add(new Score("2 min 30 sec, Jap/Hir/1, Titi"));
-        scores.add(new Score("10 min, Jap/Hir/30, Toto"));
-        scores.add(new Score("5 min 22 sec, Jap/Hir/11, Tata"));
+        for (int i = 0; i < 10; i++) {
+            listArea.add(new Score("45 sec, Jap/Hir/20, Toto"));
+            listArea.add(new Score("2 min 30 sec, Jap/Hir/1, Titi"));
+            listArea.add(new Score("10 min, Jap/Hir/30, Toto"));
+            listArea.add(new Score("5 min 22 sec, Jap/Hir/11, Tata"));
+
+        }
 
         Window.addResizeHandler(new ResizeHandler() {
 
@@ -73,26 +73,33 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
 
-        final boolean isPortrait = w < h;
+        // final boolean isPortrait = w < h;
 
-        int eastAreaWidth = 0;
-        if (isPortrait) {
-            eastAreaWidth = w / 3;
-        } else {
-            eastAreaWidth = w / 4;
+        // int menuAreaWidth = 0;
+        // if (isPortrait) {
+        // menuAreaWidth = w / 3;
+        // } else {
+        // menuAreaWidth = w / 4;
+        // }
+
+        menuArea.setPixelSize(w, 50);
+        listArea.setPixelSize(w, h - 50);
+
+        // final int hBtn = h * 30 / 100 + 4;
+        // logo.setPixelSize(menuAreaWidth, h - 3 * hBtn - 13);
+
+        // final int wBtn = menuAreaWidth - 4;
+
+        final int wBtn = w / 3 - 20;
+        logo.setPixelSize(w - 3 * wBtn - 18, 40);
+        login.setPixelSize(wBtn, 40);
+        level.setPixelSize(wBtn, 40);
+        start.setPixelSize(wBtn, 40);
+
+        for (int i = 0; i < listArea.getWidgetCount(); i++) {
+            final Score score = (Score) listArea.getWidget(i);
+            score.setPixelSize(w - 20, 50);
         }
-
-        eastArea.setPixelSize(eastAreaWidth, h);
-        westArea.setPixelSize(w - eastAreaWidth, h);
-
-        final int hBtn = h * 30 / 100 + 4;
-        logo.setPixelSize(eastAreaWidth, h - 3 * hBtn - 13);
-
-        final int wBtn = eastAreaWidth - 4;
-        login.setPixelSize(wBtn, hBtn);
-        level.setPixelSize(wBtn, hBtn);
-        start.setPixelSize(wBtn, hBtn);
-
     }
 
 }
