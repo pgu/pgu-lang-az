@@ -3,6 +3,7 @@ package pgu.client.ui.welcome;
 import pgu.client.ui.welcome.score.Score;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
@@ -79,38 +80,49 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         return super.asWidget();
     }
 
+    private static final int MENU_HEIGHT_PORTRAIT = 200;
+
     private void resize() {
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
 
         final boolean isPortrait = w < h;
-        final int hMenu = isPortrait ? 200 : 100;
+        final int hMenu = isPortrait ? MENU_HEIGHT_PORTRAIT : 100;
         menuArea.setPixelSize(w, hMenu);
+        listArea.getElement().getStyle().setTop(hMenu, Unit.PX);
 
+        int btnTop = 0;
+        double btnFontsize = 0;
         if (isPortrait) {
-            // TODO PGU appliquer le css de portrait pour la menu bar
+            btnTop = 50;
+            btnFontsize = 5.5;
         } else {
+            btnTop = 10;
+            btnFontsize = 5.5;
             // TODO PGU appliquer le css de paysage pour la menu bar
         }
 
-        // listArea.setPixelSize(w, h - 50);
         listArea.setWidth(w + "px");
 
-        // final int hBtn = h * 30 / 100 + 4;
-        // logo.setPixelSize(menuAreaWidth, h - 3 * hBtn - 13);
-
-        // final int wBtn = menuAreaWidth - 4;
-
         final int wBtn = w / 3 - 20;
-        final int hBtn = hMenu - 7;
-        logo.setPixelSize(w - 3 * wBtn - 18, hBtn);
+        final int hBtn = hMenu - 7 - btnTop;
+
+        logo.setPixelSize(w - 3 * wBtn - 18, hBtn + btnTop);
         login.setPixelSize(wBtn, hBtn);
         level.setPixelSize(wBtn, hBtn);
         start.setPixelSize(wBtn, hBtn);
 
-        login.getElement().getStyle().setFontSize(6.5, Unit.EM);
-        level.getElement().getStyle().setFontSize(6.5, Unit.EM);
-        start.getElement().getStyle().setFontSize(6.5, Unit.EM);
+        final Style loginS = login.getElement().getStyle();
+        final Style levelS = level.getElement().getStyle();
+        final Style startS = start.getElement().getStyle();
+
+        loginS.setFontSize(btnFontsize, Unit.EM);
+        levelS.setFontSize(btnFontsize, Unit.EM);
+        startS.setFontSize(btnFontsize, Unit.EM);
+
+        loginS.setPaddingTop(btnTop, Unit.PX);
+        levelS.setPaddingTop(btnTop, Unit.PX);
+        startS.setPaddingTop(btnTop, Unit.PX);
 
         for (int i = 0; i < listArea.getWidgetCount(); i++) {
             final Score score = (Score) listArea.getWidget(i);
