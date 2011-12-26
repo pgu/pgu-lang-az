@@ -63,8 +63,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
             @Override
             public void onWindowScroll(final ScrollEvent event) {
-                GWT.log(" event.getScrollTop() " + event.getScrollTop());
-                menuArea.getElement().getStyle().setTop(event.getScrollTop(), Unit.PX);
+                // TODO PGU a voir si a utiliser ou non...
+                // menuArea.getElement().getStyle().setTop(event.getScrollTop(), Unit.PX);
             }
 
         });
