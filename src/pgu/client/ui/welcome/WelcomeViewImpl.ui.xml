@@ -18,18 +18,24 @@
         .header-btn {
             float: left;
             position: relative;
+            
             margin-top: 2px;
             margin-left: 1px;
             margin-right: 1px;
+            
             background: white;
+            
             border-radius: 3px;
             -webkit-border-radius: 3px;
             border: 1px solid #C3C3C3;
             border-bottom-color: #999;
+            
             cursor: pointer;
             display: block;
-            font-weight: bold;
+            
             color: #444;
+            font-weight: bold;
+            font-size: 5.5em;
         }
         .header-btn:active {
             background-color: #34B238; /* #3468B2 */
