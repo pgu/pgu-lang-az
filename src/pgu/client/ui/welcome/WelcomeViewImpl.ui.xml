@@ -51,6 +51,7 @@
             margin: 0px;
             background-color: #FFA8A8;
             
+            z-index: 999;
             position: absolute;
             top: 0px;
             left: 0px;
@@ -65,7 +66,7 @@
             top: 50px;
             left: 0px;
             
-            overflow: auto;
+            /* overflow: auto; */
         }
         /* ************************************** */    
         
@@ -127,9 +128,15 @@
         <!-- menu area -->
         <g:HTMLPanel ui:field="menuArea" styleName="{style.menuArea}">    
             <g:HTML ui:field="logo" addStyleNames="{style.logo}" />
-            <g:HTML ui:field="login" addStyleNames="{style.header-btn}" />
-            <g:HTML ui:field="level" styleName="{style.header-btn}" />
-            <g:HTML ui:field="start" styleName="{style.header-btn}" />
+            <g:HTML ui:field="login" addStyleNames="{style.header-btn}" >
+                <span class="btnText">LOGIN</span>
+            </g:HTML>
+            <g:HTML ui:field="level" styleName="{style.header-btn}" >
+                <span class="btnText">LEVEL</span>
+            </g:HTML>
+            <g:HTML ui:field="start" styleName="{style.header-btn}" >
+                <span class="btnText">START</span>
+            </g:HTML>
         </g:HTMLPanel>
         
         <!-- list area -->
