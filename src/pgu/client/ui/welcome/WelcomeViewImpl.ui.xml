@@ -3,18 +3,6 @@
     xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
     <ui:style>
-        .toolbarApp {
-            overflow: hidden;
-            position: relative; 
-            -webkit-transition: height 85ms ease-in;
-            background-color: #F0F0F0;
-            /*
-            height: 50px;
-            margin: 2px;
-            padding: 10px;
-            */
-        }
-
         .header-btn {
             float: left;
             position: relative;

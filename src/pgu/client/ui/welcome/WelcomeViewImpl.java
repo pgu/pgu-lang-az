@@ -1,14 +1,17 @@
 package pgu.client.ui.welcome;
 
 import pgu.client.enums.Orientation;
+import pgu.client.place.GamePlace;
 import pgu.client.ui.welcome.score.Score;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.ScrollEvent;
 import com.google.gwt.user.client.Window.ScrollHandler;
@@ -25,26 +28,13 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     private static WelcomeViewImplUiBinder uiBinder = GWT.create(WelcomeViewImplUiBinder.class);
 
     @UiField
-    HTMLPanel listArea;
-    @UiField
-    HTMLPanel menuArea;
+    HTMLPanel listArea, menuArea;
 
     @UiField
-    HTML logo;
-    @UiField
-    HTML login;
-    @UiField
-    HTML level;
-    @UiField
-    HTML start;
+    HTML logo, login, level, start;
 
     public WelcomeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
-
-        // logo.setText("LOGO");
-        // login.setText("LOGIN");
-        // level.setText("LEVEL");
-        // start.setText("START");
 
         for (int i = 0; i < 100; i++) {
             listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
@@ -70,8 +60,16 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         });
     }
 
+    @UiHandler("start")
+    public void clickStart(final ClickEvent e) {
+        presenter.goTo(new GamePlace());
+    }
+
+    private Presenter presenter;
+
     @Override
     public void setPresenter(final Presenter presenter) {
+        this.presenter = presenter;
     }
 
     @Override

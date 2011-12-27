@@ -3,9 +3,42 @@
     xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
     <ui:style>
+    .menu-area {
+    }
+    
+    .grid-area {
+    }
+    
+    .header-btn {
+    }
+    
+    .time {
+    }
+    
     </ui:style>
 
     <g:HTMLPanel>
+    
+        <!-- menu area -->
+        <g:HTMLPanel ui:field="menuArea" styleName="{style.menu-area}">    
+            <g:HTML ui:field="help" addStyleNames="{style.header-btn}" >
+                <span class="btnText">HELP</span>
+            </g:HTML>
+            <g:HTML ui:field="time" addStyleNames="{style.time}" >
+                <span>00:00</span>
+            </g:HTML>
+            <g:HTML ui:field="restart" addStyleNames="{style.header-btn}" >
+                <span class="btnText">RESTART</span>
+            </g:HTML>
+            <g:HTML ui:field="exit" addStyleNames="{style.header-btn}" >
+                <span class="btnText">EXIT</span>
+            </g:HTML>
+        </g:HTMLPanel>
+    
+        <!-- grid area -->
+        <g:HTMLPanel ui:field="gridArea" styleName="{style.grid-area}">    
+        </g:HTMLPanel>
+    
     </g:HTMLPanel>
     
 </ui:UiBinder> 
