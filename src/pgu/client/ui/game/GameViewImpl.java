@@ -61,47 +61,31 @@ public class GameViewImpl extends Composite implements GameView {
         return super.asWidget();
     }
 
+    private static final int MENU_HEIGHT_PORTRAIT = 100;
+    private static final int MENU_HEIGHT_LANDSCAPE = 50;
+
+    private final static int W_HELP = 115;
+    private final static int W_RESTART = 195;
+    private final static int W_EXIT = 96;
+
     private void resize() {
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
 
         final boolean isPortrait = w < h;
 
-        final int hMenu = isPortrait ? 100 : 50;
+        final int hMenu = isPortrait ? MENU_HEIGHT_PORTRAIT : MENU_HEIGHT_LANDSCAPE;
         menuArea.setPixelSize(w, hMenu);
 
-        // TODO PGU
-        // time.setWidth(w - help.getElement().getClientWidth() - restart.getElement().getClientWidth()
-        // - exit.getElement().getClientWidth() - 20 + "px");
-
-        // int hBtn = 0;
-        int wHelp = 0;
-        int wRestart = 0;
-        int wExit = 0;
-
-        int paddingTop = 0;
-
-        if (isPortrait) {
-            paddingTop = 25;
-            // hBtn = 2 * BTN_HEIGHT_LANDSCAPE;
-            wHelp = 115;
-            wRestart = 195;
-            wExit = 96;
-        } else {
-            paddingTop = 0;
-            // hBtn = BTN_HEIGHT_LANDSCAPE;
-            wHelp = 115;
-            wRestart = 195;
-            wExit = 96;
-        }
+        final int paddingTop = isPortrait ? 25 : 0;
 
         final int hBtn = hMenu - paddingTop - 7;
-        help.setPixelSize(wHelp, hBtn);
-        restart.setPixelSize(wRestart, hBtn);
-        exit.setPixelSize(wExit, hBtn);
 
-        final int others = wHelp + wRestart + wExit;
-        time.setPixelSize(w - 20 - others, hBtn);
+        help.setPixelSize(W_HELP, hBtn);
+        restart.setPixelSize(W_RESTART, hBtn);
+        exit.setPixelSize(W_EXIT, hBtn);
+
+        time.setPixelSize(w - 20 - (W_HELP + W_RESTART + W_EXIT), hBtn);
 
         help.getElement().getStyle().setPaddingTop(paddingTop, Unit.PX);
         restart.getElement().getStyle().setPaddingTop(paddingTop, Unit.PX);
