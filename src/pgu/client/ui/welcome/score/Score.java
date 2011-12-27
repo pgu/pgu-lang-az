@@ -43,7 +43,7 @@ public class Score extends Composite {
 
         } else if (Orientation.PORTRAIT == orientation) {
             offsetContainer = 10;
-            marginTop = 5;
+            marginTop = 50;
 
         }
 
@@ -51,7 +51,6 @@ public class Score extends Composite {
         container.getElement().getStyle().setPaddingTop(offsetContainer, Unit.PX);
 
         final Style cardS = card.getElement().getStyle();
-        // cardS.setHeight(containerHeight - 10, Unit.PX);
         cardS.setMarginTop(marginTop, Unit.PX);
     }
 
