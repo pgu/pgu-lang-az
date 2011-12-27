@@ -1,5 +1,5 @@
 package pgu.client.enums;
 
 public enum Orientation {
-    PORTRAIT, PAYSAGE
+    PORTRAIT, LANDSCAPE
 }

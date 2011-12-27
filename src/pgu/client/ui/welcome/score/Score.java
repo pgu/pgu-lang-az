@@ -37,7 +37,7 @@ public class Score extends Composite {
         int offsetContainer = 0;
         int marginTop = 0;
 
-        if (Orientation.PAYSAGE == orientation) {
+        if (Orientation.LANDSCAPE == orientation) {
             offsetContainer = 5;
             marginTop = 5;
 

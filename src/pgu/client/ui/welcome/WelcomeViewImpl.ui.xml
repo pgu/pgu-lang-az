@@ -40,7 +40,7 @@
         }
 
         /* ************************************** */    
-        .menuArea {
+        .menu-area {
             padding: 0px;
             margin: 0px;
             background-color: #FFA8A8;
@@ -51,7 +51,7 @@
             left: 0px;
         }
         
-        .listArea {
+        .list-area {
             padding: 0px;
             margin: 0px;
             background-color: #C3C3C3;
@@ -120,7 +120,7 @@
     <g:HTMLPanel styleName="{style.container}">
     
         <!-- menu area -->
-        <g:HTMLPanel ui:field="menuArea" styleName="{style.menuArea}">    
+        <g:HTMLPanel ui:field="menuArea" styleName="{style.menu-area}">    
             <g:HTML ui:field="logo" addStyleNames="{style.logo}" />
             <g:HTML ui:field="login" addStyleNames="{style.header-btn}" >
                 <span class="btnText">LOGIN</span>
@@ -134,7 +134,7 @@
         </g:HTMLPanel>
         
         <!-- list area -->
-        <g:HTMLPanel ui:field="listArea" styleName="{style.listArea}">    
+        <g:HTMLPanel ui:field="listArea" styleName="{style.list-area}">    
         </g:HTMLPanel>
         
     
