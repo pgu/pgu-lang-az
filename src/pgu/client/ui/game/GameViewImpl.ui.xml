@@ -15,6 +15,13 @@
     }
     
     .grid-area {
+            padding: 0px;
+            margin: 0px;
+            background-color: #C3C3C3;
+            
+            position: absolute;
+            top: 50px;
+            left: 0px;
     }
     
     /* ************************************** */    
