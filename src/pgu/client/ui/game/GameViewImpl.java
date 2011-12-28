@@ -43,6 +43,9 @@ public class GameViewImpl extends Composite implements GameView {
                 resize();
             }
         });
+
+        // TODO PGU prevent double-click
+
     }
 
     private Presenter presenter;
@@ -73,6 +76,9 @@ public class GameViewImpl extends Composite implements GameView {
     private boolean isPortrait_old = true;
     private boolean isPortrait = true;
 
+    private int gridW = 0;
+    private int gridH = 0;
+
     private void resize() {
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
@@ -82,8 +88,12 @@ public class GameViewImpl extends Composite implements GameView {
         final int hMenu = isPortrait ? MENU_HEIGHT_PORTRAIT : MENU_HEIGHT_LANDSCAPE;
         menuArea.setPixelSize(w, hMenu);
         gridArea.getElement().getStyle().setTop(hMenu, Unit.PX);
-        gridArea.setWidth(w + "px");
-        gridArea.setHeight(h - hMenu + "px");
+
+        gridW = w;
+        gridArea.setWidth(gridW + "px");
+
+        gridH = h - hMenu;
+        gridArea.setHeight(gridH + "px");
 
         final int paddingTop = isPortrait ? 25 : 0;
 
@@ -104,10 +114,19 @@ public class GameViewImpl extends Composite implements GameView {
     }
 
     int counter = 0;
+    int nbRows = 0;
+    int nbCells = 0;
+    int cellH = 0;
+    int cellW = 0;
 
     private void displayGame() {
-        final int nbRows = isPortrait ? 8 : 4;
         counter = 0;
+
+        nbRows = isPortrait ? 8 : 4;
+        nbCells = isPortrait ? 4 : 8;
+
+        cellH = gridH / nbRows;
+        cellW = gridW / nbCells;
 
         if (0 == gridArea.getWidgetCount()) {
             for (int i = 0; i < nbRows; i++) {
@@ -129,8 +148,6 @@ public class GameViewImpl extends Composite implements GameView {
 
     private FlowPanel createRow() {
         final FlowPanel row = new FlowPanel();
-
-        final int nbCells = isPortrait ? 4 : 8;
         for (int i = 0; i < nbCells; i++) {
             row.add(createCell());
         }
@@ -146,9 +163,8 @@ public class GameViewImpl extends Composite implements GameView {
         counter++;
         final GameCell cell = new GameCell().index(counter);
         final Style style = cell.getElement().getStyle();
-        // TODO PGU
-        style.setWidth(50, Unit.PX);
-        style.setHeight(50, Unit.PX);
+        style.setWidth(cellW - 5, Unit.PX);
+        style.setHeight(cellH - 5, Unit.PX);
         return cell;
     }
 

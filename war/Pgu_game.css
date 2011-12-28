@@ -13,9 +13,14 @@ hgroup, menu, nav, section, time, mark, audio, video {
 
 }
 
+a, a:visited {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
 body {
     margin: 0 !important;
-    background: #F0F0F0;
+    background-color: #C3C3C3 !important;
     z-index: 0;
     position: relative;
 }

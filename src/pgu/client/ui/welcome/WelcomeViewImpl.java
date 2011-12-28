@@ -31,7 +31,9 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     HTMLPanel listArea, menuArea;
 
     @UiField
-    HTML logo, login, level, start;
+    HTML logo;
+    @UiField
+    HTML login, level, start;
 
     public WelcomeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
