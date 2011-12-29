@@ -17,7 +17,15 @@
     .grid-area {
             padding: 0px;
             margin: 0px;
-            background-color: #C3C3C3;
+            
+            background: literal("-webkit-linear-gradient(top, #0f394f 0%, #000 100%)");
+            background: #0f394f; /* Old browsers */
+            background: literal("-moz-linear-gradient(top, #0f394f 0%, #000 100%)"); /* FF3.6+ */
+            background: literal("-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0f394f), color-stop(100%,#000))"); /* Chrome,Safari4+ */
+            background: literal("-o-linear-gradient(top, #0f394f 0%,#000 100%)"); /* Opera 11.10+ */
+            background: literal("-ms-linear-gradient(top, #0f394f 0%,#000 100%)"); /* IE10+ */
+            background: literal("linear-gradient(top, #0f394f 0%,#000 100%)"); /* W3C */
+            filter: literal("progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f394f', endColorstr='#000',GradientType=0 )"); /* IE6-9 */    
             
             position: absolute;
             top: 50px;

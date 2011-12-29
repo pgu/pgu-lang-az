@@ -116,8 +116,8 @@ public class GameViewImpl extends Composite implements GameView {
     int counter = 0;
     int nbRows = 0;
     int nbCells = 0;
-    int cellH = 0;
-    int cellW = 0;
+    int cellH = -10;
+    int cellW = -10;
 
     private void displayGame() {
         counter = 0;
@@ -150,6 +150,11 @@ public class GameViewImpl extends Composite implements GameView {
         final FlowPanel row = new FlowPanel();
         for (int i = 0; i < nbCells; i++) {
             row.add(createCell());
+            if (0 == i) {
+                final Style styleRow = row.getElement().getStyle();
+                styleRow.setMarginTop(10, Unit.PX);
+                styleRow.setMarginLeft(10, Unit.PX);
+            }
         }
 
         // clear floating
@@ -161,10 +166,9 @@ public class GameViewImpl extends Composite implements GameView {
 
     private GameCell createCell() {
         counter++;
-        final GameCell cell = new GameCell().index(counter);
-        final Style style = cell.getElement().getStyle();
-        style.setWidth(cellW - 5, Unit.PX);
-        style.setHeight(cellH - 5, Unit.PX);
+        GameCell cell = new GameCell().index(counter);
+        cell = counter < 17 ? cell.ice() : cell.fire();
+        cell.setPixelSize(cellW - 35, cellH - 35);
         return cell;
     }
 
