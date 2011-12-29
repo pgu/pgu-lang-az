@@ -128,7 +128,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         cellH = gridH / nbRows;
         cellW = gridW / nbCells;
-        cellFactory = new GameCellFactory(cellW - 35, cellH - 35);
+        cellFactory = new GameCellFactory(cellW - 35, cellH - 35, isPortrait);
 
         if (0 == gridArea.getWidgetCount()) {
             for (int i = 0; i < nbRows; i++) {
