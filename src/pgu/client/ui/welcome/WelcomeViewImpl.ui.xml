@@ -7,7 +7,7 @@
             position: relative;
             
             margin-left: 2px;
-            margin-right: 3px;
+            margin-right: 6px;
             
             border-radius: 6px;
             -moz-border-radius: 6px;
@@ -74,7 +74,7 @@
         }
         
         .list-area {
-            
+            background-color: #C3C3C3;
             padding: 0px;
             margin: 0px;
             

@@ -92,7 +92,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         menuArea.setPixelSize(w, hMenu);
         listArea.getElement().getStyle().setTop(hMenu, Unit.PX);
         listArea.setWidth(w + "px");
-        listArea.setHeight(h - hMenu + "px");
+        // listArea.setHeight(h - hMenu + "px");
 
         final Orientation orientation = isPortrait ? Orientation.PORTRAIT : Orientation.LANDSCAPE;
         final int btnTop = isPortrait ? 50 : 10;

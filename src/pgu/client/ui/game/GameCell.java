@@ -22,8 +22,11 @@ public class GameCell extends Composite {
     @UiField
     HTML cellText;
 
-    public GameCell() {
+    private final GameCellFactory factory;
+
+    public GameCell(final GameCellFactory factory) {
         initWidget(uiBinder.createAndBindUi(this));
+        this.factory = factory;
     }
 
     private enum Skin {
@@ -78,16 +81,25 @@ public class GameCell extends Composite {
         return this;
     }
 
+    public void size() {
+        cellExt.setPixelSize(factory.extW(), factory.extH());
+        cellOut.setPixelSize(factory.outW(), factory.outH());
+        cellMed.setPixelSize(factory.medW(), factory.medH());
+        cellIn.setPixelSize(factory.inW(), factory.inH());
+        cellSub.setPixelSize(factory.subW(), factory.subH());
+
+        final Style styleText = cellText.getElement().getStyle();
+        styleText.setWidth(factory.width() - 7, Unit.PX);
+
+        if (factory.height() > factory.width()) {
+            final int h = factory.height();
+            styleText.setTop(h / 2 - h / 4, Unit.PX);
+        }
+    }
+
     @Override
     public void setPixelSize(final int width, final int height) {
-        cellExt.setPixelSize(width, height);
-        cellOut.setPixelSize(width - 2, height - 2);
-        cellMed.setPixelSize(width - 4, height - 4);
-        cellIn.setPixelSize(width - 6, height - 6);
-        cellSub.setPixelSize(width - 7, height - 7);
-
-        cellText.getElement().getStyle().setTop(height / 2 - height / 4, Unit.PX);
-        cellText.getElement().getStyle().setWidth(width - 7, Unit.PX);
+        throw new UnsupportedOperationException("Use the method size(), thx.");
     }
 
 }

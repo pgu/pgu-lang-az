@@ -22,8 +22,6 @@ body {
     margin: 0 !important;
     z-index: 0;
     position: relative;
-    
-    background-color: #C3C3C3;
 }
 
 body, input, select, textarea {

@@ -113,11 +113,12 @@ public class GameViewImpl extends Composite implements GameView {
         displayGame();
     }
 
-    int counter = 0;
-    int nbRows = 0;
-    int nbCells = 0;
-    int cellH = -10;
-    int cellW = -10;
+    private int counter = 0;
+    private int nbRows = 0;
+    private int nbCells = 0;
+    private int cellH = -10;
+    private int cellW = -10;
+    private GameCellFactory cellFactory;
 
     private void displayGame() {
         counter = 0;
@@ -127,6 +128,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         cellH = gridH / nbRows;
         cellW = gridW / nbCells;
+        cellFactory = new GameCellFactory(cellW - 35, cellH - 35);
 
         if (0 == gridArea.getWidgetCount()) {
             for (int i = 0; i < nbRows; i++) {
@@ -166,9 +168,9 @@ public class GameViewImpl extends Composite implements GameView {
 
     private GameCell createCell() {
         counter++;
-        GameCell cell = new GameCell().index(counter);
+        GameCell cell = new GameCell(cellFactory).index(counter);
         cell = counter < 17 ? cell.ice() : cell.fire();
-        cell.setPixelSize(cellW - 35, cellH - 35);
+        cell.size();
         return cell;
     }
 
