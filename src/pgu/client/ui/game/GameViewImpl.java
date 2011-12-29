@@ -6,6 +6,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -31,7 +33,9 @@ public class GameViewImpl extends Composite implements GameView {
     HTMLPanel menuArea, gridArea;
 
     @UiField
-    HTML help, time, restart, exit;
+    HTMLPanel help, time, restart, exit;
+    @UiField
+    HTML helpText, timeText, restartText, exitText;
 
     public GameViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -44,7 +48,13 @@ public class GameViewImpl extends Composite implements GameView {
             }
         });
 
-        // TODO PGU prevent double-click
+        addDomHandler(new DoubleClickHandler() {
+
+            @Override
+            public void onDoubleClick(final DoubleClickEvent event) {
+                event.preventDefault();
+            }
+        }, DoubleClickEvent.getType());
 
     }
 
@@ -55,7 +65,7 @@ public class GameViewImpl extends Composite implements GameView {
         this.presenter = presenter;
     }
 
-    @UiHandler("exit")
+    @UiHandler("exitText")
     public void clickExit(final ClickEvent e) {
         presenter.goTo(new WelcomePlace());
     }
@@ -95,9 +105,9 @@ public class GameViewImpl extends Composite implements GameView {
         gridH = h - hMenu;
         gridArea.setHeight(gridH + "px");
 
-        final int paddingTop = isPortrait ? 25 : 0;
+        final int btnTop = isPortrait ? 25 : 0;
 
-        final int hBtn = hMenu - paddingTop - 7;
+        final int hBtn = hMenu - 7 - btnTop;
 
         help.setPixelSize(W_HELP, hBtn);
         restart.setPixelSize(W_RESTART, hBtn);
@@ -105,10 +115,11 @@ public class GameViewImpl extends Composite implements GameView {
 
         time.setPixelSize(w - 20 - (W_HELP + W_RESTART + W_EXIT), hBtn);
 
-        help.getElement().getStyle().setPaddingTop(paddingTop, Unit.PX);
-        restart.getElement().getStyle().setPaddingTop(paddingTop, Unit.PX);
-        exit.getElement().getStyle().setPaddingTop(paddingTop, Unit.PX);
-        time.getElement().getStyle().setPaddingTop(paddingTop, Unit.PX);
+        final int marginTop = (hMenu - hBtn) / 2;
+        help.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        restart.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        exit.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        time.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
 
         displayGame();
     }
@@ -128,7 +139,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         cellH = gridH / nbRows;
         cellW = gridW / nbCells;
-        cellFactory = new GameCellFactory(cellW - 35, cellH - 35, isPortrait);
+        cellFactory = new GameCellFactory(cellW, cellH, isPortrait);
 
         if (0 == gridArea.getWidgetCount()) {
             for (int i = 0; i < nbRows; i++) {

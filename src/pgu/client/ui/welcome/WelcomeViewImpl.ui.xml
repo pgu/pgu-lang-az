@@ -70,7 +70,6 @@
             background: -o-linear-gradient(top, #226287 0%, #184762 100%);
             background: -ms-linear-gradient(top, #226287 0%, #184762 100%);
             background: linear-gradient(top, #226287 0%, #184762 100%);
-            
         }
         
         .list-area {
@@ -101,7 +100,6 @@
             line-height: 1;
             text-align: center;
         }
-        
     </ui:style>
 
     <g:HTMLPanel styleName="{style.container}">

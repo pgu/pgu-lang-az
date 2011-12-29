@@ -91,10 +91,10 @@ public class GameCell extends Composite {
         final Style styleText = cellText.getElement().getStyle();
         styleText.setWidth(factory.width() - 7, Unit.PX);
 
-        if (factory.isPortrait()) {
-            final int h = factory.height();
-            styleText.setTop(h / 2 - h / 4, Unit.PX);
-        }
+        final boolean isPortrait = factory.isPortrait();
+        styleText.setTop(isPortrait ? 10 : 5, Unit.PX);
+
+        // cellExt.getElement().getStyle().setMarginTop(isPortrait ? 5 : 10, Unit.PX);
     }
 
     @Override
