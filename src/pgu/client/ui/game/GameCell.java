@@ -57,6 +57,7 @@ public class GameCell extends Composite {
     }
 
     public void applySkin(final Skin skin) {
+        // TODO PGU faire une methode setWebkitBoxShadow for all browsers
         cellExt.getElement().getStyle().setProperty("webkitBoxShadow", skin.ext() + " 0 0 16px");
 
         final Style styleOut = cellOut.getElement().getStyle();

@@ -31,9 +31,9 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     HTMLPanel listArea, menuArea;
 
     @UiField
-    HTML logo;
+    HTML logo, loginText, levelText, startText;
     @UiField
-    HTML login, level, start;
+    HTMLPanel login, level, start;
 
     public WelcomeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -62,7 +62,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         });
     }
 
-    @UiHandler("start")
+    @UiHandler("startText")
     public void clickStart(final ClickEvent e) {
         presenter.goTo(new GamePlace());
     }
@@ -97,21 +97,22 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         final Orientation orientation = isPortrait ? Orientation.PORTRAIT : Orientation.LANDSCAPE;
         final int btnTop = isPortrait ? 50 : 10;
 
-        final int wBtn = w / 3 - 20;
-        final int hBtn = hMenu - 7 - btnTop;
+        final int wBtn = w / 3 - 30;
+        final int hBtn = hMenu - 15 - btnTop;
 
-        logo.setPixelSize(w - 3 * wBtn - 18, hBtn + btnTop);
+        logo.setPixelSize(w - 3 * wBtn - 38, hMenu);
         login.setPixelSize(wBtn, hBtn);
         level.setPixelSize(wBtn, hBtn);
         start.setPixelSize(wBtn, hBtn);
 
-        login.getElement().getStyle().setPaddingTop(btnTop, Unit.PX);
-        level.getElement().getStyle().setPaddingTop(btnTop, Unit.PX);
-        start.getElement().getStyle().setPaddingTop(btnTop, Unit.PX);
+        final int marginTop = (hMenu - hBtn) / 2;
+        login.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        level.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        start.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
 
         for (int i = 0; i < listArea.getWidgetCount(); i++) {
             final Score score = (Score) listArea.getWidget(i);
-            score.setScoreSize(orientation, w - 20, hMenu);
+            score.setScoreSize(orientation, w - 50, hMenu);
         }
     }
 

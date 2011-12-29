@@ -6,9 +6,8 @@
             float: left;
             position: relative;
             
-            margin-top: 4px;
-            margin-left: 1px;
-            margin-right: 1px;
+            margin-left: 2px;
+            margin-right: 3px;
             
             border-radius: 6px;
             -moz-border-radius: 6px;
@@ -75,6 +74,7 @@
         }
         
         .list-area {
+            
             padding: 0px;
             margin: 0px;
             
@@ -97,6 +97,11 @@
         .container {
             position: relative;
         }
+        .btn-text {
+            line-height: 1;
+            text-align: center;
+        }
+        
     </ui:style>
 
     <g:HTMLPanel styleName="{style.container}">
@@ -106,15 +111,15 @@
             <g:HTML ui:field="logo" addStyleNames="{style.logo}" >
                 &#945;<br/>&#x3042;
             </g:HTML>
-            <g:HTML ui:field="login" addStyleNames="{style.header-btn}" >
-                <span class="btnText">LOGIN</span>
-            </g:HTML>
-            <g:HTML ui:field="level" addStyleNames="{style.header-btn}" >
-                <span class="btnText">LEVEL</span>
-            </g:HTML>
-            <g:HTML ui:field="start" addStyleNames="{style.header-btn}" >
-                <span class="btnText">START</span>
-            </g:HTML>
+            <g:HTMLPanel ui:field="login" addStyleNames="{style.header-btn}" >
+                <g:HTML ui:field="loginText" addStyleNames="{style.btn-text}">LOGIN</g:HTML>
+            </g:HTMLPanel>
+            <g:HTMLPanel ui:field="level" addStyleNames="{style.header-btn}" >
+                <g:HTML ui:field="levelText" addStyleNames="{style.btn-text}">LEVEL</g:HTML>
+            </g:HTMLPanel>
+            <g:HTMLPanel ui:field="start" addStyleNames="{style.header-btn}" >
+                <g:HTML ui:field="startText" addStyleNames="{style.btn-text}">START</g:HTML>
+            </g:HTMLPanel>
         </g:HTMLPanel>
         
         <!-- list area -->
