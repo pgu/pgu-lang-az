@@ -9,6 +9,8 @@ import com.google.gwt.user.client.ui.SimplePanel;
 
 public class Pgu_game implements EntryPoint {
 
+    public static GameConfig gameConfig = new GameConfig();
+
     @Override
     public void onModuleLoad() {
 
