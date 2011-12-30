@@ -132,7 +132,7 @@
                 <g:HTML ui:field="helpText" addStyleNames="{style.btn-text}">HELP</g:HTML>
             </g:HTMLPanel>
             <g:HTMLPanel ui:field="time" addStyleNames="{style.time}" >
-                <g:HTML ui:field="timeText" addStyleNames="{style.btn-text}">00:00</g:HTML>
+                <g:HTML ui:field="timeText" addStyleNames="{style.btn-text}">Hi!</g:HTML>
             </g:HTMLPanel>
             
             <g:HTMLPanel ui:field="menuRight" styleName="{style.menu-right}">    

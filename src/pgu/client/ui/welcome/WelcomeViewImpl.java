@@ -2,6 +2,7 @@ package pgu.client.ui.welcome;
 
 import pgu.client.enums.Orientation;
 import pgu.client.place.GamePlace;
+import pgu.client.ui.welcome.level.LevelPanel;
 import pgu.client.ui.welcome.score.Score;
 
 import com.google.gwt.core.client.GWT;
@@ -18,6 +19,7 @@ import com.google.gwt.user.client.Window.ScrollHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class WelcomeViewImpl extends Composite implements WelcomeView {
@@ -67,6 +69,11 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         presenter.goTo(new GamePlace());
     }
 
+    @UiHandler("levelText")
+    public void clickLevel(final ClickEvent e) {
+        showLevels();
+    }
+
     private Presenter presenter;
 
     @Override
@@ -113,6 +120,29 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             final Score score = (Score) listArea.getWidget(i);
             score.setScoreSize(orientation, w - 50, hMenu);
         }
+    }
+
+    // ////////////////////////////////////////////// LEVELS
+
+    private LevelPanel levelPanel;
+
+    private void createLevelPanel() {
+        final PopupPanel popupLevel = new PopupPanel();
+        popupLevel.hide();
+        popupLevel.setAnimationEnabled(true);
+        popupLevel.setAutoHideOnHistoryEventsEnabled(true);
+        popupLevel.setGlassEnabled(true);
+        // popupLevel.setModal(true);
+        popupLevel.setModal(false);
+        levelPanel = new LevelPanel(popupLevel);
+        popupLevel.add(levelPanel);
+    }
+
+    public void showLevels() {
+        if (null == levelPanel) {
+            createLevelPanel();
+        }
+        levelPanel.show();
     }
 
 }
