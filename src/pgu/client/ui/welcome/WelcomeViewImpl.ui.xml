@@ -58,7 +58,6 @@
             padding: 0px;
             margin: 0px;
             
-            z-index: 999;
             position: absolute;
             top: 0px;
             left: 0px;
