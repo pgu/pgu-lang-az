@@ -66,9 +66,6 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     @UiHandler("startText")
     public void clickStart(final ClickEvent e) {
-        // TODO PGU generate the game according to the Pgu_game#GameConfig
-        // do wait while generation
-        // then go the game and fill the cases with the generated tokens
         presenter.goTo(new GamePlace());
     }
 

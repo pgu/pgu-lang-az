@@ -73,6 +73,8 @@ public class GameViewImpl extends Composite implements GameView {
     @Override
     public Widget asWidget() {
         resize();
+        generateGame();
+
         return super.asWidget();
     }
 
@@ -183,6 +185,11 @@ public class GameViewImpl extends Composite implements GameView {
         cell = counter < 17 ? cell.ice() : cell.fire();
         cell.size();
         return cell;
+    }
+
+    private void generateGame() {
+        // TODO PGU generate the game according to the Pgu_game#GameConfig
+        // fill the cases with the generated tokens
     }
 
 }
