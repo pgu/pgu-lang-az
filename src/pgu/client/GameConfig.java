@@ -1,11 +1,15 @@
 package pgu.client;
 
+import java.util.List;
+
+import pgu.client.myguava.Lists;
+
 public class GameConfig {
 
     private String language;
     private String type;
     private String theme;
-    private String subselection;
+    private final List<String> subselections = Lists.newArrayList();
 
     public GameConfig language(final String text) {
         language = text;
@@ -22,11 +26,6 @@ public class GameConfig {
         return this;
     }
 
-    public GameConfig subselection(final String text) {
-        subselection = text;
-        return this;
-    }
-
     public String language() {
         return language;
     }
@@ -39,8 +38,8 @@ public class GameConfig {
         return theme;
     }
 
-    public String subselection() {
-        return subselection;
+    public List<String> subselections() {
+        return subselections;
     }
 
 }

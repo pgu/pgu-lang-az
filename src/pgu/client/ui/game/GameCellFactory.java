@@ -13,8 +13,9 @@ public class GameCellFactory {
     private final int subW;
     private final int subH;
     private final boolean isPortrait;
+    private final GameView gameView;
 
-    public GameCellFactory(final int wAvailable, final int hAvailable, final boolean isPortrait) {
+    public GameCellFactory(final int wAvailable, final int hAvailable, final boolean isPortrait, final GameView gameView) {
         final int w = wAvailable - 30;
         final int h = hAvailable - (isPortrait ? 30 : 10);
         width = w;
@@ -28,6 +29,7 @@ public class GameCellFactory {
         subW = w - 7;
         subH = h - 7;
         this.isPortrait = isPortrait;
+        this.gameView = gameView;
     }
 
     public int extW() {
@@ -80,6 +82,10 @@ public class GameCellFactory {
 
     public boolean isPortrait() {
         return isPortrait;
+    }
+
+    public GameView gameView() {
+        return gameView;
     }
 
 }

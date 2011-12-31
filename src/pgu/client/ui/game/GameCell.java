@@ -3,8 +3,10 @@ package pgu.client.ui.game;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -100,6 +102,36 @@ public class GameCell extends Composite {
     @Override
     public void setPixelSize(final int width, final int height) {
         throw new UnsupportedOperationException("Use the method size(), thx.");
+    }
+
+    private String character;
+
+    public void setCharacter(final String character) {
+        this.character = character;
+        cellText.setHTML("" + character);
+    }
+
+    private boolean isSelected = false;
+
+    @UiHandler("cellText")
+    public void clickCell(final ClickEvent e) {
+        if (isSelected) {
+            return;
+        }
+
+        fire();
+        isSelected = true;
+
+        factory.gameView().clicksOn(this);
+    }
+
+    public void deselect() {
+        ice();
+        isSelected = false;
+    }
+
+    public String getCharacter() {
+        return character;
     }
 
 }

@@ -20,6 +20,8 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view.setPresenter(this);
         panel.setWidget(view.asWidget());
+        view.resize();
+        view.generateGame();
     }
 
     @Override

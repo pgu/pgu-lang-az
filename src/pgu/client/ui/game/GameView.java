@@ -12,4 +12,10 @@ public interface GameView extends IsWidget {
 
     void setPresenter(Presenter presenter);
 
+    void clicksOn(GameCell gameCell);
+
+    void generateGame();
+
+    void resize();
+
 }

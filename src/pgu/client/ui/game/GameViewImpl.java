@@ -1,18 +1,24 @@
 package pgu.client.ui.game;
 
+import java.util.List;
+import java.util.Map.Entry;
+
+import pgu.client.Pgu_game;
+import pgu.client.language.Hiragana;
+import pgu.client.myguava.HashBiMap;
+import pgu.client.myguava.Lists;
 import pgu.client.place.WelcomePlace;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.DoubleClickEvent;
-import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -48,14 +54,6 @@ public class GameViewImpl extends Composite implements GameView {
             }
         });
 
-        addDomHandler(new DoubleClickHandler() {
-
-            @Override
-            public void onDoubleClick(final DoubleClickEvent event) {
-                event.preventDefault();
-            }
-        }, DoubleClickEvent.getType());
-
     }
 
     private Presenter presenter;
@@ -72,9 +70,7 @@ public class GameViewImpl extends Composite implements GameView {
 
     @Override
     public Widget asWidget() {
-        resize();
-        generateGame();
-
+        GWT.log("asWidget");
         return super.asWidget();
     }
 
@@ -91,7 +87,9 @@ public class GameViewImpl extends Composite implements GameView {
     private int gridW = 0;
     private int gridH = 0;
 
-    private void resize() {
+    @Override
+    public void resize() {
+        GWT.log("resize");
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
 
@@ -126,7 +124,7 @@ public class GameViewImpl extends Composite implements GameView {
         displayGame();
     }
 
-    private int counter = 0;
+    private int counterIdxCell = 0;
     private int nbRows = 0;
     private int nbCells = 0;
     private int cellH = -10;
@@ -134,14 +132,14 @@ public class GameViewImpl extends Composite implements GameView {
     private GameCellFactory cellFactory;
 
     private void displayGame() {
-        counter = 0;
+        counterIdxCell = 0;
 
         nbRows = isPortrait ? 8 : 4;
         nbCells = isPortrait ? 4 : 8;
 
         cellH = gridH / nbRows;
         cellW = gridW / nbCells;
-        cellFactory = new GameCellFactory(cellW, cellH, isPortrait);
+        cellFactory = new GameCellFactory(cellW, cellH, isPortrait, this);
 
         if (0 == gridArea.getWidgetCount()) {
             for (int i = 0; i < nbRows; i++) {
@@ -179,17 +177,114 @@ public class GameViewImpl extends Composite implements GameView {
         return row;
     }
 
+    private final List<GameCell> cells = Lists.newArrayList();
+
     private GameCell createCell() {
-        counter++;
-        GameCell cell = new GameCell(cellFactory).index(counter);
-        cell = counter < 17 ? cell.ice() : cell.fire();
+        counterIdxCell++;
+        final GameCell cell = new GameCell(cellFactory).index(counterIdxCell).ice();
         cell.size();
+        cells.add(cell);
         return cell;
     }
 
-    private void generateGame() {
-        // TODO PGU generate the game according to the Pgu_game#GameConfig
-        // fill the cases with the generated tokens
+    private final List<Integer> occupiedSlots = Lists.newArrayList();
+    private final List<Integer> availableSlots = Lists.newArrayList();
+    private int counterFoundAssociations = 0;
+    private static final int NB_ASSOCIATIONS = 16;
+    private HashBiMap<String, String> availableSymbols = null;
+
+    @Override
+    public void generateGame() {
+        GWT.log("generate game");
+
+        occupiedSlots.clear();
+        availableSlots.clear();
+        for (int i = 0; i < 32; i++) {
+            availableSlots.add(i);
+        }
+
+        if ("japanese".equalsIgnoreCase(Pgu_game.gameConfig.language())) {
+            if ("hiragana".equalsIgnoreCase(Pgu_game.gameConfig.theme())) {
+                availableSymbols = Hiragana.availableSymbols(Pgu_game.gameConfig.subselections());
+                final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
+
+                final int symbolsSize = symbols.size();
+                for (int i = 0; i < NB_ASSOCIATIONS; i++) {
+
+                    final int indexSymbol = Random.nextInt(symbolsSize);
+                    final Entry<String, String> latin2hiragana = symbols.get(indexSymbol);
+
+                    final String latin = latin2hiragana.getKey();
+                    final String hiragana = latin2hiragana.getValue();
+
+                    final int indexLatin = getIndexSlot();
+                    final int indexHiragana = getIndexSlot();
+
+                    final GameCell cellLatin = cells.get(indexLatin);
+                    cellLatin.setCharacter(latin);
+
+                    final GameCell cellHiragana = cells.get(indexHiragana);
+                    cellHiragana.setCharacter(hiragana);
+
+                }
+
+            }
+        }
+        counterFoundAssociations = 0;
+    }
+
+    private int getIndexSlot() {
+
+        final int size = availableSlots.size();
+        int metaIdx = Random.nextInt(size);
+        int slotIdx = availableSlots.get(metaIdx);
+
+        while (occupiedSlots.contains(slotIdx)) {
+            metaIdx = Random.nextInt(size);
+            slotIdx = availableSlots.get(metaIdx);
+        }
+
+        availableSlots.remove(metaIdx);
+        occupiedSlots.add(slotIdx);
+        return metaIdx;
+    }
+
+    private GameCell firstCell = null;
+
+    @Override
+    public void clicksOn(final GameCell cell) {
+
+        if (null == firstCell) {
+            firstCell = cell;
+            return;
+        }
+
+        final String firstCharacter = firstCell.getCharacter();
+        final String secondCharacter = cell.getCharacter();
+        GWT.log("first " + firstCharacter);
+        GWT.log("second " + secondCharacter);
+
+        String matchCharacter;
+        if (availableSymbols.containsKey(firstCharacter)) {
+            matchCharacter = availableSymbols.get(firstCharacter);
+        } else {
+            matchCharacter = availableSymbols.inverse().get(firstCharacter);
+        }
+        GWT.log("match " + matchCharacter);
+
+        if (!secondCharacter.equals(matchCharacter)) {
+            firstCell.deselect();
+            cell.deselect();
+            firstCell = null;
+            return;
+        }
+
+        firstCell = null;
+        counterFoundAssociations++;
+        if (NB_ASSOCIATIONS == counterFoundAssociations) {
+            Window.alert("Congrat'!");
+        }
+
     }
 
 }

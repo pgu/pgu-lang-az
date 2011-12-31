@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import pgu.client.Pgu_game;
+import pgu.client.language.Hiragana;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -37,6 +38,8 @@ public class LevelPanel extends Composite {
         String detail();
 
         String separator();
+
+        String cellSelected();
 
     }
 
@@ -147,8 +150,13 @@ public class LevelPanel extends Composite {
         Pgu_game.gameConfig //
                 .language(((HTML) overview.getWidget(IX_LANGUAGE)).getText()) //
                 .type(((HTML) overview.getWidget(IX_TYPE)).getText()) //
-                .theme(((HTML) overview.getWidget(IX_THEME)).getText()) //
-                .subselection(((HTML) overview.getWidget(IX_SUBSELECTION)).getText());
+                .theme(((HTML) overview.getWidget(IX_THEME)).getText());
+
+        Pgu_game.gameConfig.subselections().clear();
+        for (final String selectedLevel : selectedLevels) {
+            Pgu_game.gameConfig.subselections().add(selectedLevel);
+        }
+
     }
 
     @UiHandler("btnCancel")
@@ -214,7 +222,6 @@ public class LevelPanel extends Composite {
     private static final int IX_LANGUAGE = 0;
     private static final int IX_TYPE = 2;
     private static final int IX_THEME = 4;
-    private static final int IX_SUBSELECTION = 6;
 
     private void fillPanelTheme() {
         final String language = ((HTML) overview.getWidget(IX_LANGUAGE)).getText();
@@ -274,8 +281,7 @@ public class LevelPanel extends Composite {
         selectedLevels.clear();
         final String theme = ((HTML) overview.getWidget(IX_THEME)).getText();
         if ("hiragana".equalsIgnoreCase(theme)) {
-            final List<String> levels = Arrays.asList("0 -", "1 k", "2 s", "3 t", "4 n" //
-                    , "5 h", "6 m", "7 y", "8 r", "9 w");
+            final List<String> levels = Hiragana.availableLevels();
 
             for (final String level : levels) {
                 final HTML cell = new HTML(level);
@@ -286,6 +292,7 @@ public class LevelPanel extends Composite {
 
                     @Override
                     public void onClick(final ClickEvent event) {
+                        cell.getElement().addClassName(style.cellSelected());
                         selectedLevels.add(cell.getText());
                     }
 

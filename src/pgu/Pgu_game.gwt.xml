@@ -16,9 +16,10 @@
     <set-configuration-property name="UiBinder.useSafeHtmlTemplates" value="true" />
     <!-- Resources and ClientBundle -->
     <inherits name="com.google.gwt.resources.Resources" />
-    <!-- Guava -->
+    <!-- Guava
     <inherits name="com.google.common.base.Base" />
     <inherits name="com.google.common.collect.Collect" />
+     -->
 
     <!-- Specify the app entry point class. -->
     <entry-point class='pgu.client.Pgu_game' />
