@@ -78,8 +78,10 @@ public class GameCell extends Composite {
         cellText.getElement().getStyle().setProperty("textShadow", "0 0 23px " + skin.mid());
     }
 
+    private int index;
+
     public GameCell index(final int index) {
-        cellText.setHTML("" + index);
+        this.index = index;
         return this;
     }
 
@@ -132,6 +134,10 @@ public class GameCell extends Composite {
 
     public String getCharacter() {
         return character;
+    }
+
+    public int index() {
+        return index;
     }
 
 }

@@ -70,7 +70,6 @@ public class GameViewImpl extends Composite implements GameView {
 
     @Override
     public Widget asWidget() {
-        GWT.log("asWidget");
         return super.asWidget();
     }
 
@@ -89,7 +88,6 @@ public class GameViewImpl extends Composite implements GameView {
 
     @Override
     public void resize() {
-        GWT.log("resize");
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
 
@@ -195,7 +193,9 @@ public class GameViewImpl extends Composite implements GameView {
 
     @Override
     public void generateGame() {
-        GWT.log("generate game");
+        for (final GameCell cell : cells) {
+            cell.deselect();
+        }
 
         occupiedSlots.clear();
         availableSlots.clear();
@@ -225,7 +225,6 @@ public class GameViewImpl extends Composite implements GameView {
 
                     final GameCell cellHiragana = cells.get(indexHiragana);
                     cellHiragana.setCharacter(hiragana);
-
                 }
 
             }
@@ -246,7 +245,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         availableSlots.remove(metaIdx);
         occupiedSlots.add(slotIdx);
-        return metaIdx;
+        return slotIdx;
     }
 
     private GameCell firstCell = null;
@@ -261,8 +260,6 @@ public class GameViewImpl extends Composite implements GameView {
 
         final String firstCharacter = firstCell.getCharacter();
         final String secondCharacter = cell.getCharacter();
-        GWT.log("first " + firstCharacter);
-        GWT.log("second " + secondCharacter);
 
         String matchCharacter;
         if (availableSymbols.containsKey(firstCharacter)) {
@@ -270,7 +267,6 @@ public class GameViewImpl extends Composite implements GameView {
         } else {
             matchCharacter = availableSymbols.inverse().get(firstCharacter);
         }
-        GWT.log("match " + matchCharacter);
 
         if (!secondCharacter.equals(matchCharacter)) {
             firstCell.deselect();
