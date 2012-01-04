@@ -286,6 +286,7 @@ public class LevelPanel extends Composite {
             for (final String level : levels) {
                 final HTML cell = new HTML(level);
                 cell.getElement().addClassName(style.cell());
+                cell.setWidth("100px");
                 subselection.add(cell);
 
                 cell.addClickHandler(new ClickHandler() {
