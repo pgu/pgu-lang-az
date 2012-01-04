@@ -39,10 +39,81 @@ public class Hiragana {
                 availableSymbols.put("GU", latin2hiragana.get("GU"));
                 availableSymbols.put("GE", latin2hiragana.get("GE"));
                 availableSymbols.put("GO", latin2hiragana.get("GO"));
-
             }
-
-            // TODO PGU faire la suite...
+            if (S.equals(selectedLevel)) {
+                availableSymbols.put("SA", latin2hiragana.get("SA"));
+                availableSymbols.put("SHI", latin2hiragana.get("SHI"));
+                availableSymbols.put("SU", latin2hiragana.get("SU"));
+                availableSymbols.put("SE", latin2hiragana.get("SE"));
+                availableSymbols.put("SO", latin2hiragana.get("SO"));
+                availableSymbols.put("ZA", latin2hiragana.get("ZA"));
+                availableSymbols.put("ZI", latin2hiragana.get("ZI"));
+                availableSymbols.put("ZU", latin2hiragana.get("ZU"));
+                availableSymbols.put("ZE", latin2hiragana.get("ZE"));
+                availableSymbols.put("ZO", latin2hiragana.get("ZO"));
+            }
+            if (T.equals(selectedLevel)) {
+                availableSymbols.put("TA", latin2hiragana.get("TA"));
+                availableSymbols.put("CHI", latin2hiragana.get("CHI"));
+                availableSymbols.put("TSU", latin2hiragana.get("TSU"));
+                availableSymbols.put("TE", latin2hiragana.get("TE"));
+                availableSymbols.put("TO", latin2hiragana.get("TO"));
+                availableSymbols.put("DA", latin2hiragana.get("DA"));
+                availableSymbols.put("DI", latin2hiragana.get("DI"));
+                availableSymbols.put("DU", latin2hiragana.get("DU"));
+                availableSymbols.put("DE", latin2hiragana.get("DE"));
+                availableSymbols.put("DO", latin2hiragana.get("DO"));
+            }
+            if (N.equals(selectedLevel)) {
+                availableSymbols.put("NA", latin2hiragana.get("NA"));
+                availableSymbols.put("NI", latin2hiragana.get("NI"));
+                availableSymbols.put("NU", latin2hiragana.get("NU"));
+                availableSymbols.put("NE", latin2hiragana.get("NE"));
+                availableSymbols.put("NO", latin2hiragana.get("NO"));
+            }
+            if (H.equals(selectedLevel)) {
+                availableSymbols.put("HA", latin2hiragana.get("HA"));
+                availableSymbols.put("HI", latin2hiragana.get("HI"));
+                availableSymbols.put("FU", latin2hiragana.get("FU"));
+                availableSymbols.put("HE", latin2hiragana.get("HE"));
+                availableSymbols.put("HO", latin2hiragana.get("HO"));
+                availableSymbols.put("BA", latin2hiragana.get("BA"));
+                availableSymbols.put("BI", latin2hiragana.get("BI"));
+                availableSymbols.put("BU", latin2hiragana.get("BU"));
+                availableSymbols.put("BE", latin2hiragana.get("BE"));
+                availableSymbols.put("BO", latin2hiragana.get("BO"));
+                availableSymbols.put("PA", latin2hiragana.get("PA"));
+                availableSymbols.put("PI", latin2hiragana.get("PI"));
+                availableSymbols.put("PU", latin2hiragana.get("PU"));
+                availableSymbols.put("PE", latin2hiragana.get("PE"));
+                availableSymbols.put("PO", latin2hiragana.get("PO"));
+            }
+            if (M.equals(selectedLevel)) {
+                availableSymbols.put("MA", latin2hiragana.get("MA"));
+                availableSymbols.put("MI", latin2hiragana.get("MI"));
+                availableSymbols.put("MU", latin2hiragana.get("MU"));
+                availableSymbols.put("ME", latin2hiragana.get("ME"));
+                availableSymbols.put("MO", latin2hiragana.get("MO"));
+            }
+            if (Y.equals(selectedLevel)) {
+                availableSymbols.put("YA", latin2hiragana.get("YA"));
+                availableSymbols.put("YU", latin2hiragana.get("YU"));
+                availableSymbols.put("YO", latin2hiragana.get("YO"));
+            }
+            if (R.equals(selectedLevel)) {
+                availableSymbols.put("RA", latin2hiragana.get("RA"));
+                availableSymbols.put("RI", latin2hiragana.get("RI"));
+                availableSymbols.put("RU", latin2hiragana.get("RU"));
+                availableSymbols.put("RE", latin2hiragana.get("RE"));
+                availableSymbols.put("RO", latin2hiragana.get("RO"));
+            }
+            if (W.equals(selectedLevel)) {
+                availableSymbols.put("WA", latin2hiragana.get("WA"));
+                availableSymbols.put("WI", latin2hiragana.get("WI"));
+                availableSymbols.put("VU", latin2hiragana.get("VU"));
+                availableSymbols.put("WE", latin2hiragana.get("WE"));
+                availableSymbols.put("WO", latin2hiragana.get("WO"));
+            }
         }
 
         return availableSymbols;
