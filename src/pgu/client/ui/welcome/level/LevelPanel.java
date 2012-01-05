@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import pgu.client.Pgu_game;
+import pgu.client.enums.Theme;
 import pgu.client.language.Hiragana;
 
 import com.google.gwt.core.client.GWT;
@@ -227,9 +228,10 @@ public class LevelPanel extends Composite {
         final String language = ((HTML) overview.getWidget(IX_LANGUAGE)).getText();
         final String type = ((HTML) overview.getWidget(IX_TYPE)).getText();
 
+        // TODO PGU remplacer les strings par les enums
         if ("japanese".equalsIgnoreCase(language)) {
             if ("alphabet".equalsIgnoreCase(type)) {
-                final List<String> themes = Arrays.asList(Theme.HIRAGANA.label(), "Katakana");
+                final List<String> themes = Arrays.asList(Theme.HIRAGANA.label(), "Katakana", Theme.RUSSIAN.label());
 
                 for (final String t : themes) {
 
@@ -301,6 +303,8 @@ public class LevelPanel extends Composite {
                 });
 
             }
+        } else if (Theme.RUSSIAN == theme) {
+
         }
     }
 

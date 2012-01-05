@@ -2,8 +2,8 @@ package pgu.client;
 
 import java.util.List;
 
+import pgu.client.enums.Theme;
 import pgu.client.myguava.Lists;
-import pgu.client.ui.welcome.level.Theme;
 
 public class GameConfig {
 

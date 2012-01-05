@@ -1,8 +1,8 @@
-package pgu.client.ui.welcome.level;
+package pgu.client.enums;
 
 public enum Theme {
 
-    HIRAGANA("Hiragana");
+    HIRAGANA("Hiragana"), RUSSIAN("Russian");
 
     private String label;
 

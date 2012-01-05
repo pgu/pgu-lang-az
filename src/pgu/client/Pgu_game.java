@@ -1,8 +1,8 @@
 package pgu.client;
 
+import pgu.client.enums.Theme;
 import pgu.client.gin.GameGinjector;
 import pgu.client.language.Hiragana;
-import pgu.client.ui.welcome.level.Theme;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
