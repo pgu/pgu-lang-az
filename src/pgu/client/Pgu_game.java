@@ -2,6 +2,7 @@ package pgu.client;
 
 import pgu.client.gin.GameGinjector;
 import pgu.client.language.Hiragana;
+import pgu.client.ui.welcome.level.Theme;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -14,7 +15,7 @@ public class Pgu_game implements EntryPoint {
 
     static {
         gameConfig.language("japanese");
-        gameConfig.theme("hiragana");
+        gameConfig.theme(Theme.HIRAGANA);
         gameConfig.subselections().add(Hiragana.availableLevels().get(0));
     }
 

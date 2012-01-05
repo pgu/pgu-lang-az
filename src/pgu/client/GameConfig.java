@@ -3,12 +3,13 @@ package pgu.client;
 import java.util.List;
 
 import pgu.client.myguava.Lists;
+import pgu.client.ui.welcome.level.Theme;
 
 public class GameConfig {
 
     private String language;
     private String type;
-    private String theme;
+    private Theme theme;
     private final List<String> subselections = Lists.newArrayList();
 
     public GameConfig language(final String text) {
@@ -21,8 +22,8 @@ public class GameConfig {
         return this;
     }
 
-    public GameConfig theme(final String text) {
-        theme = text;
+    public GameConfig theme(final Theme theme) {
+        this.theme = theme;
         return this;
     }
 
@@ -34,7 +35,7 @@ public class GameConfig {
         return type;
     }
 
-    public String theme() {
+    public Theme theme() {
         return theme;
     }
 

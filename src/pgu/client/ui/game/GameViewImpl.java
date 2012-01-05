@@ -8,6 +8,7 @@ import pgu.client.language.Hiragana;
 import pgu.client.myguava.HashBiMap;
 import pgu.client.myguava.Lists;
 import pgu.client.place.WelcomePlace;
+import pgu.client.ui.welcome.level.Theme;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
@@ -208,7 +209,7 @@ public class GameViewImpl extends Composite implements GameView {
             availableSlots.add(i);
         }
 
-        if ("hiragana".equalsIgnoreCase(Pgu_game.gameConfig.theme())) {
+        if (Theme.HIRAGANA == Pgu_game.gameConfig.theme()) {
             availableSymbols = Hiragana.availableSymbols(Pgu_game.gameConfig.subselections());
             final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
 

@@ -150,7 +150,7 @@ public class LevelPanel extends Composite {
         Pgu_game.gameConfig //
                 .language(((HTML) overview.getWidget(IX_LANGUAGE)).getText()) //
                 .type(((HTML) overview.getWidget(IX_TYPE)).getText()) //
-                .theme(((HTML) overview.getWidget(IX_THEME)).getText());
+                .theme(Theme.fromLabel(((HTML) overview.getWidget(IX_THEME)).getText()));
 
         Pgu_game.gameConfig.subselections().clear();
         for (final String selectedLevel : selectedLevels) {
@@ -229,7 +229,7 @@ public class LevelPanel extends Composite {
 
         if ("japanese".equalsIgnoreCase(language)) {
             if ("alphabet".equalsIgnoreCase(type)) {
-                final List<String> themes = Arrays.asList("Hiragana", "Katakana");
+                final List<String> themes = Arrays.asList(Theme.HIRAGANA.label(), "Katakana");
 
                 for (final String t : themes) {
 
@@ -279,8 +279,9 @@ public class LevelPanel extends Composite {
 
     private void fillPanelSubselection() {
         selectedLevels.clear();
-        final String theme = ((HTML) overview.getWidget(IX_THEME)).getText();
-        if ("hiragana".equalsIgnoreCase(theme)) {
+        final Theme theme = Theme.fromLabel(((HTML) overview.getWidget(IX_THEME)).getText());
+
+        if (Theme.HIRAGANA == theme) {
             final List<String> levels = Hiragana.availableLevels();
 
             for (final String level : levels) {
