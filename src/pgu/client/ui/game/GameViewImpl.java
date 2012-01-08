@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import pgu.client.Pgu_game;
+import pgu.client.enums.Language;
+import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
 import pgu.client.language.Hiragana;
+import pgu.client.language.RussianAlphabet;
 import pgu.client.place.WelcomePlace;
 import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.Lists;
@@ -208,32 +211,41 @@ public class GameViewImpl extends Composite implements GameView {
         for (int i = 0; i < 32; i++) {
             availableSlots.add(i);
         }
+        counterFoundAssociations = 0;
 
         if (Theme.HIRAGANA == Pgu_game.gameConfig.theme()) {
             availableSymbols = Hiragana.availableSymbols(Pgu_game.gameConfig.subselections());
-            final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
 
-            final int symbolsSize = symbols.size();
-            for (int i = 0; i < NB_ASSOCIATIONS; i++) {
-
-                final int indexSymbol = Random.nextInt(symbolsSize);
-                final Entry<String, String> latin2hiragana = symbols.get(indexSymbol);
-
-                final String latin = latin2hiragana.getKey();
-                final String hiragana = latin2hiragana.getValue();
-
-                final int indexLatin = getIndexSlot();
-                final int indexHiragana = getIndexSlot();
-
-                final GameCell cellLatin = cells.get(indexLatin);
-                cellLatin.setCharacter(latin);
-
-                final GameCell cellHiragana = cells.get(indexHiragana);
-                cellHiragana.setCharacter(hiragana);
-            }
+        } else if (isRussianAlphabet()) {
+            availableSymbols = RussianAlphabet.availableSymbols(Pgu_game.gameConfig.subselections());
 
         }
-        counterFoundAssociations = 0;
+
+        final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
+
+        final int symbolsSize = symbols.size();
+        for (int i = 0; i < NB_ASSOCIATIONS; i++) {
+
+            final int indexSymbol = Random.nextInt(symbolsSize);
+            final Entry<String, String> latin2extr = symbols.get(indexSymbol);
+
+            final String latin = latin2extr.getKey();
+            final String extr = latin2extr.getValue();
+
+            final int indexLatin = getIndexSlot();
+            final int indexExtr = getIndexSlot();
+
+            final GameCell cellLatin = cells.get(indexLatin);
+            cellLatin.setCharacter(latin);
+
+            final GameCell cellExtr = cells.get(indexExtr);
+            cellExtr.setCharacter(extr);
+        }
+    }
+
+    private boolean isRussianAlphabet() {
+        return Pgu_game.gameConfig.language() == Language.RUSSIAN //
+                && Pgu_game.gameConfig.granularity() == LanguageGranularity.ALPHABET;
     }
 
     private int getIndexSlot() {

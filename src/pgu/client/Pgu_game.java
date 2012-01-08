@@ -1,5 +1,6 @@
 package pgu.client;
 
+import pgu.client.enums.Language;
 import pgu.client.enums.Theme;
 import pgu.client.gin.GameGinjector;
 import pgu.client.language.Hiragana;
@@ -14,8 +15,8 @@ public class Pgu_game implements EntryPoint {
     public static GameConfig gameConfig = new GameConfig();
 
     static {
-        gameConfig.language("japanese");
-        gameConfig.theme(Theme.HIRAGANA);
+        gameConfig.language(Language.JAPANESE.label());
+        gameConfig.theme(Theme.HIRAGANA.label());
         gameConfig.subselections().add(Hiragana.availableLevels().get(0));
     }
 

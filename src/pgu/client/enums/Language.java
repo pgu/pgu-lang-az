@@ -1,6 +1,6 @@
 package pgu.client.enums;
 
-public enum Language {
+public enum Language implements HasLabel {
     JAPANESE("Japanese"), //
     RUSSIAN("Russian");
 
@@ -8,5 +8,10 @@ public enum Language {
 
     private Language(final String label) {
         this.label = label;
+    }
+
+    @Override
+    public String label() {
+        return label;
     }
 }

@@ -49,14 +49,29 @@
         top: 21px;
         left: 0px;
     }
+    .overview-label {
+        float: left;
+        margin-right: 5px;
+    }
+    .overview-value {
+        float: left;
+        margin-right: 5px;
+        font-weight: bold;
+    }
     </ui:style>
     
     <g:HTMLPanel ui:field="container" addStyleNames="{style.container}">
         <g:HTMLPanel ui:field="overview" addStyleNames="{style.overview}">
+            <g:HTML addStyleNames="{style.overview-label}">Language</g:HTML>
+            <g:HTML ui:field="ovLanguage" addStyleNames="{style.overview-value}"></g:HTML>
+            <g:HTML addStyleNames="{style.overview-label}">Granularity</g:HTML>
+            <g:HTML ui:field="ovGranularity" addStyleNames="{style.overview-value}"></g:HTML>
+            <g:HTML addStyleNames="{style.overview-label}">Theme</g:HTML>
+            <g:HTML ui:field="ovTheme" addStyleNames="{style.overview-value}"></g:HTML>
         </g:HTMLPanel>
         <g:HTMLPanel ui:field="language" addStyleNames="{style.selection}">
         </g:HTMLPanel>
-        <g:HTMLPanel ui:field="type" addStyleNames="{style.selection}">
+        <g:HTMLPanel ui:field="granularity" addStyleNames="{style.selection}">
         </g:HTMLPanel>
         <g:HTMLPanel ui:field="theme" addStyleNames="{style.selection}">
         </g:HTMLPanel>
