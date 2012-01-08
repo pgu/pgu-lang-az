@@ -188,7 +188,7 @@ public class GameViewImpl extends Composite implements GameView {
 
     private GameCell createCell() {
         counterIdxCell++;
-        final GameCell cell = new GameCell(cellFactory).index(counterIdxCell).ice();
+        final GameCell cell = new GameCell(cellFactory).index(counterIdxCell);
         cell.size();
         cells.add(cell);
         return cell;
@@ -211,7 +211,6 @@ public class GameViewImpl extends Composite implements GameView {
         for (int i = 0; i < 32; i++) {
             availableSlots.add(i);
         }
-        counterFoundAssociations = 0;
 
         if (Theme.HIRAGANA == Pgu_game.gameConfig.theme()) {
             availableSymbols = Hiragana.availableSymbols(Pgu_game.gameConfig.subselections());
@@ -237,10 +236,14 @@ public class GameViewImpl extends Composite implements GameView {
 
             final GameCell cellLatin = cells.get(indexLatin);
             cellLatin.setCharacter(latin);
+            cellLatin.ice().setDefaultSkin();
 
             final GameCell cellExtr = cells.get(indexExtr);
             cellExtr.setCharacter(extr);
+            cellExtr.green().setDefaultSkin();
         }
+
+        counterFoundAssociations = 0;
     }
 
     private boolean isRussianAlphabet() {
