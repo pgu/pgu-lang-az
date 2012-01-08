@@ -1,4 +1,4 @@
-package pgu.client.myguava;
+package pgu.client.utils.guava;
 
 import java.util.ArrayList;
 import java.util.List;

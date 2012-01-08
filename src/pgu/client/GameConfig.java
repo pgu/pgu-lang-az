@@ -3,7 +3,7 @@ package pgu.client;
 import java.util.List;
 
 import pgu.client.enums.Theme;
-import pgu.client.myguava.Lists;
+import pgu.client.utils.guava.Lists;
 
 public class GameConfig {
 

@@ -6,9 +6,9 @@ import java.util.Map.Entry;
 import pgu.client.Pgu_game;
 import pgu.client.enums.Theme;
 import pgu.client.language.Hiragana;
-import pgu.client.myguava.HashBiMap;
-import pgu.client.myguava.Lists;
 import pgu.client.place.WelcomePlace;
+import pgu.client.utils.guava.HashBiMap;
+import pgu.client.utils.guava.Lists;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
