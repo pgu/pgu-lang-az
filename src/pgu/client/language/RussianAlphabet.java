@@ -3,7 +3,7 @@ package pgu.client.language;
 import java.util.Arrays;
 import java.util.List;
 
-import pgu.client.myguava.HashBiMap;
+import pgu.client.utils.guava.HashBiMap;
 
 public class RussianAlphabet {
 

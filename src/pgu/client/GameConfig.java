@@ -1,38 +1,44 @@
 package pgu.client;
 
+import static pgu.client.enums.LabelHelper.fromGranularity;
+import static pgu.client.enums.LabelHelper.fromLanguage;
+import static pgu.client.enums.LabelHelper.fromTheme;
+
 import java.util.List;
 
+import pgu.client.enums.Language;
+import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
-import pgu.client.myguava.Lists;
+import pgu.client.utils.guava.Lists;
 
 public class GameConfig {
 
-    private String language;
-    private String type;
+    private Language language;
+    private LanguageGranularity granularity;
     private Theme theme;
     private final List<String> subselections = Lists.newArrayList();
 
-    public GameConfig language(final String text) {
-        language = text;
+    public GameConfig language(final String label) {
+        language = fromLanguage(label);
         return this;
     }
 
-    public GameConfig type(final String text) {
-        type = text;
+    public GameConfig granularity(final String label) {
+        granularity = fromGranularity(label);
         return this;
     }
 
-    public GameConfig theme(final Theme theme) {
-        this.theme = theme;
+    public GameConfig theme(final String label) {
+        theme = fromTheme(label);
         return this;
     }
 
-    public String language() {
+    public Language language() {
         return language;
     }
 
-    public String type() {
-        return type;
+    public LanguageGranularity granularity() {
+        return granularity;
     }
 
     public Theme theme() {

@@ -1,5 +1,7 @@
 package pgu.client.ui.welcome.level;
 
+import static pgu.client.enums.LabelHelper.is;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,8 +9,12 @@ import java.util.List;
 import java.util.Set;
 
 import pgu.client.Pgu_game;
+import pgu.client.enums.LabelHelper;
+import pgu.client.enums.Language;
+import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
 import pgu.client.language.Hiragana;
+import pgu.client.language.RussianAlphabet;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -50,14 +56,13 @@ public class LevelPanel extends Composite {
     @UiField
     HorizontalPanel controls;
     @UiField
-    HTMLPanel container, language, type, theme, subselection, overview;
+    HTMLPanel container, language, granularity, theme, subselection, overview;
     @UiField
     Button btnCancel, btnBack, btnOk;
+    @UiField
+    HTML ovLanguage, ovGranularity, ovTheme;
 
     private final PopupPanel popup;
-
-    private static final List<String> LANGUAGES = Arrays.asList("Japanese", "Chinese", "Russian", "Japanese2",
-            "Chinese2", "Russian2");
 
     public LevelPanel(final PopupPanel popup) {
         this.popup = popup;
@@ -66,7 +71,7 @@ public class LevelPanel extends Composite {
         style.ensureInjected();
 
         int counter = 0;
-        for (final String lg : LANGUAGES) {
+        for (final String lg : LabelHelper.labels(Language.values())) {
 
             if (isDivClear(counter)) {
                 final HTML divClear = new HTML();
@@ -83,12 +88,11 @@ public class LevelPanel extends Composite {
 
                 @Override
                 public void onClick(final ClickEvent event) {
-                    overview.clear();
-                    final HTML detailLg = new HTML(cellLg.getText());
-                    detailLg.getElement().addClassName(style.detail());
-                    overview.add(detailLg);
+                    ovLanguage.setText(cellLg.getText());
+                    ovGranularity.setText("");
+                    ovTheme.setText("");
 
-                    setVisiblePanel(type);
+                    setVisiblePanel(granularity);
                     setVisibleButton(btnBack);
                 }
 
@@ -97,48 +101,46 @@ public class LevelPanel extends Composite {
             counter++;
         }
 
-        for (final String typeValue : TYPES) {
+        for (final LanguageGranularity granularityValue : LanguageGranularity.values()) {
 
-            final HTML cell = new HTML(typeValue);
+            final HTML cell = new HTML(granularityValue.label());
             cell.getElement().addClassName(style.cell());
-            type.add(cell);
+            granularity.add(cell);
 
             cell.addClickHandler(new ClickHandler() {
 
                 @Override
                 public void onClick(final ClickEvent event) {
-                    final List<Widget> wToRemoves = new ArrayList<Widget>();
-                    for (int i = 0; i < overview.getWidgetCount(); i++) {
-                        if (i < IX_TYPE) {
-                            continue;
-                        }
-                        wToRemoves.add(overview.getWidget(i));
+                    ovGranularity.setText(cell.getText());
+                    ovTheme.setText("");
+
+                    if (isRussianAlphabet()) {
+                        showSubselection();
+
+                    } else {
+                        showTheme();
                     }
-                    for (final Widget wToRemove : wToRemoves) {
-                        wToRemove.removeFromParent();
-                    }
-                    // /////////////////////////////////////
 
-                    final HTML sep = new HTML(" > ");
-                    sep.getElement().addClassName(style.separator());
-                    overview.add(sep);
-
-                    final HTML detailType = new HTML(cell.getText());
-                    detailType.getElement().addClassName(style.detail());
-                    overview.add(detailType);
-
-                    setVisiblePanel(theme);
-                    setVisibleButton(btnBack);
-
-                    fillPanelTheme();
                 }
-
             });
         }
-
     }
 
-    private static final List<String> TYPES = Arrays.asList("Alphabet", "Words", "Sentences");
+    private boolean isRussianAlphabet() {
+        if (is(ovLanguage.getText(), Language.RUSSIAN)) {
+            if (is(ovGranularity.getText(), LanguageGranularity.ALPHABET)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void showTheme() {
+        setVisiblePanel(theme);
+        setVisibleButton(btnBack);
+        fillPanelTheme();
+    }
+
     private static final int NB_CELLS = 4;
 
     private static boolean isDivClear(final int counter) {
@@ -149,14 +151,12 @@ public class LevelPanel extends Composite {
     public void clickOk(final ClickEvent e) {
         popup.hide();
         Pgu_game.gameConfig //
-                .language(((HTML) overview.getWidget(IX_LANGUAGE)).getText()) //
-                .type(((HTML) overview.getWidget(IX_TYPE)).getText()) //
-                .theme(Theme.fromLabel(((HTML) overview.getWidget(IX_THEME)).getText()));
+                .language(ovLanguage.getText()) //
+                .granularity(ovGranularity.getText()) //
+                .theme(ovTheme.getText());
 
         Pgu_game.gameConfig.subselections().clear();
-        for (final String selectedLevel : selectedLevels) {
-            Pgu_game.gameConfig.subselections().add(selectedLevel);
-        }
+        Pgu_game.gameConfig.subselections().addAll(selectedLevels);
 
     }
 
@@ -171,6 +171,16 @@ public class LevelPanel extends Composite {
     }
 
     public void show() {
+
+        ovLanguage.setText("");
+        ovGranularity.setText("");
+        ovTheme.setText("");
+        selectedLevels.clear();
+        theme.clear();
+        subselection.clear();
+        btnBack.setVisible(false);
+        btnOk.setVisible(false);
+
         final int w = Window.getClientWidth() - 100;
         final int h = Window.getClientHeight() - 100;
 
@@ -181,7 +191,7 @@ public class LevelPanel extends Composite {
         popup.setPixelSize(w, h);
 
         final int cellW = w / NB_CELLS - 5;
-        final int cellH = h / (LANGUAGES.size() % 4) - 30;
+        final int cellH = h / (Language.values().length % 4) - 30;
 
         for (int i = 0; i < language.getWidgetCount(); i++) {
             if (isDivClear(i)) {
@@ -214,28 +224,22 @@ public class LevelPanel extends Composite {
     }
 
     private void setVisiblePanel(final HTMLPanel panel) {
-        final List<HTMLPanel> panels = Arrays.asList(language, type, theme, subselection);
+        final List<HTMLPanel> panels = Arrays.asList(language, granularity, theme, subselection);
         for (final HTMLPanel p : panels) {
             p.setVisible(p.equals(panel));
         }
     }
 
-    private static final int IX_LANGUAGE = 0;
-    private static final int IX_TYPE = 2;
-    private static final int IX_THEME = 4;
-
     private void fillPanelTheme() {
-        final String language = ((HTML) overview.getWidget(IX_LANGUAGE)).getText();
-        final String type = ((HTML) overview.getWidget(IX_TYPE)).getText();
+        final String languageLabel = ovLanguage.getText();
+        final String granularityLabel = ovGranularity.getText();
 
-        // TODO PGU remplacer les strings par les enums
-        if ("japanese".equalsIgnoreCase(language)) {
-            if ("alphabet".equalsIgnoreCase(type)) {
-                final List<String> themes = Arrays.asList(Theme.HIRAGANA.label(), "Katakana", Theme.RUSSIAN.label());
+        if (is(languageLabel, Language.JAPANESE)) {
+            if (is(granularityLabel, LanguageGranularity.ALPHABET)) {
 
-                for (final String t : themes) {
+                for (final Theme t : Arrays.asList(Theme.HIRAGANA, Theme.KATAKANA)) {
 
-                    final HTML cell = new HTML(t);
+                    final HTML cell = new HTML(t.label());
                     cell.getElement().addClassName(style.cell());
                     theme.add(cell);
 
@@ -243,30 +247,10 @@ public class LevelPanel extends Composite {
 
                         @Override
                         public void onClick(final ClickEvent event) {
-                            final List<Widget> wToRemoves = new ArrayList<Widget>();
-                            for (int i = 0; i < overview.getWidgetCount(); i++) {
-                                if (i < IX_THEME) {
-                                    continue;
-                                }
-                                wToRemoves.add(overview.getWidget(i));
-                            }
-                            for (final Widget wToRemove : wToRemoves) {
-                                wToRemove.removeFromParent();
-                            }
+                            ovTheme.setText(cell.getText());
                             // /////////////////////////////////////
 
-                            final HTML sep = new HTML(" > ");
-                            sep.getElement().addClassName(style.separator());
-                            overview.add(sep);
-
-                            final HTML detail = new HTML(cell.getText());
-                            detail.getElement().addClassName(style.detail());
-                            overview.add(detail);
-
-                            setVisiblePanel(subselection);
-                            setVisibleButton(btnBack, btnOk);
-
-                            fillPanelSubselection();
+                            showSubselection();
                         }
 
                     });
@@ -274,36 +258,49 @@ public class LevelPanel extends Composite {
                 }
             }
         }
+    }
 
+    private void showSubselection() {
+        setVisiblePanel(subselection);
+        setVisibleButton(btnBack, btnOk);
+
+        fillPanelSubselection();
     }
 
     private final Set<String> selectedLevels = new HashSet<String>();
 
     private void fillPanelSubselection() {
         selectedLevels.clear();
-        final Theme theme = Theme.fromLabel(((HTML) overview.getWidget(IX_THEME)).getText());
+        final String themeLabel = ovTheme.getText();
 
-        if (Theme.HIRAGANA == theme) {
-            final List<String> levels = Hiragana.availableLevels();
+        if (is(themeLabel, Theme.HIRAGANA)) {
+            buildLevels(Hiragana.availableLevels());
+            return;
+        }
 
-            for (final String level : levels) {
-                final HTML cell = new HTML(level);
-                cell.getElement().addClassName(style.cell());
-                cell.setWidth("100px");
-                subselection.add(cell);
+        if (isRussianAlphabet()) {
+            buildLevels(RussianAlphabet.availableLevels());
+            return;
+        }
 
-                cell.addClickHandler(new ClickHandler() {
+    }
 
-                    @Override
-                    public void onClick(final ClickEvent event) {
-                        cell.getElement().addClassName(style.cellSelected());
-                        selectedLevels.add(cell.getText());
-                    }
+    private void buildLevels(final List<String> availableLevels) {
+        for (final String level : availableLevels) {
+            final HTML cell = new HTML(level);
+            cell.getElement().addClassName(style.cell());
+            cell.setWidth("100px");
+            subselection.add(cell);
 
-                });
+            cell.addClickHandler(new ClickHandler() {
 
-            }
-        } else if (Theme.RUSSIAN == theme) {
+                @Override
+                public void onClick(final ClickEvent event) {
+                    cell.getElement().addClassName(style.cellSelected());
+                    selectedLevels.add(cell.getText());
+                }
+
+            });
 
         }
     }

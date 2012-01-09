@@ -26,13 +26,20 @@ public class GameCell extends Composite {
 
     private final GameCellFactory factory;
 
+    private Skin currentSkin = null;
+    private Skin defaultSkin = Skin.WHITE;
+
     public GameCell(final GameCellFactory factory) {
         initWidget(uiBinder.createAndBindUi(this));
         this.factory = factory;
+        applySkin(Skin.WHITE);
     }
 
     private enum Skin {
-        FIRE("#fe601e", "#eecd30"), ICE("#22afca", "#9ad5d8");
+        WHITE("#fff", "#fff") //
+        , FIRE("#fe601e", "#eecd30") //
+        , ICE("#22afca", "#9ad5d8") //
+        , GREEN("#22ca3b", "#9AD89E");
 
         private String colorExt;
         private String colorMid;
@@ -61,7 +68,19 @@ public class GameCell extends Composite {
         return this;
     }
 
+    public GameCell green() {
+        applySkin(Skin.GREEN);
+        return this;
+    }
+
+    public GameCell setDefaultSkin() {
+        defaultSkin = currentSkin;
+        return this;
+    }
+
     public void applySkin(final Skin skin) {
+        currentSkin = skin;
+
         // TODO PGU faire une methode setWebkitBoxShadow for all browsers
         cellExt.getElement().getStyle().setProperty("webkitBoxShadow", skin.ext() + " 0 0 16px");
 
@@ -128,7 +147,7 @@ public class GameCell extends Composite {
     }
 
     public void deselect() {
-        ice();
+        applySkin(defaultSkin);
         isSelected = false;
     }
 

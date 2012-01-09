@@ -1,8 +1,8 @@
 package pgu.client.enums;
 
-public enum Theme {
+public enum Theme implements HasLabel {
 
-    HIRAGANA("Hiragana"), RUSSIAN("Russian");
+    HIRAGANA("Hiragana"), KATAKANA("Katakana");
 
     private String label;
 
@@ -10,18 +10,9 @@ public enum Theme {
         this.label = label;
     }
 
+    @Override
     public String label() {
         return label;
     }
 
-    public static Theme fromLabel(final String label) {
-
-        for (final Theme theme : values()) {
-            if (theme.label.equalsIgnoreCase(label)) {
-                return theme;
-            }
-        }
-
-        throw new IllegalArgumentException("No Theme associated to the label: " + label);
-    }
 }
