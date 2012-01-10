@@ -7,6 +7,10 @@ import pgu.client.utils.guava.HashBiMap;
 
 public class Hiragana {
 
+    private Hiragana() {
+        throw new UnsupportedOperationException();
+    }
+
     private static final HashBiMap<String, String> latin2hiragana = HashBiMap.create();
     private static final List<String> availableLevels;
 
@@ -119,16 +123,16 @@ public class Hiragana {
         return availableSymbols;
     }
 
-    private static final String A = "0 -";
-    private static final String K = "1 k";
-    private static final String S = "2 s";
-    private static final String T = "3 t";
-    private static final String N = "4 n";
-    private static final String H = "5 h";
-    private static final String M = "6 m";
-    private static final String Y = "7 y";
-    private static final String R = "8 r";
-    private static final String W = "9 w";
+    private static final String A = "A";
+    private static final String K = "K - G";
+    private static final String S = "S - Z";
+    private static final String T = "T - D";
+    private static final String N = "N";
+    private static final String H = "H - B - P";
+    private static final String M = "M";
+    private static final String Y = "Y";
+    private static final String R = "R";
+    private static final String W = "W";
 
     static {
         availableLevels = Arrays.asList( //
@@ -209,6 +213,5 @@ public class Hiragana {
         latin2hiragana.put("WO", "&#x3092;");
         latin2hiragana.put("N", "&#x3093;");
         latin2hiragana.put("VU", "&#x3094;");
-
     }
 }

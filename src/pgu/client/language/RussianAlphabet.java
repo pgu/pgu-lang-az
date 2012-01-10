@@ -7,8 +7,12 @@ import pgu.client.utils.guava.HashBiMap;
 
 public class RussianAlphabet {
 
+    private RussianAlphabet() {
+        throw new UnsupportedOperationException();
+    }
+
     private static final HashBiMap<String, String> latin2russian = HashBiMap.create();
-    private static final List<String>              availableLevels;
+    private static final List<String> availableLevels;
 
     public static List<String> availableLevels() {
         return availableLevels;
