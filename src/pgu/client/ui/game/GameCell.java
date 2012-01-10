@@ -33,6 +33,7 @@ public class GameCell extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
         this.factory = factory;
         applySkin(Skin.WHITE);
+        GWT.log("builds a cell - white");
     }
 
     private enum Skin {
@@ -65,15 +66,19 @@ public class GameCell extends Composite {
 
     public GameCell ice() {
         applySkin(Skin.ICE);
+        GWT.log("ice...");
         return this;
     }
 
     public GameCell green() {
         applySkin(Skin.GREEN);
+        GWT.log("green...");
         return this;
     }
 
     public GameCell setDefaultSkin() {
+        GWT.log("setDefaultSkin... defaultSkin: " + defaultSkin);
+        GWT.log("setDefaultSkin... currentSkin: " + currentSkin);
         defaultSkin = currentSkin;
         return this;
     }

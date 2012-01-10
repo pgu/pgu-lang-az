@@ -41,8 +41,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         initWidget(uiBinder.createAndBindUi(this));
 
         for (int i = 0; i < 100; i++) {
-            listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
-            listArea.add(new Score("Awesome dude", i + "0 min 30 sec, Jap > Hir > 10"));
+            // listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
+            // listArea.add(new Score("Awesome dude", i + "0 min 30 sec, Jap > Hir > 10"));
         }
 
         Window.addResizeHandler(new ResizeHandler() {

@@ -100,6 +100,8 @@ public class GameViewImpl extends Composite implements GameView {
 
     @Override
     public void resize() {
+        GWT.log("resize....");
+
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
 
@@ -142,6 +144,7 @@ public class GameViewImpl extends Composite implements GameView {
     private GameCellFactory cellFactory;
 
     private void displayGame() {
+
         counterIdxCell = 0;
 
         nbRows = isPortrait ? 8 : 4;
@@ -152,6 +155,7 @@ public class GameViewImpl extends Composite implements GameView {
         cellFactory = new GameCellFactory(cellW, cellH, isPortrait, this);
 
         if (0 == gridArea.getWidgetCount()) {
+            cells.clear();
             for (int i = 0; i < nbRows; i++) {
                 gridArea.add(createRow());
             }
@@ -159,6 +163,7 @@ public class GameViewImpl extends Composite implements GameView {
         }
 
         if (isPortrait_old != isPortrait) {
+            cells.clear();
             gridArea.clear();
             for (int i = 0; i < nbRows; i++) {
                 gridArea.add(createRow());
@@ -205,6 +210,8 @@ public class GameViewImpl extends Composite implements GameView {
 
     @Override
     public void generateGame() {
+        GWT.log("generateGame...");
+
         for (final GameCell cell : cells) {
             cell.deselect();
         }
@@ -230,9 +237,15 @@ public class GameViewImpl extends Composite implements GameView {
             hasLevels = GreekAlphabet.INSTANCE;
         }
 
+        GWT.log("hasLevels " + hasLevels.toString());
+
         fetchAvailableSymbols(hasLevels);
 
         final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
+
+        for (final Entry<String, String> entry : symbols) {
+            GWT.log("- " + entry.getKey() + ", " + entry.getValue());
+        }
 
         final int symbolsSize = symbols.size();
         for (int i = 0; i < NB_ASSOCIATIONS; i++) {
