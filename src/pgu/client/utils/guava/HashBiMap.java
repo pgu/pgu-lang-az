@@ -6,6 +6,9 @@ import java.util.Set;
 
 public class HashBiMap<K, V> {
 
+    private HashBiMap() {
+    }
+
     private final HashMap<K, V> map = new HashMap<K, V>();
     private final HashMap<V, K> inverse = new HashMap<V, K>();
 

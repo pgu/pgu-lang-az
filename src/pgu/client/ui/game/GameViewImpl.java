@@ -7,7 +7,10 @@ import pgu.client.Pgu_game;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
+import pgu.client.language.GreekAlphabet;
+import pgu.client.language.HasLevels;
 import pgu.client.language.Hiragana;
+import pgu.client.language.Katakana;
 import pgu.client.language.RussianAlphabet;
 import pgu.client.place.WelcomePlace;
 import pgu.client.utils.guava.HashBiMap;
@@ -212,13 +215,22 @@ public class GameViewImpl extends Composite implements GameView {
             availableSlots.add(i);
         }
 
+        HasLevels hasLevels = null;
+
         if (Theme.HIRAGANA == Pgu_game.gameConfig.theme()) {
-            availableSymbols = Hiragana.availableSymbols(Pgu_game.gameConfig.subselections());
+            hasLevels = Hiragana.INSTANCE;
+
+        } else if (Theme.KATAKANA == Pgu_game.gameConfig.theme()) {
+            hasLevels = Katakana.INSTANCE;
 
         } else if (isRussianAlphabet()) {
-            availableSymbols = RussianAlphabet.availableSymbols(Pgu_game.gameConfig.subselections());
+            hasLevels = RussianAlphabet.INSTANCE;
 
+        } else if (isGreekAlphabet()) {
+            hasLevels = GreekAlphabet.INSTANCE;
         }
+
+        fetchAvailableSymbols(hasLevels);
 
         final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
 
@@ -246,9 +258,18 @@ public class GameViewImpl extends Composite implements GameView {
         counterFoundAssociations = 0;
     }
 
+    private void fetchAvailableSymbols(final HasLevels hasLevels) {
+        availableSymbols = hasLevels.availableSymbols(Pgu_game.gameConfig.subselections());
+    }
+
+    private boolean isGreekAlphabet() {
+        return Language.GREEK == Pgu_game.gameConfig.language() //
+                && LanguageGranularity.ALPHABET == Pgu_game.gameConfig.granularity();
+    }
+
     private boolean isRussianAlphabet() {
-        return Pgu_game.gameConfig.language() == Language.RUSSIAN //
-                && Pgu_game.gameConfig.granularity() == LanguageGranularity.ALPHABET;
+        return Language.RUSSIAN == Pgu_game.gameConfig.language()//
+                && LanguageGranularity.ALPHABET == Pgu_game.gameConfig.granularity();
     }
 
     private int getIndexSlot() {

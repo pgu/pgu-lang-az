@@ -5,20 +5,21 @@ import java.util.List;
 
 import pgu.client.utils.guava.HashBiMap;
 
-public class Hiragana {
+public enum Hiragana implements HasLevels {
+    INSTANCE;
 
-    private Hiragana() {
-        throw new UnsupportedOperationException();
-    }
+    private final HashBiMap<String, String> latin2hiragana = HashBiMap.create();
+    private final List<String> availableLevels = Arrays.asList( //
+            A, K, S, T, N, //
+            H, M, Y, R, W);
 
-    private static final HashBiMap<String, String> latin2hiragana = HashBiMap.create();
-    private static final List<String> availableLevels;
-
-    public static List<String> availableLevels() {
+    @Override
+    public List<String> availableLevels() {
         return availableLevels;
     }
 
-    public static final HashBiMap<String, String> availableSymbols(final List<String> selectedLevels) {
+    @Override
+    public final HashBiMap<String, String> availableSymbols(final List<String> selectedLevels) {
         final HashBiMap<String, String> availableSymbols = HashBiMap.create();
 
         for (final String selectedLevel : selectedLevels) {
@@ -31,8 +32,7 @@ public class Hiragana {
                 availableSymbols.put("O", latin2hiragana.get("O"));
                 availableSymbols.put("N", latin2hiragana.get("N"));
 
-            }
-            if (K.equals(selectedLevel)) {
+            } else if (K.equals(selectedLevel)) {
                 availableSymbols.put("KA", latin2hiragana.get("KA"));
                 availableSymbols.put("KI", latin2hiragana.get("KI"));
                 availableSymbols.put("KU", latin2hiragana.get("KU"));
@@ -43,8 +43,8 @@ public class Hiragana {
                 availableSymbols.put("GU", latin2hiragana.get("GU"));
                 availableSymbols.put("GE", latin2hiragana.get("GE"));
                 availableSymbols.put("GO", latin2hiragana.get("GO"));
-            }
-            if (S.equals(selectedLevel)) {
+
+            } else if (S.equals(selectedLevel)) {
                 availableSymbols.put("SA", latin2hiragana.get("SA"));
                 availableSymbols.put("SHI", latin2hiragana.get("SHI"));
                 availableSymbols.put("SU", latin2hiragana.get("SU"));
@@ -55,8 +55,8 @@ public class Hiragana {
                 availableSymbols.put("ZU", latin2hiragana.get("ZU"));
                 availableSymbols.put("ZE", latin2hiragana.get("ZE"));
                 availableSymbols.put("ZO", latin2hiragana.get("ZO"));
-            }
-            if (T.equals(selectedLevel)) {
+
+            } else if (T.equals(selectedLevel)) {
                 availableSymbols.put("TA", latin2hiragana.get("TA"));
                 availableSymbols.put("CHI", latin2hiragana.get("CHI"));
                 availableSymbols.put("TSU", latin2hiragana.get("TSU"));
@@ -67,15 +67,15 @@ public class Hiragana {
                 availableSymbols.put("DU", latin2hiragana.get("DU"));
                 availableSymbols.put("DE", latin2hiragana.get("DE"));
                 availableSymbols.put("DO", latin2hiragana.get("DO"));
-            }
-            if (N.equals(selectedLevel)) {
+
+            } else if (N.equals(selectedLevel)) {
                 availableSymbols.put("NA", latin2hiragana.get("NA"));
                 availableSymbols.put("NI", latin2hiragana.get("NI"));
                 availableSymbols.put("NU", latin2hiragana.get("NU"));
                 availableSymbols.put("NE", latin2hiragana.get("NE"));
                 availableSymbols.put("NO", latin2hiragana.get("NO"));
-            }
-            if (H.equals(selectedLevel)) {
+
+            } else if (H.equals(selectedLevel)) {
                 availableSymbols.put("HA", latin2hiragana.get("HA"));
                 availableSymbols.put("HI", latin2hiragana.get("HI"));
                 availableSymbols.put("FU", latin2hiragana.get("FU"));
@@ -91,32 +91,35 @@ public class Hiragana {
                 availableSymbols.put("PU", latin2hiragana.get("PU"));
                 availableSymbols.put("PE", latin2hiragana.get("PE"));
                 availableSymbols.put("PO", latin2hiragana.get("PO"));
-            }
-            if (M.equals(selectedLevel)) {
+
+            } else if (M.equals(selectedLevel)) {
                 availableSymbols.put("MA", latin2hiragana.get("MA"));
                 availableSymbols.put("MI", latin2hiragana.get("MI"));
                 availableSymbols.put("MU", latin2hiragana.get("MU"));
                 availableSymbols.put("ME", latin2hiragana.get("ME"));
                 availableSymbols.put("MO", latin2hiragana.get("MO"));
-            }
-            if (Y.equals(selectedLevel)) {
+
+            } else if (Y.equals(selectedLevel)) {
                 availableSymbols.put("YA", latin2hiragana.get("YA"));
                 availableSymbols.put("YU", latin2hiragana.get("YU"));
                 availableSymbols.put("YO", latin2hiragana.get("YO"));
-            }
-            if (R.equals(selectedLevel)) {
+
+            } else if (R.equals(selectedLevel)) {
                 availableSymbols.put("RA", latin2hiragana.get("RA"));
                 availableSymbols.put("RI", latin2hiragana.get("RI"));
                 availableSymbols.put("RU", latin2hiragana.get("RU"));
                 availableSymbols.put("RE", latin2hiragana.get("RE"));
                 availableSymbols.put("RO", latin2hiragana.get("RO"));
-            }
-            if (W.equals(selectedLevel)) {
+
+            } else if (W.equals(selectedLevel)) {
                 availableSymbols.put("WA", latin2hiragana.get("WA"));
                 availableSymbols.put("WI", latin2hiragana.get("WI"));
                 availableSymbols.put("VU", latin2hiragana.get("VU"));
                 availableSymbols.put("WE", latin2hiragana.get("WE"));
                 availableSymbols.put("WO", latin2hiragana.get("WO"));
+
+            } else {
+                throw new IllegalArgumentException("Unknown level: " + selectedLevel);
             }
         }
 
@@ -134,11 +137,7 @@ public class Hiragana {
     private static final String R = "R";
     private static final String W = "W";
 
-    static {
-        availableLevels = Arrays.asList( //
-                A, K, S, T, N, //
-                H, M, Y, R, W);
-
+    {
         latin2hiragana.put("A", "&#x3042;");
         latin2hiragana.put("I", "&#x3044;");
         latin2hiragana.put("U", "&#x3046;");

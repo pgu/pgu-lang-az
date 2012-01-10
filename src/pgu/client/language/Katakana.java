@@ -5,20 +5,21 @@ import java.util.List;
 
 import pgu.client.utils.guava.HashBiMap;
 
-public class Katakana {
+public enum Katakana implements HasLevels {
+    INSTANCE;
 
-    private Katakana() {
-        throw new UnsupportedOperationException();
-    }
+    private final HashBiMap<String, String> latin2katakana = HashBiMap.create();
+    private final List<String> availableLevels = Arrays.asList( //
+            A, K, S, T, N, //
+            H, M, Y, R, W, V);
 
-    private static final HashBiMap<String, String> latin2katakana = HashBiMap.create();
-    private static final List<String> availableLevels;
-
-    public static List<String> availableLevels() {
+    @Override
+    public List<String> availableLevels() {
         return availableLevels;
     }
 
-    public static final HashBiMap<String, String> availableSymbols(final List<String> selectedLevels) {
+    @Override
+    public final HashBiMap<String, String> availableSymbols(final List<String> selectedLevels) {
         final HashBiMap<String, String> availableSymbols = HashBiMap.create();
         for (final String selectedLevel : selectedLevels) {
 
@@ -30,8 +31,7 @@ public class Katakana {
                 availableSymbols.put("O", latin2katakana.get("O"));
                 availableSymbols.put("N", latin2katakana.get("N"));
 
-            }
-            if (K.equals(selectedLevel)) {
+            } else if (K.equals(selectedLevel)) {
                 availableSymbols.put("KA", latin2katakana.get("KA"));
                 availableSymbols.put("KI", latin2katakana.get("KI"));
                 availableSymbols.put("KU", latin2katakana.get("KU"));
@@ -42,8 +42,8 @@ public class Katakana {
                 availableSymbols.put("GU", latin2katakana.get("GU"));
                 availableSymbols.put("GE", latin2katakana.get("GE"));
                 availableSymbols.put("GO", latin2katakana.get("GO"));
-            }
-            if (S.equals(selectedLevel)) {
+
+            } else if (S.equals(selectedLevel)) {
                 availableSymbols.put("SA", latin2katakana.get("SA"));
                 availableSymbols.put("SHI", latin2katakana.get("SHI"));
                 availableSymbols.put("SU", latin2katakana.get("SU"));
@@ -54,8 +54,8 @@ public class Katakana {
                 availableSymbols.put("ZU", latin2katakana.get("ZU"));
                 availableSymbols.put("ZE", latin2katakana.get("ZE"));
                 availableSymbols.put("ZO", latin2katakana.get("ZO"));
-            }
-            if (T.equals(selectedLevel)) {
+
+            } else if (T.equals(selectedLevel)) {
                 availableSymbols.put("TA", latin2katakana.get("TA"));
                 availableSymbols.put("CHI", latin2katakana.get("CHI"));
                 availableSymbols.put("TSU", latin2katakana.get("TSU"));
@@ -66,15 +66,15 @@ public class Katakana {
                 availableSymbols.put("DU", latin2katakana.get("DU"));
                 availableSymbols.put("DE", latin2katakana.get("DE"));
                 availableSymbols.put("DO", latin2katakana.get("DO"));
-            }
-            if (N.equals(selectedLevel)) {
+
+            } else if (N.equals(selectedLevel)) {
                 availableSymbols.put("NA", latin2katakana.get("NA"));
                 availableSymbols.put("NI", latin2katakana.get("NI"));
                 availableSymbols.put("NU", latin2katakana.get("NU"));
                 availableSymbols.put("NE", latin2katakana.get("NE"));
                 availableSymbols.put("NO", latin2katakana.get("NO"));
-            }
-            if (H.equals(selectedLevel)) {
+
+            } else if (H.equals(selectedLevel)) {
                 availableSymbols.put("HA", latin2katakana.get("HA"));
                 availableSymbols.put("HI", latin2katakana.get("HI"));
                 availableSymbols.put("FU", latin2katakana.get("FU"));
@@ -90,38 +90,41 @@ public class Katakana {
                 availableSymbols.put("PU", latin2katakana.get("PU"));
                 availableSymbols.put("PE", latin2katakana.get("PE"));
                 availableSymbols.put("PO", latin2katakana.get("PO"));
-            }
-            if (M.equals(selectedLevel)) {
+
+            } else if (M.equals(selectedLevel)) {
                 availableSymbols.put("MA", latin2katakana.get("MA"));
                 availableSymbols.put("MI", latin2katakana.get("MI"));
                 availableSymbols.put("MU", latin2katakana.get("MU"));
                 availableSymbols.put("ME", latin2katakana.get("ME"));
                 availableSymbols.put("MO", latin2katakana.get("MO"));
-            }
-            if (Y.equals(selectedLevel)) {
+
+            } else if (Y.equals(selectedLevel)) {
                 availableSymbols.put("YA", latin2katakana.get("YA"));
                 availableSymbols.put("YU", latin2katakana.get("YU"));
                 availableSymbols.put("YO", latin2katakana.get("YO"));
-            }
-            if (R.equals(selectedLevel)) {
+
+            } else if (R.equals(selectedLevel)) {
                 availableSymbols.put("RA", latin2katakana.get("RA"));
                 availableSymbols.put("RI", latin2katakana.get("RI"));
                 availableSymbols.put("RU", latin2katakana.get("RU"));
                 availableSymbols.put("RE", latin2katakana.get("RE"));
                 availableSymbols.put("RO", latin2katakana.get("RO"));
-            }
-            if (W.equals(selectedLevel)) {
+
+            } else if (W.equals(selectedLevel)) {
                 availableSymbols.put("WA", latin2katakana.get("WA"));
                 availableSymbols.put("WI", latin2katakana.get("WI"));
                 availableSymbols.put("WE", latin2katakana.get("WE"));
                 availableSymbols.put("WO", latin2katakana.get("WO"));
-            }
-            if (V.equals(selectedLevel)) {
+
+            } else if (V.equals(selectedLevel)) {
                 availableSymbols.put("VU", latin2katakana.get("VU"));
                 availableSymbols.put("VA", latin2katakana.get("VA"));
                 availableSymbols.put("VI", latin2katakana.get("VI"));
                 availableSymbols.put("VE", latin2katakana.get("VE"));
                 availableSymbols.put("VO", latin2katakana.get("VO"));
+
+            } else {
+                throw new IllegalArgumentException("Unknown level: " + selectedLevel);
             }
         }
         return availableSymbols;
@@ -139,11 +142,7 @@ public class Katakana {
     private static final String W = "W";
     private static final String V = "V";
 
-    static {
-        availableLevels = Arrays.asList( //
-                A, K, S, T, N, //
-                H, M, Y, R, W, V);
-
+    {
         latin2katakana.put("A", "&#x30A2;");
         latin2katakana.put("I", "&#x30A4;");
         latin2katakana.put("U", "&#x30A6;");

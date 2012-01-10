@@ -13,7 +13,10 @@ import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
+import pgu.client.language.GreekAlphabet;
+import pgu.client.language.HasLevels;
 import pgu.client.language.Hiragana;
+import pgu.client.language.Katakana;
 import pgu.client.language.RussianAlphabet;
 
 import com.google.gwt.core.client.GWT;
@@ -117,13 +120,26 @@ public class LevelPanel extends Composite {
                     if (isRussianAlphabet()) {
                         showSubselection();
 
+                    } else if (isGreekAlphabet()) {
+                        showSubselection();
+
                     } else {
                         showTheme();
                     }
 
                 }
+
             });
         }
+    }
+
+    private boolean isGreekAlphabet() {
+        if (is(ovLanguage.getText(), Language.GREEK)) {
+            if (is(ovGranularity.getText(), LanguageGranularity.ALPHABET)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isRussianAlphabet() {
@@ -273,20 +289,26 @@ public class LevelPanel extends Composite {
         selectedLevels.clear();
         final String themeLabel = ovTheme.getText();
 
-        if (is(themeLabel, Theme.HIRAGANA)) {
-            buildLevels(Hiragana.availableLevels());
-            return;
+        HasLevels hasLevels = null;
+
+        if (is(themeLabel, Theme.KATAKANA)) {
+            hasLevels = Katakana.INSTANCE;
+
+        } else if (is(themeLabel, Theme.HIRAGANA)) {
+            hasLevels = Hiragana.INSTANCE;
+
+        } else if (isRussianAlphabet()) {
+            hasLevels = RussianAlphabet.INSTANCE;
+
+        } else if (isGreekAlphabet()) {
+            hasLevels = GreekAlphabet.INSTANCE;
         }
 
-        if (isRussianAlphabet()) {
-            buildLevels(RussianAlphabet.availableLevels());
-            return;
-        }
-
+        buildLevels(hasLevels);
     }
 
-    private void buildLevels(final List<String> availableLevels) {
-        for (final String level : availableLevels) {
+    private void buildLevels(final HasLevels hasLevels) {
+        for (final String level : hasLevels.availableLevels()) {
             final HTML cell = new HTML(level);
             cell.getElement().addClassName(style.cell());
             cell.setWidth("100px");
