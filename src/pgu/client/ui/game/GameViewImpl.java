@@ -243,10 +243,6 @@ public class GameViewImpl extends Composite implements GameView {
 
         final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
 
-        for (final Entry<String, String> entry : symbols) {
-            GWT.log("- " + entry.getKey() + ", " + entry.getValue());
-        }
-
         final int symbolsSize = symbols.size();
         for (int i = 0; i < NB_ASSOCIATIONS; i++) {
 

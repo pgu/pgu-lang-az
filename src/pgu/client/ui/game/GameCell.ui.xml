@@ -27,7 +27,6 @@
     .cell-text {
         position: absolute;
         color: white;
-        font-weight: bold;
         font-size: 3.5em;
         line-height: 1;
         text-align: center;
