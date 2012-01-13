@@ -70,13 +70,14 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
             this.granularity = granularity;
             deselectAllCells();
         }
-
     }
 
     private void deselectAllCells() {
+        // TODO PGU
     }
 
     private void selectCellForTheme(final Theme currentTheme) {
+        // TODO PGU
     }
 
     private void fillThemesPanel(final Language language, final LanguageGranularity granularity) {

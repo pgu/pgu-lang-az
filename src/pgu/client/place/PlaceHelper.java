@@ -49,6 +49,11 @@ public class PlaceHelper {
 
     public ArrayList<String> list(final String key) {
         String v = k2v.get(key);
+
+        if (v.isEmpty()) {
+            return Lists.newArrayList();
+        }
+
         v = v.substring(0, v.length());
 
         final String[] parts = v.split(",");

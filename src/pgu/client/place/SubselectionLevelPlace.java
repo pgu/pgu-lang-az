@@ -60,4 +60,20 @@ public class SubselectionLevelPlace extends Place {
         }
     }
 
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public LanguageGranularity getGranularity() {
+        return granularity;
+    }
+
+    public ArrayList<String> getSubselections() {
+        return subselections;
+    }
+
 }
