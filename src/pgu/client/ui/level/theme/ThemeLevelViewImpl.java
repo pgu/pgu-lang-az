@@ -1,7 +1,5 @@
 package pgu.client.ui.level.theme;
 
-import static pgu.client.enums.LabelHelper.is;
-
 import java.util.ArrayList;
 
 import pgu.client.Pgu_game;
@@ -110,8 +108,8 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
     }
 
     private boolean isJapaneseAlphabet() {
-        return is(currLanguage.label(), Language.JAPANESE) //
-                && is(currGranularity.label(), LanguageGranularity.ALPHABET);
+        return Language.JAPANESE == currLanguage //
+                && LanguageGranularity.ALPHABET == currGranularity;
     }
 
     private Widget buildCellTheme(final Theme theme) {

@@ -1,9 +1,5 @@
 package pgu.client;
 
-import static pgu.client.enums.LabelHelper.fromGranularity;
-import static pgu.client.enums.LabelHelper.fromLanguage;
-import static pgu.client.enums.LabelHelper.fromTheme;
-
 import java.util.ArrayList;
 
 import pgu.client.enums.Language;
@@ -18,18 +14,18 @@ public class GameConfig {
     private Theme theme;
     private final ArrayList<String> subselections = Lists.newArrayList();
 
-    public GameConfig language(final String label) {
-        language = fromLanguage(label);
+    public GameConfig language(final Language language) {
+        this.language = language;
         return this;
     }
 
-    public GameConfig granularity(final String label) {
-        granularity = fromGranularity(label);
+    public GameConfig granularity(final LanguageGranularity granularity) {
+        this.granularity = granularity;
         return this;
     }
 
-    public GameConfig theme(final String label) {
-        theme = fromTheme(label);
+    public GameConfig theme(final Theme theme) {
+        this.theme = theme;
         return this;
     }
 
