@@ -1,7 +1,9 @@
 package pgu.client.ui.welcome;
 
+import pgu.client.Pgu_game;
 import pgu.client.enums.Orientation;
 import pgu.client.place.GamePlace;
+import pgu.client.place.LanguageLevelPlace;
 import pgu.client.ui.welcome.level.LevelPanel;
 import pgu.client.ui.welcome.score.Score;
 
@@ -71,7 +73,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     @UiHandler("levelText")
     public void clickLevel(final ClickEvent e) {
-        showLevels();
+        // showLevels();
+        presenter.goTo(new LanguageLevelPlace(Pgu_game.gameConfig.language()));
     }
 
     private Presenter presenter;

@@ -46,19 +46,19 @@ public class ActivityMapperApp implements ActivityMapper {
         }
 
         if (place instanceof LanguageLevelPlace) {
-            return languageLevelActivityProvider.get();
+            return languageLevelActivityProvider.get().place(place);
         }
 
         if (place instanceof GranularityLevelPlace) {
-            return granularityLevelActivityProvider.get();
+            return granularityLevelActivityProvider.get().place(place);
         }
 
         if (place instanceof ThemeLevelPlace) {
-            return themeLevelActivityProvider.get();
+            return themeLevelActivityProvider.get().place(place);
         }
 
         if (place instanceof SubselectionLevelPlace) {
-            return subselectionLevelActivityProvider.get();
+            return subselectionLevelActivityProvider.get().place(place);
         }
 
         throw new IllegalArgumentException("Unknown place : " + place);

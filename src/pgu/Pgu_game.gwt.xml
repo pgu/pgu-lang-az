@@ -7,6 +7,8 @@
 
     <!-- Other module inherits -->
 
+    <!-- ClientBundle -->
+    <inherits name="com.google.gwt.resources.Resources" />
     <!-- MVP -->
     <inherits name="com.google.gwt.activity.Activity" />
     <inherits name="com.google.gwt.place.Place" />

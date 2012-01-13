@@ -4,6 +4,7 @@ import pgu.client.enums.Language;
 import pgu.client.enums.Theme;
 import pgu.client.gin.GameGinjector;
 import pgu.client.language.Hiragana;
+import pgu.client.ui.style.PguGameResources;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -22,6 +23,8 @@ public class Pgu_game implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
+
+        PguGameResources.INSTANCE.style().ensureInjected();
 
         final GameGinjector ginjector = GWT.create(GameGinjector.class);
 
