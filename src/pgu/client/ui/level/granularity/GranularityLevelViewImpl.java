@@ -1,7 +1,6 @@
 package pgu.client.ui.level.granularity;
 
 import pgu.client.Pgu_game;
-import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.place.SubselectionLevelPlace;
@@ -30,7 +29,9 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     HTMLPanel granularitiesPanel;
 
     private final Style style;
-    private Language language;
+
+    private Language currLanguage;
+    private Language prevLanguage;
 
     public GranularityLevelViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -47,26 +48,31 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     @Override
     public void displayGranularities(final LanguageGranularity currentGranularity, final Language language) {
 
+        currLanguage = language;
+
         if (0 == granularitiesPanel.getWidgetCount()) {
             initGranularitiesPanel();
         }
 
         if (null != currentGranularity //
-                && this.language == language) {
+                && prevLanguage == currLanguage) {
 
             selectCellForGranularity(currentGranularity);
 
         } else {
-            this.language = language;
             deselectAllCells();
         }
+
+        prevLanguage = currLanguage;
     }
 
     private void selectCellForGranularity(final LanguageGranularity currentGranularity) {
+        final String granularityLabel = currentGranularity.label();
+
         for (int i = 0; i < granularitiesPanel.getWidgetCount(); i++) {
             final HTML cell = (HTML) granularitiesPanel.getWidget(i);
 
-            if (currentGranularity.label().equals(cell.getHTML())) {
+            if (granularityLabel.equals(cell.getHTML())) {
                 cell.addStyleName(style.cellSelected());
             } else {
                 cell.removeStyleName(style.cellSelected());
@@ -81,13 +87,13 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     }
 
     private void initGranularitiesPanel() {
-        for (final String label : LabelHelper.labels(LanguageGranularity.values())) {
-            granularitiesPanel.add(buildCellGranularity(label));
+        for (final LanguageGranularity granularity : LanguageGranularity.values()) {
+            granularitiesPanel.add(buildCellGranularity(granularity));
         }
     }
 
-    private HTML buildCellGranularity(final String granularityLabel) {
-        final HTML cell = new HTML(granularityLabel);
+    private HTML buildCellGranularity(final LanguageGranularity granularity) {
+        final HTML cell = new HTML(granularity.label());
         cell.addStyleName(style.cell());
         cell.setPixelSize(100, 100);
 
@@ -95,48 +101,48 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
 
             @Override
             public void onClick(final ClickEvent event) {
-                goToNextStep(granularityLabel);
+                goToNextStep(granularity);
             }
 
         });
         return cell;
     }
 
-    private void goToNextStep(final String granularityLabel) {
-        if (isRussianAlphabet(granularityLabel) //
-                || isGreekAlphabet(granularityLabel) //
+    private void goToNextStep(final LanguageGranularity granularity) {
+        if (isRussianAlphabet(granularity) //
+                || isGreekAlphabet(granularity) //
         ) {
 
-            goToSubselectionLevel(granularityLabel);
+            goToSubselectionLevel(granularity);
 
         } else {
-            goToThemeLevel(granularityLabel);
+            goToThemeLevel(granularity);
         }
     }
 
-    private boolean isGreekAlphabet(final String granularityLabel) {
-        return Language.GREEK == language //
-                && LabelHelper.is(granularityLabel, LanguageGranularity.ALPHABET);
+    private boolean isGreekAlphabet(final LanguageGranularity granularity) {
+        return Language.GREEK == currLanguage //
+                && LanguageGranularity.ALPHABET == granularity;
     }
 
-    private boolean isRussianAlphabet(final String granularityLabel) {
-        return Language.RUSSIAN == language //
-                && LabelHelper.is(granularityLabel, LanguageGranularity.ALPHABET);
+    private boolean isRussianAlphabet(final LanguageGranularity granularity) {
+        return Language.RUSSIAN == currLanguage //
+                && LanguageGranularity.ALPHABET == granularity;
     }
 
-    private void goToSubselectionLevel(final String granularityLabel) {
+    private void goToSubselectionLevel(final LanguageGranularity granularity) {
         presenter.goTo(new SubselectionLevelPlace( //
-                language, //
-                LabelHelper.fromGranularity(granularityLabel), //
+                currLanguage, //
+                granularity, //
                 null, // Theme
                 Pgu_game.gameConfig.subselections() //
                 ));
     }
 
-    private void goToThemeLevel(final String granularityLabel) {
+    private void goToThemeLevel(final LanguageGranularity granularity) {
         presenter.goTo(new ThemeLevelPlace( //
-                language, //
-                LabelHelper.fromGranularity(granularityLabel), //
+                currLanguage, //
+                granularity, //
                 Pgu_game.gameConfig.theme() //
                 ));
     }

@@ -5,7 +5,6 @@ import static pgu.client.enums.LabelHelper.is;
 import java.util.ArrayList;
 
 import pgu.client.Pgu_game;
-import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
@@ -35,8 +34,12 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
     HTMLPanel themesPanel;
 
     private final Style style;
-    private Language language;
-    private LanguageGranularity granularity;
+
+    private Language currLanguage;
+    private LanguageGranularity currGranularity;
+
+    private Language prevLanguage;
+    private LanguageGranularity prevGranularity;
 
     public ThemeLevelViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -56,51 +59,64 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
             final LanguageGranularity granularity, //
             final Language language) {
 
+        currLanguage = language;
+        currGranularity = granularity;
+
         themesPanel.clear();
-        fillThemesPanel(language, granularity);
+        fillThemesPanel();
 
         if (null != currentTheme //
-                && this.granularity == granularity //
-                && this.language == language) {
+                && prevGranularity == currGranularity //
+                && prevLanguage == currLanguage) {
 
             selectCellForTheme(currentTheme);
-
-        } else {
-            this.language = language;
-            this.granularity = granularity;
-            deselectAllCells();
         }
-    }
 
-    private void deselectAllCells() {
-        // TODO PGU
+        prevLanguage = currLanguage;
+        prevGranularity = currGranularity;
     }
 
     private void selectCellForTheme(final Theme currentTheme) {
-        // TODO PGU
+        final String themeLabel = currentTheme.label();
+
+        for (int i = 0; i < themesPanel.getWidgetCount(); i++) {
+            final HTML cell = (HTML) themesPanel.getWidget(i);
+
+            if (themeLabel.equals(cell.getHTML())) {
+                cell.addStyleName(style.cellSelected());
+            } else {
+                cell.removeStyleName(style.cellSelected());
+            }
+        }
     }
 
-    private void fillThemesPanel(final Language language, final LanguageGranularity granularity) {
+    private void fillThemesPanel() {
+
+        for (final Theme theme : getThemes()) {
+            themesPanel.add(buildCellTheme(theme));
+        }
+    }
+
+    private ArrayList<Theme> getThemes() {
 
         final ArrayList<Theme> themes = Lists.newArrayList();
 
-        if (isJapaneseAlphabet(language, granularity)) {
+        if (isJapaneseAlphabet()) {
             themes.add(Theme.HIRAGANA);
             themes.add(Theme.KATAKANA);
         }
 
-        for (final String label : LabelHelper.labels(themes)) {
-            themesPanel.add(buildCellTheme(label));
-        }
+        return themes;
     }
 
-    private static boolean isJapaneseAlphabet(final Language language, final LanguageGranularity granularity) {
-        return is(language.label(), Language.JAPANESE) //
-                && is(granularity.label(), LanguageGranularity.ALPHABET);
+    private boolean isJapaneseAlphabet() {
+        return is(currLanguage.label(), Language.JAPANESE) //
+                && is(currGranularity.label(), LanguageGranularity.ALPHABET);
     }
 
-    private Widget buildCellTheme(final String themeLabel) {
-        final HTML cell = new HTML(themeLabel);
+    private Widget buildCellTheme(final Theme theme) {
+
+        final HTML cell = new HTML(theme.label());
         cell.addStyleName(style.cell());
         cell.setPixelSize(100, 100);
 
@@ -108,18 +124,19 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
 
             @Override
             public void onClick(final ClickEvent event) {
-                goToSubselectionLevel(themeLabel);
+                goToSubselectionLevel(theme);
             }
 
         });
         return cell;
     }
 
-    private void goToSubselectionLevel(final String themeLabel) {
+    private void goToSubselectionLevel(final Theme theme) {
+
         presenter.goTo(new SubselectionLevelPlace( //
-                language, //
-                granularity, //
-                LabelHelper.fromTheme(themeLabel), //
+                currLanguage, //
+                currGranularity, //
+                theme, //
                 Pgu_game.gameConfig.subselections() //
                 ));
     }

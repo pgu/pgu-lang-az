@@ -1,7 +1,6 @@
 package pgu.client.ui.level.language;
 
 import pgu.client.Pgu_game;
-import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.place.GranularityLevelPlace;
 import pgu.client.ui.style.PguGameResources;
@@ -61,11 +60,12 @@ public class LanguageLevelViewImpl extends Composite implements LanguageLevelVie
     }
 
     private void selectCellForLanguage(final Language currentLanguage) {
+        final String languageLabel = currentLanguage.label();
 
         for (int i = 0; i < languagesPanel.getWidgetCount(); i++) {
             final HTML cell = (HTML) languagesPanel.getWidget(i);
 
-            if (currentLanguage.label().equals(cell.getHTML())) {
+            if (languageLabel.equals(cell.getHTML())) {
                 cell.addStyleName(style.cellSelected());
             } else {
                 cell.removeStyleName(style.cellSelected());
@@ -74,13 +74,13 @@ public class LanguageLevelViewImpl extends Composite implements LanguageLevelVie
     }
 
     private void initLanguagesPanel() {
-        for (final String languageLabel : LabelHelper.labels(Language.values())) {
-            languagesPanel.add(buildCellLanguage(languageLabel));
+        for (final Language language : Language.values()) {
+            languagesPanel.add(buildCellLanguage(language));
         }
     }
 
-    private HTML buildCellLanguage(final String languageLabel) {
-        final HTML cell = new HTML(languageLabel);
+    private HTML buildCellLanguage(final Language language) {
+        final HTML cell = new HTML(language.label());
         cell.addStyleName(style.cell());
         cell.setPixelSize(100, 100);
 
@@ -88,16 +88,16 @@ public class LanguageLevelViewImpl extends Composite implements LanguageLevelVie
 
             @Override
             public void onClick(final ClickEvent event) {
-                goToGranularityLevel(languageLabel);
+                goToGranularityLevel(language);
             }
 
         });
         return cell;
     }
 
-    private void goToGranularityLevel(final String languageLabel) {
+    private void goToGranularityLevel(final Language language) {
         presenter.goTo(new GranularityLevelPlace( //
-                LabelHelper.fromLanguage(languageLabel), //
+                language, //
                 Pgu_game.gameConfig.granularity() //
                 ));
     }
