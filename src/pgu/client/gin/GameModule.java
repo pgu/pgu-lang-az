@@ -5,6 +5,14 @@ import pgu.client.mvp.PlaceHistoryMapperApp;
 import pgu.client.place.WelcomePlace;
 import pgu.client.ui.game.GameView;
 import pgu.client.ui.game.GameViewImpl;
+import pgu.client.ui.level.granularity.GranularityLevelView;
+import pgu.client.ui.level.granularity.GranularityLevelViewImpl;
+import pgu.client.ui.level.language.LanguageLevelView;
+import pgu.client.ui.level.language.LanguageLevelViewImpl;
+import pgu.client.ui.level.subselection.SubselectionLevelView;
+import pgu.client.ui.level.subselection.SubselectionLevelViewImpl;
+import pgu.client.ui.level.theme.ThemeLevelView;
+import pgu.client.ui.level.theme.ThemeLevelViewImpl;
 import pgu.client.ui.welcome.WelcomeView;
 import pgu.client.ui.welcome.WelcomeViewImpl;
 
@@ -28,6 +36,11 @@ public class GameModule extends AbstractGinModule {
 
         bind(WelcomeView.class).to(WelcomeViewImpl.class).in(Singleton.class);
         bind(GameView.class).to(GameViewImpl.class).in(Singleton.class);
+
+        bind(LanguageLevelView.class).to(LanguageLevelViewImpl.class).in(Singleton.class);
+        bind(GranularityLevelView.class).to(GranularityLevelViewImpl.class).in(Singleton.class);
+        bind(ThemeLevelView.class).to(ThemeLevelViewImpl.class).in(Singleton.class);
+        bind(SubselectionLevelView.class).to(SubselectionLevelViewImpl.class).in(Singleton.class);
     }
 
     @Singleton
