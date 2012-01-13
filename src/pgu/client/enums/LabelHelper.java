@@ -1,7 +1,8 @@
 package pgu.client.enums;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import pgu.client.utils.guava.Lists;
 
 public class LabelHelper {
 
@@ -40,9 +41,13 @@ public class LabelHelper {
         return null;
     }
 
-    public static List<String> labels(final HasLabel[] hasLabels) {
-        final ArrayList<String> labels = new ArrayList<String>();
-        for (final HasLabel hasLabel : hasLabels) {
+    public static <E extends HasLabel> ArrayList<String> labels(final ArrayList<E> hasLabels) {
+        return labels(hasLabels.toArray(new HasLabel[hasLabels.size()]));
+    }
+
+    public static <E extends HasLabel> ArrayList<String> labels(final E[] hasLabels) {
+        final ArrayList<String> labels = Lists.newArrayList();
+        for (final E hasLabel : hasLabels) {
             labels.add(hasLabel.label());
         }
         return labels;

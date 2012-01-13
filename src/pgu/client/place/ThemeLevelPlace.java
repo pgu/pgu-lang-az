@@ -49,4 +49,16 @@ public class ThemeLevelPlace extends Place {
 
     }
 
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public LanguageGranularity getGranularity() {
+        return granularity;
+    }
+
 }
