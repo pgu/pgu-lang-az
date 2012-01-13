@@ -1,22 +1,24 @@
 package pgu.client.place;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import pgu.client.utils.guava.Lists;
 
 public class PlaceHelper {
 
     public static final String GRANULARITY = "granularity";
     public static final String LANGUAGE = "language";
+    public static final String THEME = "theme";
+    public static final String SUBSELECTIONS = "subselections";
 
     private final HashMap<String, String> k2v = new HashMap<String, String>();
-    private String token;
 
     public PlaceHelper() {
     }
 
     public PlaceHelper(final String token) {
-        this.token = token;
-
         final String[] kvs = token.split("&");
         for (final String kv : kvs) {
             final String[] k_v = kv.split("=");
@@ -43,5 +45,18 @@ public class PlaceHelper {
 
     public String get(final String key) {
         return k2v.get(key);
+    }
+
+    public ArrayList<String> list(final String key) {
+        String v = k2v.get(key);
+        v = v.substring(0, v.length());
+
+        final String[] parts = v.split(",");
+
+        final ArrayList<String> values = Lists.newArrayList();
+        for (final String part : parts) {
+            values.add(part.trim());
+        }
+        return values;
     }
 }

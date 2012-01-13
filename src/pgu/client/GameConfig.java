@@ -4,7 +4,7 @@ import static pgu.client.enums.LabelHelper.fromGranularity;
 import static pgu.client.enums.LabelHelper.fromLanguage;
 import static pgu.client.enums.LabelHelper.fromTheme;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
@@ -16,7 +16,7 @@ public class GameConfig {
     private Language language;
     private LanguageGranularity granularity;
     private Theme theme;
-    private final List<String> subselections = Lists.newArrayList();
+    private final ArrayList<String> subselections = Lists.newArrayList();
 
     public GameConfig language(final String label) {
         language = fromLanguage(label);
@@ -45,7 +45,7 @@ public class GameConfig {
         return theme;
     }
 
-    public List<String> subselections() {
+    public ArrayList<String> subselections() {
         return subselections;
     }
 

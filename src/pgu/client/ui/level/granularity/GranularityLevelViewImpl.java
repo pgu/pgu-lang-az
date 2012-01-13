@@ -4,6 +4,7 @@ import pgu.client.Pgu_game;
 import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
+import pgu.client.place.SubselectionLevelPlace;
 import pgu.client.place.ThemeLevelPlace;
 import pgu.client.ui.style.PguGameResources;
 import pgu.client.ui.style.PguGameResources.Style;
@@ -102,6 +103,37 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     }
 
     private void goToNextStep(final String granularityLabel) {
+        if (isRussianAlphabet(granularityLabel) //
+                || isGreekAlphabet(granularityLabel) //
+        ) {
+
+            goToSubselectionLevel(granularityLabel);
+
+        } else {
+            goToThemeLevel(granularityLabel);
+        }
+    }
+
+    private boolean isGreekAlphabet(final String granularityLabel) {
+        return Language.GREEK == language //
+                && LabelHelper.is(granularityLabel, LanguageGranularity.ALPHABET);
+    }
+
+    private boolean isRussianAlphabet(final String granularityLabel) {
+        return Language.RUSSIAN == language //
+                && LabelHelper.is(granularityLabel, LanguageGranularity.ALPHABET);
+    }
+
+    private void goToSubselectionLevel(final String granularityLabel) {
+        presenter.goTo(new SubselectionLevelPlace( //
+                language, //
+                LabelHelper.fromGranularity(granularityLabel), //
+                null, // Theme
+                Pgu_game.gameConfig.subselections() //
+                ));
+    }
+
+    private void goToThemeLevel(final String granularityLabel) {
         presenter.goTo(new ThemeLevelPlace( //
                 language, //
                 LabelHelper.fromGranularity(granularityLabel), //
