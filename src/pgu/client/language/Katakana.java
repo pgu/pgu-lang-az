@@ -1,25 +1,25 @@
 package pgu.client.language;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import pgu.client.utils.guava.HashBiMap;
+import pgu.client.utils.guava.Lists;
 
 public enum Katakana implements HasLevels {
     INSTANCE;
 
     private final HashBiMap<String, String> latin2katakana = HashBiMap.create();
-    private final List<String> availableLevels = Arrays.asList( //
+    private final ArrayList<String> availableLevels = Lists.newArrayList( //
             A, K, S, T, N, //
             H, M, Y, R, W, V);
 
     @Override
-    public List<String> availableLevels() {
+    public ArrayList<String> availableLevels() {
         return availableLevels;
     }
 
     @Override
-    public final HashBiMap<String, String> availableSymbols(final List<String> selectedLevels) {
+    public final HashBiMap<String, String> availableSymbols(final ArrayList<String> selectedLevels) {
         final HashBiMap<String, String> availableSymbols = HashBiMap.create();
         for (final String selectedLevel : selectedLevels) {
 

@@ -18,7 +18,7 @@
     
     <g:HTMLPanel addStyleNames="{res.style.container}">
     
-        <g:HTMLPanel ui:field="granularitiesPanel">
+        <g:HTMLPanel ui:field="subselectionsPanel">
         </g:HTMLPanel>
         
         <g:HTMLPanel addStyleNames="{style.footer}">

@@ -1,27 +1,27 @@
 package pgu.client.language;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import pgu.client.utils.guava.HashBiMap;
+import pgu.client.utils.guava.Lists;
 
 public enum RussianAlphabet implements HasLevels {
     INSTANCE;
 
     private final HashBiMap<String, String> latin2russian = HashBiMap.create();
-    private final List<String> availableLevels = Arrays.asList(G_1, G_2, G_3, G_4, G_5);
+    private final ArrayList<String> availableLevels = Lists.newArrayList(G_1, G_2, G_3, G_4, G_5);
 
     private RussianAlphabet() {
         putAll();
     }
 
     @Override
-    public List<String> availableLevels() {
+    public ArrayList<String> availableLevels() {
         return availableLevels;
     }
 
     @Override
-    public final HashBiMap<String, String> availableSymbols(final List<String> selectedLevels) {
+    public final HashBiMap<String, String> availableSymbols(final ArrayList<String> selectedLevels) {
         final HashBiMap<String, String> availableSymbols = HashBiMap.create();
 
         for (final String selectedLevel : selectedLevels) {

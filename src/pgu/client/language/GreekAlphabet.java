@@ -1,15 +1,15 @@
 package pgu.client.language;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import pgu.client.utils.guava.HashBiMap;
+import pgu.client.utils.guava.Lists;
 
 public enum GreekAlphabet implements HasLevels {
     INSTANCE;
 
     private final HashBiMap<String, String> latin2greek = HashBiMap.create();
-    private final List<String> availableLevels = Arrays.asList(A_Z, ET_M, N_S, T_0M);
+    private final ArrayList<String> availableLevels = Lists.newArrayList(A_Z, ET_M, N_S, T_0M);
 
     private static final String A_Z = "A - Z";
     private static final String ET_M = "ET - M";
@@ -44,12 +44,12 @@ public enum GreekAlphabet implements HasLevels {
     }
 
     @Override
-    public List<String> availableLevels() {
+    public ArrayList<String> availableLevels() {
         return availableLevels;
     }
 
     @Override
-    public final HashBiMap<String, String> availableSymbols(final List<String> selectedLevels) {
+    public final HashBiMap<String, String> availableSymbols(final ArrayList<String> selectedLevels) {
         final HashBiMap<String, String> availableSymbols = HashBiMap.create();
         for (final String selectedLevel : selectedLevels) {
 

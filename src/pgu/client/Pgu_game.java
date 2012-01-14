@@ -16,8 +16,8 @@ public class Pgu_game implements EntryPoint {
     public static GameConfig gameConfig = new GameConfig();
 
     static {
-        gameConfig.language(Language.JAPANESE.label());
-        gameConfig.theme(Theme.HIRAGANA.label());
+        gameConfig.language(Language.JAPANESE);
+        gameConfig.theme(Theme.HIRAGANA);
         gameConfig.subselections().add(Hiragana.INSTANCE.availableLevels().get(0));
     }
 

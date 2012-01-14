@@ -166,10 +166,10 @@ public class LevelPanel extends Composite {
     @UiHandler("btnOk")
     public void clickOk(final ClickEvent e) {
         popup.hide();
-        Pgu_game.gameConfig //
-                .language(ovLanguage.getText()) //
-                .granularity(ovGranularity.getText()) //
-                .theme(ovTheme.getText());
+        // Pgu_game.gameConfig //
+        // .language(ovLanguage.getText()) //
+        // .granularity(ovGranularity.getText()) //
+        // .theme(ovTheme.getText());
 
         Pgu_game.gameConfig.subselections().clear();
         Pgu_game.gameConfig.subselections().addAll(selectedLevels);
