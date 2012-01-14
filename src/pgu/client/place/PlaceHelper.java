@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import pgu.client.enums.HasLabel;
 import pgu.client.utils.guava.Lists;
 
 public class PlaceHelper {
@@ -26,6 +27,11 @@ public class PlaceHelper {
         }
     }
 
+    public PlaceHelper put(final String key, final HasLabel hasLabel) {
+        k2v.put(key, null == hasLabel ? null : hasLabel.label());
+        return this;
+    }
+
     public PlaceHelper put(final String key, final String v) {
         k2v.put(key, v);
         return this;
@@ -39,7 +45,9 @@ public class PlaceHelper {
             sb.append(e.getValue());
             sb.append("&");
         }
-        sb.deleteCharAt(sb.length()); // removes trailing '&'
+        if (0 < sb.length()) {
+            sb.deleteCharAt(sb.length() - 1); // removes trailing '&'
+        }
         return sb.toString();
     }
 

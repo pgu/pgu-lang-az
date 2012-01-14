@@ -30,9 +30,9 @@ public class ThemeLevelPlace extends Place {
         @Override
         public String getToken(final ThemeLevelPlace place) {
             return new PlaceHelper() //
-                    .put(LANGUAGE, place.language.label()) //
-                    .put(GRANULARITY, place.granularity.label()) //
-                    .put(THEME, place.theme.label()) //
+                    .put(LANGUAGE, place.language) //
+                    .put(GRANULARITY, place.granularity) //
+                    .put(THEME, place.theme) //
                     .getToken();
         }
 

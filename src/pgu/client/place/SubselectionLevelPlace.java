@@ -39,9 +39,9 @@ public class SubselectionLevelPlace extends Place {
         @Override
         public String getToken(final SubselectionLevelPlace place) {
             return new PlaceHelper() //
-                    .put(LANGUAGE, place.language.label()) //
-                    .put(GRANULARITY, place.granularity.label()) //
-                    .put(THEME, place.theme.label()) //
+                    .put(LANGUAGE, place.language) //
+                    .put(GRANULARITY, place.granularity) //
+                    .put(THEME, place.theme) //
                     .put(SUBSELECTIONS, place.subselections.toString()) //
                     .getToken();
 

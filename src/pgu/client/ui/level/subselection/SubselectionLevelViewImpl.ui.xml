@@ -16,7 +16,7 @@
         }
     </ui:style>
     
-    <g:HTMLPanel addStyleNames="{res.style.container}">
+    <g:HTMLPanel ui:field="container" addStyleNames="{res.style.container}">
     
         <g:HTMLPanel ui:field="subselectionsPanel">
         </g:HTMLPanel>

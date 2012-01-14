@@ -22,6 +22,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
@@ -36,7 +37,7 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     }
 
     @UiField
-    HTMLPanel subselectionsPanel;
+    HTMLPanel container, subselectionsPanel;
 
     @UiField
     Button btnOk;
@@ -73,6 +74,8 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
         currLanguage = language;
         currGranularity = granularity;
         currTheme = theme;
+
+        container.setPixelSize(Window.getClientWidth(), Window.getClientHeight());
 
         subselectionsPanel.clear();
         fillSubselectionsPanel();

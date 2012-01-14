@@ -13,6 +13,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -49,6 +50,7 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     public void displayGranularities(final LanguageGranularity currentGranularity, final Language language) {
 
         currLanguage = language;
+        granularitiesPanel.setPixelSize(Window.getClientWidth(), Window.getClientHeight());
 
         if (0 == granularitiesPanel.getWidgetCount()) {
             initGranularitiesPanel();

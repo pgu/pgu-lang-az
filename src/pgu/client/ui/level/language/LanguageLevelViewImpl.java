@@ -11,6 +11,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -42,6 +43,9 @@ public class LanguageLevelViewImpl extends Composite implements LanguageLevelVie
 
     @Override
     public void displayLanguages(final Language currentLanguage) {
+
+        languagesPanel.setPixelSize(Window.getClientWidth(), Window.getClientHeight());
+
         if (0 == languagesPanel.getWidgetCount()) {
             initLanguagesPanel();
         }

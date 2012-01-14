@@ -24,8 +24,8 @@ public class GranularityLevelPlace extends Place {
         @Override
         public String getToken(final GranularityLevelPlace place) {
             return new PlaceHelper() //
-                    .put(LANGUAGE, place.language.label()) //
-                    .put(GRANULARITY, place.granularity.label()) //
+                    .put(LANGUAGE, place.language) //
+                    .put(GRANULARITY, place.granularity) //
                     .getToken();
         }
 

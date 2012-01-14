@@ -20,7 +20,7 @@ public class LanguageLevelPlace extends Place {
         @Override
         public String getToken(final LanguageLevelPlace place) {
             return new PlaceHelper() //
-                    .put(LANGUAGE, place.language.label()) //
+                    .put(LANGUAGE, place.language) //
                     .getToken();
 
         }
