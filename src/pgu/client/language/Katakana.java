@@ -220,6 +220,42 @@ public enum Katakana implements HasLevels {
     private final static String VU = "VU";
     private final static String VE = "VE";
     private final static String VO = "VO";
+    private final static String KYA = "KYA";
+    private final static String KYU = "KYU";
+    private final static String KYO = "KYO";
+    private final static String NYA = "NYA";
+    private final static String NYU = "NYU";
+    private final static String NYO = "NYO";
+    private final static String RYA = "RYA";
+    private final static String RYU = "RYU";
+    private final static String RYO = "RYO";
+    private final static String BYA = "BYA";
+    private final static String BYU = "BYU";
+    private final static String BYO = "BYO";
+    private final static String SHA = "SHA";
+    private final static String SHU = "SHU";
+    private final static String SHO = "SHO";
+    private final static String HYA = "HYA";
+    private final static String HYU = "HYU";
+    private final static String HYO = "HYO";
+    private final static String GYA = "GYA";
+    private final static String GYU = "GYU";
+    private final static String GYO = "GYO";
+    private final static String PYA = "PYA";
+    private final static String PYU = "PYU";
+    private final static String PYO = "PYO";
+    private final static String CHA = "CHA";
+    private final static String CHU = "CHU";
+    private final static String CHO = "CHO";
+    private final static String MYA = "MYA";
+    private final static String MYU = "MYU";
+    private final static String MYO = "MYO";
+    private final static String JA = "JA";
+    private final static String JU = "JU";
+    private final static String JO = "JO";
+    private final static String ya = "ya";
+    private final static String yu = "yu";
+    private final static String yo = "yo";
 
     {
         latin2katakana.put(A, "&#x30A2;");
@@ -300,7 +336,50 @@ public enum Katakana implements HasLevels {
         latin2katakana.put(VI, "&#x30F8;");
         latin2katakana.put(VE, "&#x30F9;");
         latin2katakana.put(VO, "&#x30FA;");
+        latin2katakana.put(ya, "&#x30E3;");
+        latin2katakana.put(yu, "&#x30E5;");
+        latin2katakana.put(yo, "&#x30E7;");
+        latin2katakana.put(KYA, tsl(KI, ya));
+        latin2katakana.put(KYU, tsl(KI, yu));
+        latin2katakana.put(KYO, tsl(KI, yo));
+        latin2katakana.put(NYA, tsl(NI, ya));
+        latin2katakana.put(NYU, tsl(NI, yu));
+        latin2katakana.put(NYO, tsl(NI, yo));
+        latin2katakana.put(RYA, tsl(RI, ya));
+        latin2katakana.put(RYU, tsl(RI, yu));
+        latin2katakana.put(RYO, tsl(RI, yo));
+        latin2katakana.put(BYA, tsl(BI, ya));
+        latin2katakana.put(BYU, tsl(BI, yu));
+        latin2katakana.put(BYO, tsl(BI, yo));
+        latin2katakana.put(SHA, tsl(SHI, ya));
+        latin2katakana.put(SHU, tsl(SHI, yu));
+        latin2katakana.put(SHO, tsl(SHI, yo));
+        latin2katakana.put(HYA, tsl(HI, ya));
+        latin2katakana.put(HYU, tsl(HI, yu));
+        latin2katakana.put(HYO, tsl(HI, yo));
+        latin2katakana.put(GYA, tsl(GI, ya));
+        latin2katakana.put(GYU, tsl(GI, yu));
+        latin2katakana.put(GYO, tsl(GI, yo));
+        latin2katakana.put(PYA, tsl(PI, ya));
+        latin2katakana.put(PYU, tsl(PI, yu));
+        latin2katakana.put(PYO, tsl(PI, yo));
+        latin2katakana.put(CHA, tsl(CHI, ya));
+        latin2katakana.put(CHU, tsl(CHI, yu));
+        latin2katakana.put(CHO, tsl(CHI, yo));
+        latin2katakana.put(MYA, tsl(MI, ya));
+        latin2katakana.put(MYU, tsl(MI, yu));
+        latin2katakana.put(MYO, tsl(MI, yo));
+        latin2katakana.put(JA, tsl(S_JI, ya));
+        latin2katakana.put(JU, tsl(S_JI, yu));
+        latin2katakana.put(JO, tsl(S_JI, yo));
+    }
 
+    private String tsl(final String... alphas) {
+        final StringBuilder sb = new StringBuilder();
+        for (final String alpha : alphas) {
+            sb.append(latin2katakana.get(alpha));
+        }
+        return sb.toString();
     }
 
 }

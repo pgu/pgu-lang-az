@@ -287,6 +287,9 @@ public enum Hiragana implements HasLevels {
     private final static String JA = "JA";
     private final static String JU = "JU";
     private final static String JO = "JO";
+    private final static String ya = "ya";
+    private final static String yu = "yu";
+    private final static String yo = "yo";
 
     {
         latin2hiragana.put(A, "&#x3042;");
@@ -363,39 +366,50 @@ public enum Hiragana implements HasLevels {
         latin2hiragana.put(WE, "&#x3091;");
         latin2hiragana.put(WO, "&#x3092;");
         latin2hiragana.put(N, "&#x3093;");
-        latin2hiragana.put(KYA, "&#x304D;&#x3083;");
-        latin2hiragana.put(KYU, "&#x304D;&#x3085;");
-        latin2hiragana.put(KYO, "&#x304D;&#x3087;");
-        latin2hiragana.put(NYA, "&#x306B;&#x3083;");
-        latin2hiragana.put(NYU, "&#x306B;&#x3085;");
-        latin2hiragana.put(NYO, "&#x306B;&#x3087;");
-        latin2hiragana.put(RYA, "&#x308A;&#x3083;");
-        latin2hiragana.put(RYU, "&#x308A;&#x3085;");
-        latin2hiragana.put(RYO, "&#x308A;&#x3087;");
-        latin2hiragana.put(BYA, "&#x3073;&#x3083;");
-        latin2hiragana.put(BYU, "&#x3073;&#x3085;");
-        latin2hiragana.put(BYO, "&#x3073;&#x3087;");
-        latin2hiragana.put(SHA, "&#x3057;&#x3083;");
-        latin2hiragana.put(SHU, "&#x3057;&#x3085;");
-        latin2hiragana.put(SHO, "&#x3057;&#x3087;");
-        latin2hiragana.put(HYA, "&#x3072;&#x3083;");
-        latin2hiragana.put(HYU, "&#x3072;&#x3085;");
-        latin2hiragana.put(HYO, "&#x3072;&#x3087;");
-        latin2hiragana.put(GYA, "&#x304E;&#x3083;");
-        latin2hiragana.put(GYU, "&#x304E;&#x3085;");
-        latin2hiragana.put(GYO, "&#x304E;&#x3087;");
-        latin2hiragana.put(PYA, "&#x3074;&#x3083;");
-        latin2hiragana.put(PYU, "&#x3074;&#x3085;");
-        latin2hiragana.put(PYO, "&#x3074;&#x3087;");
-        latin2hiragana.put(CHA, "&#x3061;&#x3083;");
-        latin2hiragana.put(CHU, "&#x3061;&#x3085;");
-        latin2hiragana.put(CHO, "&#x3061;&#x3087;");
-        latin2hiragana.put(MYA, "&#x307F;&#x3083;");
-        latin2hiragana.put(MYU, "&#x307F;&#x3085;");
-        latin2hiragana.put(MYO, "&#x307F;&#x3087;");
-        latin2hiragana.put(JA, "&#x3058;&#x3083;");
-        latin2hiragana.put(JU, "&#x3058;&#x3085;");
-        latin2hiragana.put(JO, "&#x3058;&#x3087;");
-
+        latin2hiragana.put(ya, "&#x3083;");
+        latin2hiragana.put(yu, "&#x3085;");
+        latin2hiragana.put(yo, "&#x3087;");
+        latin2hiragana.put(KYA, tsl(KI, ya));
+        latin2hiragana.put(KYU, tsl(KI, yu));
+        latin2hiragana.put(KYO, tsl(KI, yo));
+        latin2hiragana.put(NYA, tsl(NI, ya));
+        latin2hiragana.put(NYU, tsl(NI, yu));
+        latin2hiragana.put(NYO, tsl(NI, yo));
+        latin2hiragana.put(RYA, tsl(RI, ya));
+        latin2hiragana.put(RYU, tsl(RI, yu));
+        latin2hiragana.put(RYO, tsl(RI, yo));
+        latin2hiragana.put(BYA, tsl(BI, ya));
+        latin2hiragana.put(BYU, tsl(BI, yu));
+        latin2hiragana.put(BYO, tsl(BI, yo));
+        latin2hiragana.put(SHA, tsl(SHI, ya));
+        latin2hiragana.put(SHU, tsl(SHI, yu));
+        latin2hiragana.put(SHO, tsl(SHI, yo));
+        latin2hiragana.put(HYA, tsl(HI, ya));
+        latin2hiragana.put(HYU, tsl(HI, yu));
+        latin2hiragana.put(HYO, tsl(HI, yo));
+        latin2hiragana.put(GYA, tsl(GI, ya));
+        latin2hiragana.put(GYU, tsl(GI, yu));
+        latin2hiragana.put(GYO, tsl(GI, yo));
+        latin2hiragana.put(PYA, tsl(PI, ya));
+        latin2hiragana.put(PYU, tsl(PI, yu));
+        latin2hiragana.put(PYO, tsl(PI, yo));
+        latin2hiragana.put(CHA, tsl(CHI, ya));
+        latin2hiragana.put(CHU, tsl(CHI, yu));
+        latin2hiragana.put(CHO, tsl(CHI, yo));
+        latin2hiragana.put(MYA, tsl(MI, ya));
+        latin2hiragana.put(MYU, tsl(MI, yu));
+        latin2hiragana.put(MYO, tsl(MI, yo));
+        latin2hiragana.put(JA, tsl(S_JI, ya));
+        latin2hiragana.put(JU, tsl(S_JI, yu));
+        latin2hiragana.put(JO, tsl(S_JI, yo));
     }
+
+    private String tsl(final String... alphas) {
+        final StringBuilder sb = new StringBuilder();
+        for (final String alpha : alphas) {
+            sb.append(latin2hiragana.get(alpha));
+        }
+        return sb.toString();
+    }
+
 }
