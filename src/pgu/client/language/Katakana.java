@@ -123,6 +123,45 @@ public enum Katakana implements HasLevels {
                 availableSymbols.put(VE, latin2katakana.get(VE));
                 availableSymbols.put(VO, latin2katakana.get(VO));
 
+            } else if (GRP_KY.equals(selectedLevel)) {
+                availableSymbols.put(KYA, latin2katakana.get(KYA));
+                availableSymbols.put(KYU, latin2katakana.get(KYU));
+                availableSymbols.put(KYO, latin2katakana.get(KYO));
+                availableSymbols.put(NYA, latin2katakana.get(NYA));
+                availableSymbols.put(NYU, latin2katakana.get(NYU));
+                availableSymbols.put(NYO, latin2katakana.get(NYO));
+                availableSymbols.put(RYA, latin2katakana.get(RYA));
+                availableSymbols.put(RYU, latin2katakana.get(RYU));
+                availableSymbols.put(RYO, latin2katakana.get(RYO));
+                availableSymbols.put(BYA, latin2katakana.get(BYA));
+                availableSymbols.put(BYU, latin2katakana.get(BYU));
+                availableSymbols.put(BYO, latin2katakana.get(BYO));
+
+            } else if (GRP_SH.equals(selectedLevel)) {
+                availableSymbols.put(SHA, latin2katakana.get(SHA));
+                availableSymbols.put(SHU, latin2katakana.get(SHU));
+                availableSymbols.put(SHO, latin2katakana.get(SHO));
+                availableSymbols.put(HYA, latin2katakana.get(HYA));
+                availableSymbols.put(HYU, latin2katakana.get(HYU));
+                availableSymbols.put(HYO, latin2katakana.get(HYO));
+                availableSymbols.put(GYA, latin2katakana.get(GYA));
+                availableSymbols.put(GYU, latin2katakana.get(GYU));
+                availableSymbols.put(GYO, latin2katakana.get(GYO));
+                availableSymbols.put(PYA, latin2katakana.get(PYA));
+                availableSymbols.put(PYU, latin2katakana.get(PYU));
+                availableSymbols.put(PYO, latin2katakana.get(PYO));
+
+            } else if (GRP_CH.equals(selectedLevel)) {
+                availableSymbols.put(CHA, latin2katakana.get(CHA));
+                availableSymbols.put(CHU, latin2katakana.get(CHU));
+                availableSymbols.put(CHO, latin2katakana.get(CHO));
+                availableSymbols.put(MYA, latin2katakana.get(MYA));
+                availableSymbols.put(MYU, latin2katakana.get(MYU));
+                availableSymbols.put(MYO, latin2katakana.get(MYO));
+                availableSymbols.put(JA, latin2katakana.get(JA));
+                availableSymbols.put(JU, latin2katakana.get(JU));
+                availableSymbols.put(JO, latin2katakana.get(JO));
+
             } else {
                 throw new IllegalArgumentException("Unknown level: " + selectedLevel);
             }
@@ -141,6 +180,9 @@ public enum Katakana implements HasLevels {
     private static final String GRP_R = "R";
     private static final String GRP_W = "W";
     private static final String GRP_V = "V";
+    private static final String GRP_KY = "KY-NRB";
+    private static final String GRP_SH = "SH-HGP";
+    private static final String GRP_CH = "CH-MJ";
 
     private final static String A = "A";
     private final static String I = "I";
