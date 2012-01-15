@@ -155,7 +155,7 @@ public enum Katakana implements HasLevels {
         latin2katakana.put("KO", "&#x30B3;");
         latin2katakana.put("GA", "&#x30AC;");
         latin2katakana.put("GI", "&#x30AE;");
-        latin2katakana.put("GU", "&#x30A0;");
+        latin2katakana.put("GU", "&#x30B0;");
         latin2katakana.put("GE", "&#x30B2;");
         latin2katakana.put("GO", "&#x30B4;");
         latin2katakana.put("SA", "&#x30B5;");
