@@ -88,12 +88,12 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     private void selectCellsForSubselections(final ArrayList<String> currentSubselections) {
 
         for (int i = 0; i < subselectionsPanel.getWidgetCount(); i++) {
-            final HTML cell = (HTML) subselectionsPanel.getWidget(i);
+            final CellSubselection cell = (CellSubselection) subselectionsPanel.getWidget(i);
 
             if (currentSubselections.contains(cell.getHTML())) {
-                cell.addStyleName(style.cellSelected());
+                cell.select();
             } else {
-                cell.removeStyleName(style.cellSelected());
+                cell.deselect();
             }
         }
     }
@@ -149,18 +149,25 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
 
                 @Override
                 public void onClick(final ClickEvent event) {
-
                     if (isSelected) {
-                        removeStyleName(style.cellSelected());
-                        isSelected = false;
+                        deselect();
 
                     } else {
-                        addStyleName(style.cellSelected());
-                        isSelected = true;
+                        select();
                     }
                 }
 
             });
+        }
+
+        public void select() {
+            addStyleName(style.cellSelected());
+            isSelected = true;
+        }
+
+        public void deselect() {
+            removeStyleName(style.cellSelected());
+            isSelected = false;
         }
     }
 
