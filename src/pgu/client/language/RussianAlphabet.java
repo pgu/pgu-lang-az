@@ -32,6 +32,11 @@ public enum RussianAlphabet implements HasLevels {
                 availableSymbols.put(V, latin2russian.get(V));
                 availableSymbols.put(G, latin2russian.get(G));
                 availableSymbols.put(D, latin2russian.get(D));
+                availableSymbols.put(a, latin2russian.get(a));
+                availableSymbols.put(b, latin2russian.get(b));
+                availableSymbols.put(v, latin2russian.get(v));
+                availableSymbols.put(g, latin2russian.get(g));
+                availableSymbols.put(d, latin2russian.get(d));
 
             } else if (GRP_2.equals(selectedLevel)) {
                 availableSymbols.put(JE, latin2russian.get(JE));
@@ -40,6 +45,12 @@ public enum RussianAlphabet implements HasLevels {
                 availableSymbols.put(Z, latin2russian.get(Z));
                 availableSymbols.put(I, latin2russian.get(I));
                 availableSymbols.put(J, latin2russian.get(J));
+                availableSymbols.put(je, latin2russian.get(je));
+                availableSymbols.put(jo, latin2russian.get(jo));
+                availableSymbols.put(ge, latin2russian.get(ge));
+                availableSymbols.put(z, latin2russian.get(z));
+                availableSymbols.put(i, latin2russian.get(i));
+                availableSymbols.put(j, latin2russian.get(j));
 
             } else if (GRP_3.equals(selectedLevel)) {
                 availableSymbols.put(K, latin2russian.get(K));
@@ -47,6 +58,11 @@ public enum RussianAlphabet implements HasLevels {
                 availableSymbols.put(M, latin2russian.get(M));
                 availableSymbols.put(N, latin2russian.get(N));
                 availableSymbols.put(O, latin2russian.get(O));
+                availableSymbols.put(k, latin2russian.get(k));
+                availableSymbols.put(l, latin2russian.get(l));
+                availableSymbols.put(m, latin2russian.get(m));
+                availableSymbols.put(n, latin2russian.get(n));
+                availableSymbols.put(o, latin2russian.get(o));
 
             } else if (GRP_4.equals(selectedLevel)) {
                 availableSymbols.put(P, latin2russian.get(P));
@@ -55,6 +71,12 @@ public enum RussianAlphabet implements HasLevels {
                 availableSymbols.put(T, latin2russian.get(T));
                 availableSymbols.put(U, latin2russian.get(U));
                 availableSymbols.put(F, latin2russian.get(F));
+                availableSymbols.put(p, latin2russian.get(p));
+                availableSymbols.put(r, latin2russian.get(r));
+                availableSymbols.put(s, latin2russian.get(s));
+                availableSymbols.put(t, latin2russian.get(t));
+                availableSymbols.put(u, latin2russian.get(u));
+                availableSymbols.put(f, latin2russian.get(f));
 
             } else if (GRP_5.equals(selectedLevel)) {
                 availableSymbols.put(X, latin2russian.get(X));
@@ -66,6 +88,15 @@ public enum RussianAlphabet implements HasLevels {
                 availableSymbols.put(E, latin2russian.get(E));
                 availableSymbols.put(JU, latin2russian.get(JU));
                 availableSymbols.put(JA, latin2russian.get(JA));
+                availableSymbols.put(x, latin2russian.get(x));
+                availableSymbols.put(ts, latin2russian.get(ts));
+                availableSymbols.put(ch_ip, latin2russian.get(ch_ip));
+                availableSymbols.put(sh_ut, latin2russian.get(sh_ut));
+                availableSymbols.put(sh_eer, latin2russian.get(sh_eer));
+                availableSymbols.put(i_short, latin2russian.get(i_short));
+                availableSymbols.put(e, latin2russian.get(e));
+                availableSymbols.put(ju, latin2russian.get(ju));
+                availableSymbols.put(ja, latin2russian.get(ja));
 
             } else {
                 throw new IllegalArgumentException("Unknown level: " + selectedLevel);
@@ -106,6 +137,37 @@ public enum RussianAlphabet implements HasLevels {
     private String E = null;
     private String JU = null;
     private String JA = null;
+    private String a = null;
+    private String b = null;
+    private String v = null;
+    private String g = null;
+    private String d = null;
+    private String je = null;
+    private String jo = null;
+    private String ge = null;
+    private String z = null;
+    private String i = null;
+    private String j = null;
+    private String k = null;
+    private String l = null;
+    private String m = null;
+    private String n = null;
+    private String o = null;
+    private String p = null;
+    private String r = null;
+    private String s = null;
+    private String t = null;
+    private String u = null;
+    private String f = null;
+    private String x = null;
+    private String ts = null;
+    private String ch_ip = null;
+    private String sh_ut = null;
+    private String sh_eer = null;
+    private String i_short = null;
+    private String e = null;
+    private String ju = null;
+    private String ja = null;
 
     public static String _(final String w) {
         return w.replace("(", "<b>").replace(")", "</b>");
@@ -118,37 +180,68 @@ public enum RussianAlphabet implements HasLevels {
     private static final String GRP_5 = "X - YA";
 
     private void putAll() {
-        A = _("f(a)ther");
-        B = _("(b)it");
-        V = _("(v)ine");
-        G = _("(g)o");
-        D = _("(d)o");
-        JE = _("(ye)t");
-        JO = _("(yo)lk");
-        GE = _("plea(s)ure");
-        Z = _("(z)oo");
-        I = _("m(e)");
-        J = _("(y)es");
-        K = _("(k)itten");
-        L = _("(l)amp");
-        M = _("(m)ap");
-        N = _("(n)ot");
-        O = _("m(o)re");
-        P = _("s(p)ell");
-        R = _("rrr");
-        S = _("(s)ee");
-        T = _("s(t)ool");
-        U = _("b(oo)t");
-        F = _("(f)ace");
-        X = _("U(gh)");
-        TS = _("si(ts)");
-        CH_IP = _("(ch)ip");
-        SH_UT = _("(sh)ut");
-        SH_EER = _("(sh)eer");
-        I_SHORT = _("[&#x0268;]");
-        E = _("m(e)t");
-        JU = _("(u)se");
-        JA = _("(ya)rd");
+        A = _("F(A)THER");
+        B = _("(B)IT");
+        V = _("(V)INE");
+        G = _("(G)O");
+        D = _("(D)O");
+        JE = _("(YE)T");
+        JO = _("(YO)LK");
+        GE = _("PLEA(S)URE");
+        Z = _("(Z)OO");
+        I = _("M(E)");
+        J = _("(Y)ES");
+        K = _("(K)ITTEN");
+        L = _("(L)AMP");
+        M = _("(M)AP");
+        N = _("(N)OT");
+        O = _("M(O)RE");
+        P = _("S(P)ELL");
+        R = _("RRR");
+        S = _("(S)EE");
+        T = _("S(T)OOL");
+        U = _("B(OO)T");
+        F = _("(F)ACE");
+        X = _("U(GH)");
+        TS = _("SI(TS)");
+        CH_IP = _("(CH)IP");
+        SH_UT = _("(SH)UT");
+        SH_EER = _("(SH)EER");
+        I_SHORT = _("ROS(E)S");
+        E = _("M(E)T");
+        JU = _("(U)SE");
+        JA = _("(YA)RD");
+        a = _("f(a)ther");
+        b = _("(b)it");
+        v = _("(v)ine");
+        g = _("(g)o");
+        d = _("(d)o");
+        je = _("(ye)t");
+        jo = _("(yo)lk");
+        ge = _("plea(s)ure");
+        z = _("(z)oo");
+        i = _("m(e)");
+        j = _("(y)es");
+        k = _("(k)itten");
+        l = _("(l)amp");
+        m = _("(m)ap");
+        n = _("(n)ot");
+        o = _("m(o)re");
+        p = _("s(p)ell");
+        r = _("rrr");
+        s = _("(s)ee");
+        t = _("s(t)ool");
+        u = _("b(oo)t");
+        f = _("(f)ace");
+        x = _("U(gh)");
+        ts = _("si(ts)");
+        ch_ip = _("(ch)ip");
+        sh_ut = _("(sh)ut");
+        sh_eer = _("(sh)eer");
+        i_short = _("ros(e)s");
+        e = _("m(e)t");
+        ju = _("(u)se");
+        ja = _("(ya)rd");
 
         latin2russian.put(A, "&#x0410;");
         latin2russian.put(B, "&#x0411;");
@@ -181,6 +274,37 @@ public enum RussianAlphabet implements HasLevels {
         latin2russian.put(E, "&#x042D;");
         latin2russian.put(JU, "&#x042E;");
         latin2russian.put(JA, "&#x042F;");
+        latin2russian.put(a, "&#x0430;");
+        latin2russian.put(b, "&#x0431;");
+        latin2russian.put(v, "&#x0432;");
+        latin2russian.put(g, "&#x0433;");
+        latin2russian.put(d, "&#x0434;");
+        latin2russian.put(je, "&#x0435;");
+        latin2russian.put(jo, "&#x0451;");
+        latin2russian.put(ge, "&#x0436;");
+        latin2russian.put(z, "&#x0437;");
+        latin2russian.put(i, "&#x0438;");
+        latin2russian.put(j, "&#x0439;");
+        latin2russian.put(k, "&#x043A;");
+        latin2russian.put(l, "&#x043B;");
+        latin2russian.put(m, "&#x043C;");
+        latin2russian.put(n, "&#x043D;");
+        latin2russian.put(o, "&#x043E;");
+        latin2russian.put(p, "&#x043F;");
+        latin2russian.put(r, "&#x0440;");
+        latin2russian.put(s, "&#x0441;");
+        latin2russian.put(t, "&#x0442;");
+        latin2russian.put(u, "&#x0443;");
+        latin2russian.put(f, "&#x0444;");
+        latin2russian.put(x, "&#x0425;");
+        latin2russian.put(ts, "&#x0446;");
+        latin2russian.put(ch_ip, "&#x0447;");
+        latin2russian.put(sh_ut, "&#x0448;");
+        latin2russian.put(sh_eer, "&#x0449;");
+        latin2russian.put(i_short, "&#x044B;");
+        latin2russian.put(e, "&#x044D;");
+        latin2russian.put(ju, "&#x044E;");
+        latin2russian.put(ja, "&#x042F;");
     }
 
 }
