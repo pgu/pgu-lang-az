@@ -296,7 +296,7 @@ public enum RussianAlphabet implements HasLevels {
         latin2russian.put(t, "&#x0442;");
         latin2russian.put(u, "&#x0443;");
         latin2russian.put(f, "&#x0444;");
-        latin2russian.put(x, "&#x0425;");
+        latin2russian.put(x, "&#x0445;");
         latin2russian.put(ts, "&#x0446;");
         latin2russian.put(ch_ip, "&#x0447;");
         latin2russian.put(sh_ut, "&#x0448;");
@@ -304,7 +304,7 @@ public enum RussianAlphabet implements HasLevels {
         latin2russian.put(i_short, "&#x044B;");
         latin2russian.put(e, "&#x044D;");
         latin2russian.put(ju, "&#x044E;");
-        latin2russian.put(ja, "&#x042F;");
+        latin2russian.put(ja, "&#x044F;");
     }
 
 }
