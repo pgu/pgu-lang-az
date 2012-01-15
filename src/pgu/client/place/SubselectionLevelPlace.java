@@ -31,7 +31,7 @@ public class SubselectionLevelPlace extends Place {
         this.language = language;
         this.granularity = granularity;
         this.theme = theme;
-        subselections.addAll(subselections);
+        this.subselections.addAll(subselections);
     }
 
     public static class Tokenizer implements PlaceTokenizer<SubselectionLevelPlace> {
@@ -42,7 +42,7 @@ public class SubselectionLevelPlace extends Place {
                     .put(LANGUAGE, place.language) //
                     .put(GRANULARITY, place.granularity) //
                     .put(THEME, place.theme) //
-                    .put(SUBSELECTIONS, place.subselections.toString()) //
+                    .put(SUBSELECTIONS, place.subselections) //
                     .getToken();
 
         }

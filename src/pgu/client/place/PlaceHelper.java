@@ -27,6 +27,13 @@ public class PlaceHelper {
         }
     }
 
+    public PlaceHelper put(final String key, final ArrayList<String> labels) {
+        String labelStr = labels.toString();
+        labelStr = labelStr.replace("[", "").replace("]", "");
+        k2v.put(key, labelStr);
+        return this;
+    }
+
     public PlaceHelper put(final String key, final HasLabel hasLabel) {
         k2v.put(key, null == hasLabel ? null : hasLabel.label());
         return this;
@@ -56,13 +63,11 @@ public class PlaceHelper {
     }
 
     public ArrayList<String> list(final String key) {
-        String v = k2v.get(key);
+        final String v = k2v.get(key);
 
         if (v.isEmpty()) {
             return Lists.newArrayList();
         }
-
-        v = v.substring(0, v.length());
 
         final String[] parts = v.split(",");
 
