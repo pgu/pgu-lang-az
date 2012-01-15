@@ -11,7 +11,8 @@ public enum Hiragana implements HasLevels {
     private final HashBiMap<String, String> latin2hiragana = HashBiMap.create();
     private final ArrayList<String> availableLevels = Lists.newArrayList( //
             GRP_A, GRP_K, GRP_S, GRP_T, GRP_N, //
-            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W);
+            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W, //
+            GRP_KY, GRP_SH, GRP_CH);
 
     @Override
     public ArrayList<String> availableLevels() {
