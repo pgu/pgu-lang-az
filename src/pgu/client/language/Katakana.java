@@ -11,7 +11,9 @@ public enum Katakana implements HasLevels {
     private final HashBiMap<String, String> latin2katakana = HashBiMap.create();
     private final ArrayList<String> availableLevels = Lists.newArrayList( //
             GRP_A, GRP_K, GRP_S, GRP_T, GRP_N, //
-            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W, GRP_V);
+            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W, GRP_V, //
+            GRP_KY, GRP_SH, GRP_CH, //
+            GRP_TRAP_1, GRP_TRAP_2, GRP_TRAP_3);
 
     @Override
     public ArrayList<String> availableLevels() {
