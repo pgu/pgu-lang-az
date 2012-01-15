@@ -31,8 +31,7 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
 
     private final Style style;
 
-    private Language currLanguage;
-    private Language prevLanguage;
+    private Language language;
 
     public GranularityLevelViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -49,7 +48,7 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     @Override
     public void displayGranularities(final LanguageGranularity currentGranularity, final Language language) {
 
-        currLanguage = language;
+        this.language = language;
         granularitiesPanel.setPixelSize(Window.getClientWidth(), Window.getClientHeight());
 
         if (0 == granularitiesPanel.getWidgetCount()) {
@@ -57,15 +56,13 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
         }
 
         if (null != currentGranularity //
-                && prevLanguage == currLanguage) {
+                && Pgu_game.gameConfig.language() == language) {
 
             selectCellForGranularity(currentGranularity);
 
         } else {
             deselectAllCells();
         }
-
-        prevLanguage = currLanguage;
     }
 
     private void selectCellForGranularity(final LanguageGranularity currentGranularity) {
@@ -123,18 +120,18 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     }
 
     private boolean isGreekAlphabet(final LanguageGranularity granularity) {
-        return Language.GREEK == currLanguage //
+        return Language.GREEK == language //
                 && LanguageGranularity.ALPHABET == granularity;
     }
 
     private boolean isRussianAlphabet(final LanguageGranularity granularity) {
-        return Language.RUSSIAN == currLanguage //
+        return Language.RUSSIAN == language //
                 && LanguageGranularity.ALPHABET == granularity;
     }
 
     private void goToSubselectionLevel(final LanguageGranularity granularity) {
         presenter.goTo(new SubselectionLevelPlace( //
-                currLanguage, //
+                language, //
                 granularity, //
                 null, // Theme
                 Pgu_game.gameConfig.subselections() //
@@ -143,7 +140,7 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
 
     private void goToThemeLevel(final LanguageGranularity granularity) {
         presenter.goTo(new ThemeLevelPlace( //
-                currLanguage, //
+                language, //
                 granularity, //
                 Pgu_game.gameConfig.theme() //
                 ));

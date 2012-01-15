@@ -44,13 +44,9 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
 
     private final Style style;
 
-    private Language currLanguage;
-    private LanguageGranularity currGranularity;
-    private Theme currTheme;
-
-    private Language prevLanguage;
-    private LanguageGranularity prevGranularity;
-    private Theme prevTheme;
+    private Language language;
+    private LanguageGranularity granularity;
+    private Theme theme;
 
     public SubselectionLevelViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -71,9 +67,9 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
             final LanguageGranularity granularity, //
             final Language language) {
 
-        currLanguage = language;
-        currGranularity = granularity;
-        currTheme = theme;
+        this.language = language;
+        this.granularity = granularity;
+        this.theme = theme;
 
         container.setPixelSize(Window.getClientWidth(), Window.getClientHeight());
 
@@ -81,16 +77,12 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
         fillSubselectionsPanel();
 
         if (!currentSubselections.isEmpty() //
-                && prevTheme == currTheme //
-                && prevGranularity == currGranularity //
-                && prevLanguage == currLanguage) {
+                && Pgu_game.gameConfig.theme() == this.theme //
+                && Pgu_game.gameConfig.granularity() == this.granularity //
+                && Pgu_game.gameConfig.language() == this.language) {
 
             selectCellsForSubselections(currentSubselections);
         }
-
-        prevLanguage = currLanguage;
-        prevGranularity = currGranularity;
-        prevTheme = currTheme;
     }
 
     private void selectCellsForSubselections(final ArrayList<String> currentSubselections) {
@@ -115,10 +107,10 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     private ArrayList<String> getSubselections() {
         HasLevels hasLevels = null;
 
-        if (currTheme == Theme.KATAKANA) {
+        if (theme == Theme.KATAKANA) {
             hasLevels = Katakana.INSTANCE;
 
-        } else if (currTheme == Theme.HIRAGANA) {
+        } else if (theme == Theme.HIRAGANA) {
             hasLevels = Hiragana.INSTANCE;
 
         } else if (isRussianAlphabet()) {
@@ -132,13 +124,13 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     }
 
     private boolean isRussianAlphabet() {
-        return Language.RUSSIAN == currLanguage //
-                && LanguageGranularity.ALPHABET == currGranularity;
+        return Language.RUSSIAN == language //
+                && LanguageGranularity.ALPHABET == granularity;
     }
 
     private boolean isGreekAlphabet() {
-        return Language.GREEK == currLanguage //
-                && LanguageGranularity.ALPHABET == currGranularity;
+        return Language.GREEK == language //
+                && LanguageGranularity.ALPHABET == granularity;
     }
 
     private static class CellSubselection extends HTML {
@@ -175,9 +167,9 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     @UiHandler("btnOk")
     public void clickOk(final ClickEvent e) {
         Pgu_game.gameConfig //
-                .language(currLanguage) //
-                .granularity(currGranularity) //
-                .theme(currTheme);
+                .language(language) //
+                .granularity(granularity) //
+                .theme(theme);
 
         Pgu_game.gameConfig.subselections().clear();
         Pgu_game.gameConfig.subselections().addAll(getSelectedSubselections());

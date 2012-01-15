@@ -34,11 +34,8 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
 
     private final Style style;
 
-    private Language currLanguage;
-    private LanguageGranularity currGranularity;
-
-    private Language prevLanguage;
-    private LanguageGranularity prevGranularity;
+    private Language language;
+    private LanguageGranularity granularity;
 
     public ThemeLevelViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -58,8 +55,8 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
             final LanguageGranularity granularity, //
             final Language language) {
 
-        currLanguage = language;
-        currGranularity = granularity;
+        this.language = language;
+        this.granularity = granularity;
 
         themesPanel.setPixelSize(Window.getClientWidth(), Window.getClientHeight());
 
@@ -67,14 +64,12 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
         fillThemesPanel();
 
         if (null != currentTheme //
-                && prevGranularity == currGranularity //
-                && prevLanguage == currLanguage) {
+                && Pgu_game.gameConfig.granularity() == this.granularity //
+                && Pgu_game.gameConfig.language() == language) {
 
             selectCellForTheme(currentTheme);
         }
 
-        prevLanguage = currLanguage;
-        prevGranularity = currGranularity;
     }
 
     private void selectCellForTheme(final Theme currentTheme) {
@@ -111,8 +106,8 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
     }
 
     private boolean isJapaneseAlphabet() {
-        return Language.JAPANESE == currLanguage //
-                && LanguageGranularity.ALPHABET == currGranularity;
+        return Language.JAPANESE == language //
+                && LanguageGranularity.ALPHABET == granularity;
     }
 
     private Widget buildCellTheme(final Theme theme) {
@@ -135,8 +130,8 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
     private void goToSubselectionLevel(final Theme theme) {
 
         presenter.goTo(new SubselectionLevelPlace( //
-                currLanguage, //
-                currGranularity, //
+                language, //
+                granularity, //
                 theme, //
                 Pgu_game.gameConfig.subselections() //
                 ));
