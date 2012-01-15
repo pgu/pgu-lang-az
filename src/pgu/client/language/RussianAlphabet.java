@@ -9,7 +9,7 @@ public enum RussianAlphabet implements HasLevels {
     INSTANCE;
 
     private final HashBiMap<String, String> latin2russian = HashBiMap.create();
-    private final ArrayList<String> availableLevels = Lists.newArrayList(G_1, G_2, G_3, G_4, G_5);
+    private final ArrayList<String> availableLevels = Lists.newArrayList(GRP_1, GRP_2, GRP_3, GRP_4, GRP_5);
 
     private RussianAlphabet() {
         putAll();
@@ -26,14 +26,14 @@ public enum RussianAlphabet implements HasLevels {
 
         for (final String selectedLevel : selectedLevels) {
 
-            if (G_1.equals(selectedLevel)) {
+            if (GRP_1.equals(selectedLevel)) {
                 availableSymbols.put(A, latin2russian.get(A));
                 availableSymbols.put(B, latin2russian.get(B));
                 availableSymbols.put(V, latin2russian.get(V));
                 availableSymbols.put(G, latin2russian.get(G));
                 availableSymbols.put(D, latin2russian.get(D));
 
-            } else if (G_2.equals(selectedLevel)) {
+            } else if (GRP_2.equals(selectedLevel)) {
                 availableSymbols.put(JE, latin2russian.get(JE));
                 availableSymbols.put(JO, latin2russian.get(JO));
                 availableSymbols.put(GE, latin2russian.get(GE));
@@ -41,14 +41,14 @@ public enum RussianAlphabet implements HasLevels {
                 availableSymbols.put(I, latin2russian.get(I));
                 availableSymbols.put(J, latin2russian.get(J));
 
-            } else if (G_3.equals(selectedLevel)) {
+            } else if (GRP_3.equals(selectedLevel)) {
                 availableSymbols.put(K, latin2russian.get(K));
                 availableSymbols.put(L, latin2russian.get(L));
                 availableSymbols.put(M, latin2russian.get(M));
                 availableSymbols.put(N, latin2russian.get(N));
                 availableSymbols.put(O, latin2russian.get(O));
 
-            } else if (G_4.equals(selectedLevel)) {
+            } else if (GRP_4.equals(selectedLevel)) {
                 availableSymbols.put(P, latin2russian.get(P));
                 availableSymbols.put(R, latin2russian.get(R));
                 availableSymbols.put(S, latin2russian.get(S));
@@ -56,7 +56,7 @@ public enum RussianAlphabet implements HasLevels {
                 availableSymbols.put(U, latin2russian.get(U));
                 availableSymbols.put(F, latin2russian.get(F));
 
-            } else if (G_5.equals(selectedLevel)) {
+            } else if (GRP_5.equals(selectedLevel)) {
                 availableSymbols.put(X, latin2russian.get(X));
                 availableSymbols.put(TS, latin2russian.get(TS));
                 availableSymbols.put(CH_IP, latin2russian.get(CH_IP));
@@ -111,11 +111,11 @@ public enum RussianAlphabet implements HasLevels {
         return w.replace("(", "<b>").replace(")", "</b>");
     }
 
-    private static final String G_1 = "A - D";
-    private static final String G_2 = "YE - Y";
-    private static final String G_3 = "K - O";
-    private static final String G_4 = "P - F";
-    private static final String G_5 = "X - YA";
+    private static final String GRP_1 = "A - D";
+    private static final String GRP_2 = "YE - Y";
+    private static final String GRP_3 = "K - O";
+    private static final String GRP_4 = "P - F";
+    private static final String GRP_5 = "X - YA";
 
     private void putAll() {
         A = _("f(a)ther");

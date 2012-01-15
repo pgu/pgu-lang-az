@@ -10,8 +10,8 @@ public enum Hiragana implements HasLevels {
 
     private final HashBiMap<String, String> latin2hiragana = HashBiMap.create();
     private final ArrayList<String> availableLevels = Lists.newArrayList( //
-            A, K, S, T, N, //
-            H, M, Y, R, W);
+            GRP_A, GRP_K, GRP_S, GRP_T, GRP_N, //
+            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W);
 
     @Override
     public ArrayList<String> availableLevels() {
@@ -24,7 +24,7 @@ public enum Hiragana implements HasLevels {
 
         for (final String selectedLevel : selectedLevels) {
 
-            if (A.equals(selectedLevel)) {
+            if (GRP_A.equals(selectedLevel)) {
                 availableSymbols.put("A", latin2hiragana.get("A"));
                 availableSymbols.put("I", latin2hiragana.get("I"));
                 availableSymbols.put("U", latin2hiragana.get("U"));
@@ -32,7 +32,7 @@ public enum Hiragana implements HasLevels {
                 availableSymbols.put("O", latin2hiragana.get("O"));
                 availableSymbols.put("N", latin2hiragana.get("N"));
 
-            } else if (K.equals(selectedLevel)) {
+            } else if (GRP_K.equals(selectedLevel)) {
                 availableSymbols.put("KA", latin2hiragana.get("KA"));
                 availableSymbols.put("KI", latin2hiragana.get("KI"));
                 availableSymbols.put("KU", latin2hiragana.get("KU"));
@@ -44,7 +44,7 @@ public enum Hiragana implements HasLevels {
                 availableSymbols.put("GE", latin2hiragana.get("GE"));
                 availableSymbols.put("GO", latin2hiragana.get("GO"));
 
-            } else if (S.equals(selectedLevel)) {
+            } else if (GRP_S.equals(selectedLevel)) {
                 availableSymbols.put("SA", latin2hiragana.get("SA"));
                 availableSymbols.put("SHI", latin2hiragana.get("SHI"));
                 availableSymbols.put("SU", latin2hiragana.get("SU"));
@@ -56,7 +56,7 @@ public enum Hiragana implements HasLevels {
                 availableSymbols.put("ZE", latin2hiragana.get("ZE"));
                 availableSymbols.put("ZO", latin2hiragana.get("ZO"));
 
-            } else if (T.equals(selectedLevel)) {
+            } else if (GRP_T.equals(selectedLevel)) {
                 availableSymbols.put("TA", latin2hiragana.get("TA"));
                 availableSymbols.put("CHI", latin2hiragana.get("CHI"));
                 availableSymbols.put("TSU", latin2hiragana.get("TSU"));
@@ -68,14 +68,14 @@ public enum Hiragana implements HasLevels {
                 availableSymbols.put("DE", latin2hiragana.get("DE"));
                 availableSymbols.put("DO", latin2hiragana.get("DO"));
 
-            } else if (N.equals(selectedLevel)) {
+            } else if (GRP_N.equals(selectedLevel)) {
                 availableSymbols.put("NA", latin2hiragana.get("NA"));
                 availableSymbols.put("NI", latin2hiragana.get("NI"));
                 availableSymbols.put("NU", latin2hiragana.get("NU"));
                 availableSymbols.put("NE", latin2hiragana.get("NE"));
                 availableSymbols.put("NO", latin2hiragana.get("NO"));
 
-            } else if (H.equals(selectedLevel)) {
+            } else if (GRP_H.equals(selectedLevel)) {
                 availableSymbols.put("HA", latin2hiragana.get("HA"));
                 availableSymbols.put("HI", latin2hiragana.get("HI"));
                 availableSymbols.put("FU", latin2hiragana.get("FU"));
@@ -92,26 +92,26 @@ public enum Hiragana implements HasLevels {
                 availableSymbols.put("PE", latin2hiragana.get("PE"));
                 availableSymbols.put("PO", latin2hiragana.get("PO"));
 
-            } else if (M.equals(selectedLevel)) {
+            } else if (GRP_M.equals(selectedLevel)) {
                 availableSymbols.put("MA", latin2hiragana.get("MA"));
                 availableSymbols.put("MI", latin2hiragana.get("MI"));
                 availableSymbols.put("MU", latin2hiragana.get("MU"));
                 availableSymbols.put("ME", latin2hiragana.get("ME"));
                 availableSymbols.put("MO", latin2hiragana.get("MO"));
 
-            } else if (Y.equals(selectedLevel)) {
+            } else if (GRP_Y.equals(selectedLevel)) {
                 availableSymbols.put("YA", latin2hiragana.get("YA"));
                 availableSymbols.put("YU", latin2hiragana.get("YU"));
                 availableSymbols.put("YO", latin2hiragana.get("YO"));
 
-            } else if (R.equals(selectedLevel)) {
+            } else if (GRP_R.equals(selectedLevel)) {
                 availableSymbols.put("RA", latin2hiragana.get("RA"));
                 availableSymbols.put("RI", latin2hiragana.get("RI"));
                 availableSymbols.put("RU", latin2hiragana.get("RU"));
                 availableSymbols.put("RE", latin2hiragana.get("RE"));
                 availableSymbols.put("RO", latin2hiragana.get("RO"));
 
-            } else if (W.equals(selectedLevel)) {
+            } else if (GRP_W.equals(selectedLevel)) {
                 availableSymbols.put("WA", latin2hiragana.get("WA"));
                 availableSymbols.put("WI", latin2hiragana.get("WI"));
                 availableSymbols.put("VU", latin2hiragana.get("VU"));
@@ -126,16 +126,16 @@ public enum Hiragana implements HasLevels {
         return availableSymbols;
     }
 
-    private static final String A = "A";
-    private static final String K = "K - G";
-    private static final String S = "S - Z";
-    private static final String T = "T - D";
-    private static final String N = "N";
-    private static final String H = "H - B - P";
-    private static final String M = "M";
-    private static final String Y = "Y";
-    private static final String R = "R";
-    private static final String W = "W";
+    private static final String GRP_A = "A";
+    private static final String GRP_K = "K - G";
+    private static final String GRP_S = "S - Z";
+    private static final String GRP_T = "T - D";
+    private static final String GRP_N = "N";
+    private static final String GRP_H = "H - B - P";
+    private static final String GRP_M = "M";
+    private static final String GRP_Y = "Y";
+    private static final String GRP_R = "R";
+    private static final String GRP_W = "W";
 
     {
         latin2hiragana.put("A", "&#x3042;");
