@@ -198,9 +198,9 @@ public enum Hiragana implements HasLevels {
     private final static String SA = "SA";
     private final static String ZA = "ZA";
     private final static String SHI = "SHI";
-    private final static String S_JI = "JI";
+    private final static String S_JI = "(S)JI";
     private final static String SU = "SU";
-    private final static String S_ZU = "ZU";
+    private final static String S_ZU = "(S)ZU";
     private final static String SE = "SE";
     private final static String ZE = "ZE";
     private final static String SO = "SO";
@@ -208,9 +208,9 @@ public enum Hiragana implements HasLevels {
     private final static String TA = "TA";
     private final static String DA = "DA";
     private final static String CHI = "CHI";
-    private final static String T_JI = "JI";
+    private final static String T_JI = "(T)JI";
     private final static String TSU = "TSU";
-    private final static String T_ZU = "ZU";
+    private final static String T_ZU = "(T)ZU";
     private final static String TE = "TE";
     private final static String DE = "DE";
     private final static String TO = "TO";

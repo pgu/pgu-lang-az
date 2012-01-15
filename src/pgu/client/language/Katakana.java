@@ -164,7 +164,7 @@ public enum Katakana implements HasLevels {
         latin2katakana.put("SE", "&#x30BB;");
         latin2katakana.put("SO", "&#x30BD;");
         latin2katakana.put("ZA", "&#x30B6;");
-        latin2katakana.put("ZI", "&#x30B8;");
+        latin2katakana.put("JI", "&#x30B8;");
         latin2katakana.put("ZU", "&#x30BA;");
         latin2katakana.put("ZE", "&#x30BC;");
         latin2katakana.put("ZO", "&#x30BE;");
@@ -174,8 +174,8 @@ public enum Katakana implements HasLevels {
         latin2katakana.put("TE", "&#x30C6;");
         latin2katakana.put("TO", "&#x30C8;");
         latin2katakana.put("DA", "&#x30C0;");
-        latin2katakana.put("DI", "&#x30C2;");
-        latin2katakana.put("DU", "&#x30C5;");
+        latin2katakana.put("JI", "&#x30C2;");
+        latin2katakana.put("ZU", "&#x30C5;");
         latin2katakana.put("DE", "&#x30C7;");
         latin2katakana.put("DO", "&#x30C9;");
         latin2katakana.put("NA", "&#x30CA;");
@@ -213,10 +213,10 @@ public enum Katakana implements HasLevels {
         latin2katakana.put("RO", "&#x30ED;");
         latin2katakana.put("WA", "&#x30EF;");
         latin2katakana.put("WI", "&#x30F0;");
+        latin2katakana.put("VU", "&#x30F4;");
         latin2katakana.put("WE", "&#x30F1;");
         latin2katakana.put("WO", "&#x30F2;");
         latin2katakana.put("N", "&#x30F3;");
-        latin2katakana.put("VU", "&#x30F4;");
         latin2katakana.put("VA", "&#x30F7;");
         latin2katakana.put("VI", "&#x30F8;");
         latin2katakana.put("VE", "&#x30F9;");
