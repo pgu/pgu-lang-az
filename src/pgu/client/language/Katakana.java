@@ -162,6 +162,24 @@ public enum Katakana implements HasLevels {
                 availableSymbols.put(JU, latin2katakana.get(JU));
                 availableSymbols.put(JO, latin2katakana.get(JO));
 
+            } else if (GRP_TRAP_1.equals(selectedLevel)) {
+                availableSymbols.put(SHI, latin2katakana.get(SHI));
+                availableSymbols.put(TSU, latin2katakana.get(TSU));
+                availableSymbols.put(SO, latin2katakana.get(SO));
+                availableSymbols.put(N, latin2katakana.get(N));
+
+            } else if (GRP_TRAP_2.equals(selectedLevel)) {
+                availableSymbols.put(KO, latin2katakana.get(KO));
+                availableSymbols.put(YO, latin2katakana.get(YO));
+                availableSymbols.put(YU, latin2katakana.get(YU));
+                availableSymbols.put(E, latin2katakana.get(E));
+
+            } else if (GRP_TRAP_3.equals(selectedLevel)) {
+                availableSymbols.put(U, latin2katakana.get(U));
+                availableSymbols.put(WA, latin2katakana.get(WA));
+                availableSymbols.put(KU, latin2katakana.get(KU));
+                availableSymbols.put(TA, latin2katakana.get(TA));
+
             } else {
                 throw new IllegalArgumentException("Unknown level: " + selectedLevel);
             }
@@ -183,6 +201,9 @@ public enum Katakana implements HasLevels {
     private static final String GRP_KY = "KY-NRB";
     private static final String GRP_SH = "SH-HGP";
     private static final String GRP_CH = "CH-MJ";
+    private static final String GRP_TRAP_1 = "Traps 1";
+    private static final String GRP_TRAP_2 = "Traps 2";
+    private static final String GRP_TRAP_3 = "Traps 3";
 
     private final static String A = "A";
     private final static String I = "I";
