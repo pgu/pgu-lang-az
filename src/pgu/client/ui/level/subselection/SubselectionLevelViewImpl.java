@@ -1,6 +1,7 @@
 package pgu.client.ui.level.subselection;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import pgu.client.Pgu_game;
 import pgu.client.enums.Language;
@@ -120,7 +121,10 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
             hasLevels = GreekAlphabet.INSTANCE;
 
         }
-        return hasLevels.availableLevels();
+
+        final ArrayList<String> levels = hasLevels.availableLevels();
+        Collections.sort(levels);
+        return levels;
     }
 
     private boolean isRussianAlphabet() {

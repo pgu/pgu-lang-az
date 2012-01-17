@@ -3,6 +3,7 @@ package pgu.client.ui.level.theme;
 import java.util.ArrayList;
 
 import pgu.client.Pgu_game;
+import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
@@ -102,7 +103,7 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
             themes.add(Theme.KATAKANA);
         }
 
-        return themes;
+        return LabelHelper.sort(themes);
     }
 
     private boolean isJapaneseAlphabet() {

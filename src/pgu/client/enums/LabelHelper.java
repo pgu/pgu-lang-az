@@ -64,10 +64,13 @@ public class LabelHelper {
         }
     };
 
+    public static <E extends HasLabel> ArrayList<E> sort(final ArrayList<E> hasLabels) {
+        Collections.sort(hasLabels, COMPARATOR_HAS_LABEL);
+        return hasLabels;
+    }
+
     public static <E extends HasLabel> ArrayList<E> sort(final E[] hasLabels) {
-        final ArrayList<E> sortedHasLabels = Lists.newArrayList(hasLabels);
-        Collections.sort(sortedHasLabels, COMPARATOR_HAS_LABEL);
-        return sortedHasLabels;
+        return sort(Lists.newArrayList(hasLabels));
     }
 
 }

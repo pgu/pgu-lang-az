@@ -2,9 +2,9 @@ package pgu.client.enums;
 
 public enum LanguageGranularity implements HasLabel {
 
-    ALPHABET("Alphabet"), //
-    WORD("Word"), //
-    SENTENCE("Sentence");
+    ALPHABET("1 - Alphabet"), //
+    WORD("2 - Words"), //
+    SENTENCE("3 - Sentences");
 
     private String label;
 

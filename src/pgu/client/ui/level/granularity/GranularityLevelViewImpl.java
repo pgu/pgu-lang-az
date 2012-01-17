@@ -1,6 +1,7 @@
 package pgu.client.ui.level.granularity;
 
 import pgu.client.Pgu_game;
+import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.place.SubselectionLevelPlace;
@@ -86,7 +87,7 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     }
 
     private void initGranularitiesPanel() {
-        for (final LanguageGranularity granularity : LanguageGranularity.values()) {
+        for (final LanguageGranularity granularity : LabelHelper.sort(LanguageGranularity.values())) {
             granularitiesPanel.add(buildCellGranularity(granularity));
         }
     }
