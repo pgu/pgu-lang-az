@@ -64,6 +64,18 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
         } else {
             deselectAllCells();
         }
+
+        displayOrNotAlphabetCell();
+    }
+
+    private void displayOrNotAlphabetCell() {
+        for (int i = 0; i < granularitiesPanel.getWidgetCount(); i++) {
+            final HTML cell = (HTML) granularitiesPanel.getWidget(i);
+            if (LanguageGranularity.ALPHABET.label().equals(cell.getHTML())) {
+                cell.setVisible(language != Language.CHINESE);
+                break;
+            }
+        }
     }
 
     private void selectCellForGranularity(final LanguageGranularity currentGranularity) {
