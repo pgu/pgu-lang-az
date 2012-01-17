@@ -1,6 +1,7 @@
 package pgu.client.enums;
 
 public enum Language implements HasLabel {
+    CHINESE("Chinese"), //
     JAPANESE("Japanese"), //
     RUSSIAN("Russian"), //
     GREEK("Greek");

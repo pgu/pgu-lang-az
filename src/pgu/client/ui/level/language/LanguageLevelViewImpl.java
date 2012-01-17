@@ -1,6 +1,7 @@
 package pgu.client.ui.level.language;
 
 import pgu.client.Pgu_game;
+import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.place.GranularityLevelPlace;
 import pgu.client.ui.style.PguGameResources;
@@ -78,7 +79,7 @@ public class LanguageLevelViewImpl extends Composite implements LanguageLevelVie
     }
 
     private void initLanguagesPanel() {
-        for (final Language language : Language.values()) {
+        for (final Language language : LabelHelper.sort(Language.values())) {
             languagesPanel.add(buildCellLanguage(language));
         }
     }

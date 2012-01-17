@@ -1,6 +1,8 @@
 package pgu.client.enums;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import pgu.client.utils.guava.Lists;
 
@@ -50,7 +52,22 @@ public class LabelHelper {
         for (final E hasLabel : hasLabels) {
             labels.add(hasLabel.label());
         }
+        Collections.sort(labels);
         return labels;
+    }
+
+    private static final Comparator<HasLabel> COMPARATOR_HAS_LABEL = new Comparator<HasLabel>() {
+
+        @Override
+        public int compare(final HasLabel hasLabel1, final HasLabel hasLabel2) {
+            return hasLabel1.label().compareTo(hasLabel2.label());
+        }
+    };
+
+    public static <E extends HasLabel> ArrayList<E> sort(final E[] hasLabels) {
+        final ArrayList<E> sortedHasLabels = Lists.newArrayList(hasLabels);
+        Collections.sort(sortedHasLabels, COMPARATOR_HAS_LABEL);
+        return sortedHasLabels;
     }
 
 }
