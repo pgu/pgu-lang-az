@@ -2,11 +2,12 @@ package pgu.client.language.japanese;
 
 import java.util.ArrayList;
 
+import pgu.client.language.HasBiSymbols;
 import pgu.client.language.HasLevels;
 import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.Lists;
 
-public enum Katakana implements HasLevels {
+public enum Katakana implements HasLevels, HasBiSymbols {
     INSTANCE;
 
     private final HashBiMap<String, String> latin2katakana = HashBiMap.create();

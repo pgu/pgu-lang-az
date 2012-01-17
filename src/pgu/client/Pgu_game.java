@@ -1,5 +1,6 @@
 package pgu.client;
 
+import pgu.client.enums.GameSize;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
@@ -17,6 +18,7 @@ public class Pgu_game implements EntryPoint {
     public static GameConfig gameConfig = new GameConfig();
 
     static {
+        gameConfig.size(GameSize.BIG);
         gameConfig.language(Language.JAPANESE);
         gameConfig.granularity(LanguageGranularity.ALPHABET);
         gameConfig.theme(Theme.HIRAGANA);

@@ -2,6 +2,7 @@ package pgu.client;
 
 import java.util.ArrayList;
 
+import pgu.client.enums.GameSize;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
@@ -9,6 +10,7 @@ import pgu.client.utils.guava.Lists;
 
 public class GameConfig {
 
+    private GameSize size;
     private Language language;
     private LanguageGranularity granularity;
     private Theme theme;
@@ -27,6 +29,15 @@ public class GameConfig {
     public GameConfig theme(final Theme theme) {
         this.theme = theme;
         return this;
+    }
+
+    public GameConfig size(final GameSize size) {
+        this.size = size;
+        return this;
+    }
+
+    public GameSize size() {
+        return size;
     }
 
     public Language language() {

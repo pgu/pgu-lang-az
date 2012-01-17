@@ -1,11 +1,29 @@
 package pgu.client.language.chinese;
 
-import pgu.client.utils.guava.HashTriMap;
+import java.util.ArrayList;
 
-public enum ChineseLesson1 {
+import pgu.client.language.HasLevels;
+import pgu.client.language.HasTriSymbols;
+import pgu.client.utils.guava.HashTriMap;
+import pgu.client.utils.guava.Lists;
+
+public enum ChineseWords implements HasLevels, HasTriSymbols {
     INSTANCE;
 
     private final HashTriMap<String, String, String> latin2chinese = HashTriMap.create();
+
+    private final ArrayList<String> availableLevels = Lists.newArrayList( //
+            "Lesson 1");
+
+    @Override
+    public ArrayList<String> availableLevels() {
+        return availableLevels;
+    }
+
+    @Override
+    public HashTriMap<String, String, String> availableSymbols(final ArrayList<String> selectedLevels) {
+        return latin2chinese;
+    }
 
     {
         latin2chinese.put("I", "w&#335;", "&#25105;");

@@ -14,6 +14,7 @@ import pgu.client.language.japanese.Katakana;
 import pgu.client.language.russian.RussianAlphabet;
 import pgu.client.place.WelcomePlace;
 import pgu.client.utils.guava.HashBiMap;
+import pgu.client.utils.guava.HashTriMap;
 import pgu.client.utils.guava.Lists;
 
 import com.google.gwt.core.client.GWT;
@@ -204,7 +205,8 @@ public class GameViewImpl extends Composite implements GameView {
     private final List<Integer> availableSlots = Lists.newArrayList();
     private int counterFoundAssociations = 0;
     private static final int NB_ASSOCIATIONS = 16;
-    private HashBiMap<String, String> availableSymbols = null;
+    private HashBiMap<String, String> availableBiSymbols = null;
+    private final HashTriMap<String, String, String> availableTriSymbols = null;
 
     @Override
     public void generateGame() {
@@ -239,7 +241,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         fetchAvailableSymbols(hasLevels);
 
-        final List<Entry<String, String>> symbols = Lists.newArrayList(availableSymbols.entrySet());
+        final List<Entry<String, String>> symbols = Lists.newArrayList(availableBiSymbols.entrySet());
 
         final int symbolsSize = symbols.size();
         for (int i = 0; i < NB_ASSOCIATIONS; i++) {
@@ -266,7 +268,7 @@ public class GameViewImpl extends Composite implements GameView {
     }
 
     private void fetchAvailableSymbols(final HasLevels hasLevels) {
-        availableSymbols = hasLevels.availableSymbols(Pgu_game.gameConfig.subselections());
+        availableBiSymbols = hasLevels.availableSymbols(Pgu_game.gameConfig.subselections());
     }
 
     private boolean isGreekAlphabet() {
@@ -309,10 +311,10 @@ public class GameViewImpl extends Composite implements GameView {
         final String secondCharacter = cell.getCharacter();
 
         String matchCharacter;
-        if (availableSymbols.containsKey(firstCharacter)) {
-            matchCharacter = availableSymbols.get(firstCharacter);
+        if (availableBiSymbols.containsKey(firstCharacter)) {
+            matchCharacter = availableBiSymbols.get(firstCharacter);
         } else {
-            matchCharacter = availableSymbols.inverse().get(firstCharacter);
+            matchCharacter = availableBiSymbols.inverse().get(firstCharacter);
         }
 
         if (!secondCharacter.equals(matchCharacter)) {

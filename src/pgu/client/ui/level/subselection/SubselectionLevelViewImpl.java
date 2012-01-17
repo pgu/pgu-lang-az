@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import pgu.client.Pgu_game;
+import pgu.client.enums.GameSize;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
@@ -178,6 +179,7 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     @UiHandler("btnOk")
     public void clickOk(final ClickEvent e) {
         Pgu_game.gameConfig //
+                .size(GameSize.BIG) //
                 .language(language) //
                 .granularity(granularity) //
                 .theme(theme);
@@ -185,7 +187,16 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
         Pgu_game.gameConfig.subselections().clear();
         Pgu_game.gameConfig.subselections().addAll(getSelectedSubselections());
 
+        if (isChineseWords()) {
+            Pgu_game.gameConfig.size(GameSize.MEDIUM);
+        }
+
         presenter.goTo(new GamePlace());
+    }
+
+    private boolean isChineseWords() {
+        // TODO PGU
+        return false;
     }
 
     private ArrayList<String> getSelectedSubselections() {
