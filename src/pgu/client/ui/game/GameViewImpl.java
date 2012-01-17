@@ -35,8 +35,6 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class GameViewImpl extends Composite implements GameView {
 
-    private static final int BTN_HEIGHT_LANDSCAPE = 43;
-
     interface GameViewImplUiBinder extends UiBinder<Widget, GameViewImpl> {
     }
 

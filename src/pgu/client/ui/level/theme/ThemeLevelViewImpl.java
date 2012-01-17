@@ -7,7 +7,6 @@ import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
-import pgu.client.place.GamePlace;
 import pgu.client.place.SubselectionLevelPlace;
 import pgu.client.ui.style.PguGameResources;
 import pgu.client.ui.style.PguGameResources.Style;
@@ -102,9 +101,6 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
         if (isJapaneseAlphabet()) {
             themes.add(Theme.HIRAGANA);
             themes.add(Theme.KATAKANA);
-
-        } else if (Language.CHINESE == language) {
-            themes.add(Theme.CHINESE_LESSON_1);
         }
 
         return LabelHelper.sort(themes);
@@ -125,32 +121,11 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
 
             @Override
             public void onClick(final ClickEvent event) {
-                if (isChineseWords()) {
-                    startsGame(theme);
-
-                } else {
-                    goToSubselectionLevel(theme);
-                }
+                goToSubselectionLevel(theme);
             }
 
         });
         return cell;
-    }
-
-    private void startsGame(final Theme theme) {
-        Pgu_game.gameConfig //
-                .language(language) //
-                .granularity(granularity) //
-                .theme(theme);
-
-        Pgu_game.gameConfig.subselections().clear();
-
-        presenter.goTo(new GamePlace());
-    }
-
-    private boolean isChineseWords() {
-        return Language.CHINESE == language //
-                && LanguageGranularity.WORD == granularity;
     }
 
     private void goToSubselectionLevel(final Theme theme) {
