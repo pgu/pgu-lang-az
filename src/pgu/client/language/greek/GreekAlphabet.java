@@ -1,7 +1,8 @@
-package pgu.client.language;
+package pgu.client.language.greek;
 
 import java.util.ArrayList;
 
+import pgu.client.language.HasLevels;
 import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.Lists;
 

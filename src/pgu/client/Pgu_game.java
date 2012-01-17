@@ -4,7 +4,7 @@ import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
 import pgu.client.gin.GameGinjector;
-import pgu.client.language.Hiragana;
+import pgu.client.language.japanese.Hiragana;
 import pgu.client.ui.style.PguGameResources;
 
 import com.google.gwt.core.client.EntryPoint;
