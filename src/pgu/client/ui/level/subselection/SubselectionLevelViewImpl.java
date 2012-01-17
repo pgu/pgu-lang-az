@@ -12,7 +12,7 @@ import pgu.client.language.greek.GreekAlphabet;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
 import pgu.client.language.russian.RussianAlphabet;
-import pgu.client.place.WelcomePlace;
+import pgu.client.place.GamePlace;
 import pgu.client.ui.style.PguGameResources;
 import pgu.client.ui.style.PguGameResources.Style;
 import pgu.client.utils.guava.Lists;
@@ -185,7 +185,7 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
         Pgu_game.gameConfig.subselections().clear();
         Pgu_game.gameConfig.subselections().addAll(getSelectedSubselections());
 
-        presenter.goTo(new WelcomePlace());
+        presenter.goTo(new GamePlace());
     }
 
     private ArrayList<String> getSelectedSubselections() {

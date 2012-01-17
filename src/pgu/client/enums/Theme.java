@@ -2,7 +2,7 @@ package pgu.client.enums;
 
 public enum Theme implements HasLabel {
 
-    HIRAGANA("Hiragana"), KATAKANA("Katakana");
+    HIRAGANA("Hiragana"), KATAKANA("Katakana"), CHINESE_LESSON_1("Lesson 1");
 
     private String label;
 
