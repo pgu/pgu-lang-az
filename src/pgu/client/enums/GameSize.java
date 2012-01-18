@@ -8,4 +8,8 @@ public enum GameSize {
     private GameSize(final int nbCells) {
         this.nbCells = nbCells;
     }
+
+    public int nbCells() {
+        return nbCells;
+    }
 }

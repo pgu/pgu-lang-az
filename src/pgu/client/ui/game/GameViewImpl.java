@@ -7,7 +7,9 @@ import pgu.client.Pgu_game;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
-import pgu.client.language.HasLevels;
+import pgu.client.language.HasBiSymbols;
+import pgu.client.language.HasTriSymbols;
+import pgu.client.language.chinese.ChineseWords;
 import pgu.client.language.greek.GreekAlphabet;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
@@ -204,9 +206,8 @@ public class GameViewImpl extends Composite implements GameView {
     private final List<Integer> occupiedSlots = Lists.newArrayList();
     private final List<Integer> availableSlots = Lists.newArrayList();
     private int counterFoundAssociations = 0;
-    private static final int NB_ASSOCIATIONS = 16;
     private HashBiMap<String, String> availableBiSymbols = null;
-    private final HashTriMap<String, String, String> availableTriSymbols = null;
+    private HashTriMap<String, String, String> availableTriSymbols = null;
 
     @Override
     public void generateGame() {
@@ -218,57 +219,93 @@ public class GameViewImpl extends Composite implements GameView {
 
         occupiedSlots.clear();
         availableSlots.clear();
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < Pgu_game.gameConfig.size().nbCells(); i++) {
             availableSlots.add(i);
         }
 
-        HasLevels hasLevels = null;
-
-        if (Theme.HIRAGANA == Pgu_game.gameConfig.theme()) {
-            hasLevels = Hiragana.INSTANCE;
-
-        } else if (Theme.KATAKANA == Pgu_game.gameConfig.theme()) {
-            hasLevels = Katakana.INSTANCE;
-
-        } else if (isRussianAlphabet()) {
-            hasLevels = RussianAlphabet.INSTANCE;
-
-        } else if (isGreekAlphabet()) {
-            hasLevels = GreekAlphabet.INSTANCE;
-        }
-
-        GWT.log("hasLevels " + hasLevels.toString());
-
-        fetchAvailableSymbols(hasLevels);
-
-        final List<Entry<String, String>> symbols = Lists.newArrayList(availableBiSymbols.entrySet());
-
-        final int symbolsSize = symbols.size();
-        for (int i = 0; i < NB_ASSOCIATIONS; i++) {
-
-            final int indexSymbol = Random.nextInt(symbolsSize);
-            final Entry<String, String> latin2extr = symbols.get(indexSymbol);
-
-            final String latin = latin2extr.getKey();
-            final String extr = latin2extr.getValue();
-
-            final int indexLatin = getIndexSlot();
-            final int indexExtr = getIndexSlot();
-
-            final GameCell cellLatin = cells.get(indexLatin);
-            cellLatin.setCharacter(latin);
-            cellLatin.ice().setDefaultSkin();
-
-            final GameCell cellExtr = cells.get(indexExtr);
-            cellExtr.setCharacter(extr);
-            cellExtr.green().setDefaultSkin();
-        }
+        fetchAvailableSymbols();
+        fillCellsWithSymbols();
 
         counterFoundAssociations = 0;
     }
 
-    private void fetchAvailableSymbols(final HasLevels hasLevels) {
-        availableBiSymbols = hasLevels.availableSymbols(Pgu_game.gameConfig.subselections());
+    private void fillCellsWithSymbols() {
+
+        if (null != availableBiSymbols) {
+            final List<Entry<String, String>> symbols = Lists.newArrayList(availableBiSymbols.entrySet());
+
+            final int symbolsSize = symbols.size();
+            final int iter = Pgu_game.gameConfig.size().nbCells() / 2;
+
+            for (int i = 0; i < iter; i++) {
+
+                final int indexSymbol = Random.nextInt(symbolsSize);
+                final Entry<String, String> latin2extr = symbols.get(indexSymbol);
+
+                final String latin = latin2extr.getKey();
+                final String extr = latin2extr.getValue();
+
+                final int indexLatin = getIndexSlot();
+                final int indexExtr = getIndexSlot();
+
+                final GameCell cellLatin = cells.get(indexLatin);
+                cellLatin.setCharacter(latin);
+                cellLatin.ice().setDefaultSkin();
+
+                final GameCell cellExtr = cells.get(indexExtr);
+                cellExtr.setCharacter(extr);
+                cellExtr.green().setDefaultSkin();
+            }
+        } else {
+            final List<HashTriMap.Entry<String, String, String>> symbols = availableTriSymbols.entryList();
+
+            final int symbolsSize = symbols.size();
+            final int iter = Pgu_game.gameConfig.size().nbCells() / 3;
+
+            GWT.log("" + symbols);
+            GWT.log("" + symbolsSize);
+            GWT.log("" + iter);
+
+        }
+    }
+
+    private void fetchAvailableSymbols() {
+        HasBiSymbols hasBiSymbols = null;
+
+        if (Theme.HIRAGANA == Pgu_game.gameConfig.theme()) {
+            hasBiSymbols = Hiragana.INSTANCE;
+
+        } else if (Theme.KATAKANA == Pgu_game.gameConfig.theme()) {
+            hasBiSymbols = Katakana.INSTANCE;
+
+        } else if (isRussianAlphabet()) {
+            hasBiSymbols = RussianAlphabet.INSTANCE;
+
+        } else if (isGreekAlphabet()) {
+            hasBiSymbols = GreekAlphabet.INSTANCE;
+        }
+
+        if (null != hasBiSymbols) {
+            availableBiSymbols = hasBiSymbols.availableSymbols(Pgu_game.gameConfig.subselections());
+            availableTriSymbols = null;
+        }
+
+        HasTriSymbols hasTriSymbols = null;
+
+        if (isChineseWords()) {
+            hasTriSymbols = ChineseWords.INSTANCE;
+        }
+
+        if (null != hasTriSymbols) {
+            availableTriSymbols = hasTriSymbols.availableSymbols(Pgu_game.gameConfig.subselections());
+            availableBiSymbols = null;
+        }
+
+    }
+
+    private boolean isChineseWords() {
+        return Language.CHINESE == Pgu_game.gameConfig.language() //
+                && LanguageGranularity.WORD == Pgu_game.gameConfig.granularity();
     }
 
     private boolean isGreekAlphabet() {
