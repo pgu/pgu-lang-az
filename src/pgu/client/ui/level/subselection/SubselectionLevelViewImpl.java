@@ -195,8 +195,8 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     }
 
     private boolean isChineseWords() {
-        // TODO PGU
-        return false;
+        return Language.CHINESE == language //
+                && LanguageGranularity.WORD == granularity;
     }
 
     private ArrayList<String> getSelectedSubselections() {
