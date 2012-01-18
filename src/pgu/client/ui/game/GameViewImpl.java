@@ -209,16 +209,21 @@ public class GameViewImpl extends Composite implements GameView {
     private HashBiMap<String, String> availableBiSymbols = null;
     private HashTriMap<String, String, String> availableTriSymbols = null;
 
+    private int nbCells = 32;
+
     @Override
     public void generateGame() {
         GWT.log("generateGame...");
 
+        // TODO PGU generate cells according to nb cells
         for (final GameCell cell : cells) {
             cell.deselect();
         }
 
         occupiedSlots.clear();
         availableSlots.clear();
+
+        // TODO PGU update nb cells according to current game config
         for (int i = 0; i < Pgu_game.gameConfig.size().nbCells(); i++) {
             availableSlots.add(i);
         }
