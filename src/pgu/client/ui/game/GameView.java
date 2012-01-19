@@ -14,8 +14,10 @@ public interface GameView extends IsWidget {
 
     void clicksOn(GameCell gameCell);
 
-    void generateGame();
+    void fillGridWithSymbols();
 
     void resize();
+
+    void buildGridGame();
 
 }

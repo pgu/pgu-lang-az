@@ -40,7 +40,8 @@ public class GameCell extends Composite {
         WHITE("#fff", "#fff") //
         , FIRE("#fe601e", "#eecd30") //
         , ICE("#22afca", "#9ad5d8") //
-        , GREEN("#22ca3b", "#9AD89E");
+        , VIOLET("#ae22ca", "#d89ac7") //
+        , GREEN("#22ca3b", "#9ad89e");
 
         private String colorExt;
         private String colorMid;
@@ -73,6 +74,12 @@ public class GameCell extends Composite {
     public GameCell green() {
         applySkin(Skin.GREEN);
         GWT.log("green...");
+        return this;
+    }
+
+    public GameCell violet() {
+        applySkin(Skin.VIOLET);
+        GWT.log("violet...");
         return this;
     }
 

@@ -21,7 +21,8 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
         view.setPresenter(this);
         panel.setWidget(view.asWidget());
         view.resize();
-        view.generateGame();
+        view.buildGridGame();
+        view.fillGridWithSymbols();
     }
 
     @Override
