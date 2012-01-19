@@ -137,10 +137,17 @@ public class GameCell extends Composite {
         throw new UnsupportedOperationException("Use the method size(), thx.");
     }
 
+    public enum TuplePosition {
+        FIRST, SECOND, THIRD;
+    }
+
+    private TuplePosition tuplePosition;
     private String character;
 
-    public void setCharacter(final String character) {
+    public void setCharacter(final String character, final TuplePosition tuplePosition) {
+        this.tuplePosition = tuplePosition;
         this.character = character;
+
         cellText.setHTML("" + character);
     }
 
@@ -171,4 +178,7 @@ public class GameCell extends Composite {
         return index;
     }
 
+    public TuplePosition tuplePosition() {
+        return tuplePosition;
+    }
 }

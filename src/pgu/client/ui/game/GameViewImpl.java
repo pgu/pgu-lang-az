@@ -1,5 +1,6 @@
 package pgu.client.ui.game;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -16,6 +17,7 @@ import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
 import pgu.client.language.russian.RussianAlphabet;
 import pgu.client.place.WelcomePlace;
+import pgu.client.ui.game.GameCell.TuplePosition;
 import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.HashTriMap;
 import pgu.client.utils.guava.Lists;
@@ -333,11 +335,11 @@ public class GameViewImpl extends Composite implements GameView {
                 final int indexForeign = getIndexSlot();
 
                 final GameCell cellLatin = (GameCell) gridArea.getWidget(indexLatin);
-                cellLatin.setCharacter(latin);
+                cellLatin.setCharacter(latin, TuplePosition.FIRST);
                 cellLatin.ice().setDefaultSkin();
 
                 final GameCell cellForeign = (GameCell) gridArea.getWidget(indexForeign);
-                cellForeign.setCharacter(foreign);
+                cellForeign.setCharacter(foreign, TuplePosition.SECOND);
                 cellForeign.green().setDefaultSkin();
             }
 
@@ -364,15 +366,15 @@ public class GameViewImpl extends Composite implements GameView {
                 final int indexSymbol = getIndexSlot();
 
                 final GameCell cellLatin = (GameCell) gridArea.getWidget(indexLatin);
-                cellLatin.setCharacter(latin);
+                cellLatin.setCharacter(latin, TuplePosition.FIRST);
                 cellLatin.ice().setDefaultSkin();
 
                 final GameCell cellForeign = (GameCell) gridArea.getWidget(indexForeign);
-                cellForeign.setCharacter(foreign);
+                cellForeign.setCharacter(foreign, TuplePosition.SECOND);
                 cellForeign.green().setDefaultSkin();
 
                 final GameCell cellSymbol = (GameCell) gridArea.getWidget(indexSymbol);
-                cellSymbol.setCharacter(symbol);
+                cellSymbol.setCharacter(symbol, TuplePosition.THIRD);
                 cellSymbol.violet().setDefaultSkin();
             }
         }
@@ -484,13 +486,30 @@ public class GameViewImpl extends Composite implements GameView {
             final String firstCharacter = firstCell.getCharacter();
             final String secondCharacter = cell.getCharacter();
 
-            // TODO PGU savoir quel type de cell pour recup les matchings caracteres d'un autre type
-            String matchCharacter;
-            if (availableTriSymbols.containsKey(firstCharacter)) {
-                matchCharacter = availableTriSymbols.get(firstCharacter);
-            } else {
-                matchCharacter = availableTriSymbols.inverse().get(firstCharacter);
+            final ArrayList<String> matchCharacters = Lists.newArrayList();
+
+            if (TuplePosition.FIRST == firstCell.tuplePosition()) {
+
+                if (TuplePosition.SECOND == cell.tuplePosition()) {
+                    matchCharacters.addAll(availableTriSymbols.getSeconds(firstCharacter));
+
+                } else if (TuplePosition.THIRD == cell.tuplePosition()) {
+                    matchCharacters.addAll(availableTriSymbols.getThirds(firstCharacter));
+
+                }
+
+            } else if (TuplePosition.SECOND == firstCell.tuplePosition()) {
+
+                if (TuplePosition.FIRST == cell.tuplePosition()) {
+                    matchCharacters.addAll(availableTriSymbols.getSeconds(firstCharacter));
+
+                } else if (TuplePosition.THIRD == cell.tuplePosition()) {
+                    matchCharacters.addAll(availableTriSymbols.getThirds(firstCharacter));
+
+                }
+
             }
+            // TODO PGU
         }
 
     }
@@ -505,10 +524,13 @@ public class GameViewImpl extends Composite implements GameView {
         final String secondCharacter = cell.getCharacter();
 
         String matchCharacter;
-        if (availableBiSymbols.containsKey(firstCharacter)) {
+
+        if (TuplePosition.FIRST == firstCell.tuplePosition()) {
             matchCharacter = availableBiSymbols.get(firstCharacter);
+
         } else {
             matchCharacter = availableBiSymbols.inverse().get(firstCharacter);
+
         }
 
         if (!secondCharacter.equals(matchCharacter)) {
