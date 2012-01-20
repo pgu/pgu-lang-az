@@ -175,11 +175,11 @@ public class GameViewImpl extends Composite implements GameView {
         }
 
         private static boolean isMultipleOf3(final int nb) {
-            return 0 == nb / 3;
+            return 0 == nb % 3;
         }
 
         private static boolean isMultipleOf2(final int nb) {
-            return 0 == nb / 2;
+            return 0 == nb % 2;
         }
 
     }
@@ -231,8 +231,8 @@ public class GameViewImpl extends Composite implements GameView {
         // nbCellsByRow = isPortrait ? 4 : 8;
 
         counterIdxCell = 0;
-        cellH = isPortrait ? 200 : 100;
-        cellW = isPortrait ? 100 : 200;
+        cellH = isPortrait ? 300 : 150;
+        cellW = isPortrait ? 150 : 300;
         cellFactory = new GameCellFactory(cellW, cellH, isPortrait, this);
 
         // if (0 == gridArea.getWidgetCount()) {

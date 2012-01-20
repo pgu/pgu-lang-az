@@ -9,6 +9,7 @@ import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
 import pgu.client.language.HasLevels;
+import pgu.client.language.chinese.ChineseWords;
 import pgu.client.language.greek.GreekAlphabet;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
@@ -120,6 +121,9 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
 
         } else if (isGreekAlphabet()) {
             hasLevels = GreekAlphabet.INSTANCE;
+
+        } else if (isChineseWords()) {
+            hasLevels = ChineseWords.INSTANCE;
 
         }
 
