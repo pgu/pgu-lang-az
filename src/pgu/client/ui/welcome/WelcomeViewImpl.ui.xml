@@ -3,6 +3,9 @@
     xmlns:g="urn:import:com.google.gwt.user.client.ui">
     <ui:style>
         .header-btn {
+            height: 80px;
+            display: block;    
+    
             float: left;
             position: relative;
             
@@ -14,7 +17,7 @@
             -webkit-border-radius: 6px;
             
             cursor: pointer;
-            display: block;
+            /* display: block; */
             
             color: #e3e3e3;
             font-weight: bold;
@@ -55,12 +58,15 @@
         }
 
         .menu-area {
+            height: 100px;
+    
             padding: 0px;
             margin: 0px;
             
-            position: absolute;
-            top: 0px;
-            left: 0px;
+            display: table;
+            /* position: absolute; */
+            /* top: 0px; */
+            /* left: 0px; */
             
             background: #184762;
             background: -moz-linear-gradient(top, #226287 0%, #184762 100%);
@@ -76,12 +82,15 @@
             padding: 0px;
             margin: 0px;
             
-            position: absolute;
-            top: 50px;
-            left: 0px;
+            /* position: absolute; */
+            /* top: 50px; */
+            /* left: 0px; */
         }
         
         .logo {
+            height: 100px;
+            display: block;
+            
             float: left;
             overflow: hidden;
             color: #e3e3e3;
@@ -99,28 +108,51 @@
             line-height: 1;
             text-align: center;
         }
+        .menu-area-row {
+            display: table-row;
+        }
+        .menu-area-cell {
+            display: table-cell;
+        }
     </ui:style>
 
     <g:HTMLPanel styleName="{style.container}">
     
         <!-- menu area -->
         <g:HTMLPanel ui:field="menuArea" styleName="{style.menu-area}">    
-            <g:HTML ui:field="logo" addStyleNames="{style.logo}" >
-                &#945;<br/>&#x3042;
-            </g:HTML>
-            <g:HTMLPanel ui:field="login" addStyleNames="{style.header-btn}" >
-                <g:HTML ui:field="loginText" addStyleNames="{style.btn-text}">LOGIN</g:HTML>
-            </g:HTMLPanel>
-            <g:HTMLPanel ui:field="level" addStyleNames="{style.header-btn}" >
-                <g:HTML ui:field="levelText" addStyleNames="{style.btn-text}">LEVEL</g:HTML>
-            </g:HTMLPanel>
-            <g:HTMLPanel ui:field="start" addStyleNames="{style.header-btn}" >
-                <g:HTML ui:field="startText" addStyleNames="{style.btn-text}">START</g:HTML>
+        
+            <g:HTMLPanel addStyleNames="{style.menu-area-row}">
+            
+                <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
+                    <g:HTML ui:field="logo" addStyleNames="{style.logo}" >
+                        &#945;<br/>&#x3042;
+                    </g:HTML>
+                </g:HTMLPanel>
+                
+                <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
+                    <g:HTMLPanel ui:field="login" addStyleNames="{style.header-btn}" >
+                        <g:HTML ui:field="loginText" addStyleNames="{style.btn-text}">LOGIN</g:HTML>
+                    </g:HTMLPanel>
+                </g:HTMLPanel>
+                
+                <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
+                    <g:HTMLPanel ui:field="level" addStyleNames="{style.header-btn}" >
+                        <g:HTML ui:field="levelText" addStyleNames="{style.btn-text}">LEVEL</g:HTML>
+                    </g:HTMLPanel>
+                </g:HTMLPanel>
+                
+                <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
+                    <g:HTMLPanel ui:field="start" addStyleNames="{style.header-btn}" >
+                        <g:HTML ui:field="startText" addStyleNames="{style.btn-text}">START</g:HTML>
+                    </g:HTMLPanel>
+                </g:HTMLPanel>
+                
             </g:HTMLPanel>
         </g:HTMLPanel>
         
         <!-- list area -->
         <g:HTMLPanel ui:field="listArea" styleName="{style.list-area}">    
+            <g:HTML>TOTOTOTO</g:HTML>
         </g:HTMLPanel>
         
     

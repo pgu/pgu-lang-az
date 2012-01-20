@@ -1,22 +1,14 @@
 package pgu.client.ui.welcome;
 
 import pgu.client.Pgu_game;
-import pgu.client.enums.Orientation;
 import pgu.client.place.GamePlace;
 import pgu.client.place.LanguageLevelPlace;
-import pgu.client.ui.welcome.score.Score;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.logical.shared.ResizeEvent;
-import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.Window.ScrollEvent;
-import com.google.gwt.user.client.Window.ScrollHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -45,23 +37,14 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             // listArea.add(new Score("Awesome dude", i + "0 min 30 sec, Jap > Hir > 10"));
         }
 
-        Window.addResizeHandler(new ResizeHandler() {
+        // Window.addResizeHandler(new ResizeHandler() {
+        //
+        // @Override
+        // public void onResize(final ResizeEvent event) {
+        // resize();
+        // }
+        // });
 
-            @Override
-            public void onResize(final ResizeEvent event) {
-                resize();
-            }
-        });
-
-        Window.addWindowScrollHandler(new ScrollHandler() {
-
-            @Override
-            public void onWindowScroll(final ScrollEvent event) {
-                // TODO PGU a voir si a utiliser ou non...
-                // menuArea.getElement().getStyle().setTop(event.getScrollTop(), Unit.PX);
-            }
-
-        });
     }
 
     @UiHandler("startText")
@@ -83,43 +66,44 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     @Override
     public Widget asWidget() {
-        resize();
+        // resize();
+        // setHeight(Window.getClientHeight() + "px");
         return super.asWidget();
     }
 
-    private static final int MENU_HEIGHT_PORTRAIT = 200;
-    private static final int MENU_HEIGHT_LANDSCAPE = 100;
+    // private static final int MENU_HEIGHT_PORTRAIT = 100;
+    // private static final int MENU_HEIGHT_LANDSCAPE = 100;
 
     private void resize() {
-        final int w = Window.getClientWidth();
-        final int h = Window.getClientHeight();
+        // final int w = Window.getClientWidth();
+        // final int h = Window.getClientHeight();
+        //
+        // final boolean isPortrait = w < h;
+        // final int hMenu = isPortrait ? MENU_HEIGHT_PORTRAIT : MENU_HEIGHT_LANDSCAPE;
+        // menuArea.setPixelSize(w, hMenu);
+        // listArea.getElement().getStyle().setTop(hMenu, Unit.PX);
+        // listArea.setWidth(w + "px");
 
-        final boolean isPortrait = w < h;
-        final int hMenu = isPortrait ? MENU_HEIGHT_PORTRAIT : MENU_HEIGHT_LANDSCAPE;
-        menuArea.setPixelSize(w, hMenu);
-        listArea.getElement().getStyle().setTop(hMenu, Unit.PX);
-        listArea.setWidth(w + "px");
-
-        final Orientation orientation = isPortrait ? Orientation.PORTRAIT : Orientation.LANDSCAPE;
-        final int btnTop = isPortrait ? 50 : 10;
-
-        final int wBtn = w / 3 - 30;
-        final int hBtn = hMenu - 15 - btnTop;
-
-        logo.setPixelSize(w - 3 * wBtn - 38, hMenu);
-        login.setPixelSize(wBtn, hBtn);
-        level.setPixelSize(wBtn, hBtn);
-        start.setPixelSize(wBtn, hBtn);
-
-        final int marginTop = (hMenu - hBtn) / 2;
-        login.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
-        level.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
-        start.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
-
-        for (int i = 0; i < listArea.getWidgetCount(); i++) {
-            final Score score = (Score) listArea.getWidget(i);
-            score.setScoreSize(orientation, w - 50, hMenu);
-        }
+        // final Orientation orientation = isPortrait ? Orientation.PORTRAIT : Orientation.LANDSCAPE;
+        // final int btnTop = isPortrait ? 50 : 10;
+        //
+        // final int wBtn = w / 3 - 30;
+        // final int hBtn = hMenu - 15 - btnTop;
+        //
+        // logo.setPixelSize(w - 3 * wBtn - 38, hMenu);
+        // login.setPixelSize(wBtn, hBtn);
+        // level.setPixelSize(wBtn, hBtn);
+        // start.setPixelSize(wBtn, hBtn);
+        //
+        // final int marginTop = (hMenu - hBtn) / 2;
+        // login.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        // level.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        // start.getElement().getStyle().setMarginTop(marginTop, Unit.PX);
+        //
+        // for (int i = 0; i < listArea.getWidgetCount(); i++) {
+        // final Score score = (Score) listArea.getWidget(i);
+        // score.setScoreSize(orientation, w - 50, hMenu);
+        // }
     }
 
 }
