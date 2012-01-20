@@ -462,7 +462,7 @@ public class GameViewImpl extends Composite implements GameView {
     }
 
     private GameCell firstCell = null;
-    private final GameCell secondCell = null;
+    private GameCell secondCell = null;
 
     @Override
     public void clicksOn(final GameCell cell) {
@@ -486,32 +486,54 @@ public class GameViewImpl extends Composite implements GameView {
             final String firstCharacter = firstCell.getCharacter();
             final String secondCharacter = cell.getCharacter();
 
+            if (firstCell.tuplePosition() == cell.tuplePosition()) {
+                resetClickedCells(cell);
+                return;
+            }
+
             final ArrayList<String> matchCharacters = Lists.newArrayList();
 
             if (TuplePosition.FIRST == firstCell.tuplePosition()) {
 
                 if (TuplePosition.SECOND == cell.tuplePosition()) {
-                    matchCharacters.addAll(availableTriSymbols.getSeconds(firstCharacter));
+                    matchCharacters.addAll(availableTriSymbols.getSecondsFromFirst(firstCharacter));
 
                 } else if (TuplePosition.THIRD == cell.tuplePosition()) {
-                    matchCharacters.addAll(availableTriSymbols.getThirds(firstCharacter));
+                    matchCharacters.addAll(availableTriSymbols.getThirdsFromFirst(firstCharacter));
 
                 }
 
             } else if (TuplePosition.SECOND == firstCell.tuplePosition()) {
 
                 if (TuplePosition.FIRST == cell.tuplePosition()) {
-                    matchCharacters.addAll(availableTriSymbols.getSeconds(firstCharacter));
+                    matchCharacters.addAll(availableTriSymbols.getFirstsFromSecond(firstCharacter));
 
                 } else if (TuplePosition.THIRD == cell.tuplePosition()) {
-                    matchCharacters.addAll(availableTriSymbols.getThirds(firstCharacter));
+                    matchCharacters.addAll(availableTriSymbols.getThirdsFromSecond(firstCharacter));
 
                 }
 
+            } else if (TuplePosition.THIRD == firstCell.tuplePosition()) {
+
+                if (TuplePosition.FIRST == cell.tuplePosition()) {
+                    matchCharacters.addAll(availableTriSymbols.getFirstsFromThird(firstCharacter));
+
+                } else if (TuplePosition.SECOND == cell.tuplePosition()) {
+                    matchCharacters.addAll(availableTriSymbols.getSecondsFromThird(firstCharacter));
+
+                }
             }
-            // TODO PGU
+
+            if (!matchCharacters.contains(secondCharacter)) {
+                resetClickedCells(cell, firstCell);
+                return;
+            }
+
+            secondCell = cell;
+            return;
         }
 
+        // TODO PGU
     }
 
     private void handlesDuo(final GameCell cell) {
@@ -523,8 +545,12 @@ public class GameViewImpl extends Composite implements GameView {
         final String firstCharacter = firstCell.getCharacter();
         final String secondCharacter = cell.getCharacter();
 
-        String matchCharacter;
+        if (firstCell.tuplePosition() == cell.tuplePosition()) {
+            resetClickedCells(cell, firstCell);
+            return;
+        }
 
+        String matchCharacter;
         if (TuplePosition.FIRST == firstCell.tuplePosition()) {
             matchCharacter = availableBiSymbols.get(firstCharacter);
 
@@ -534,9 +560,7 @@ public class GameViewImpl extends Composite implements GameView {
         }
 
         if (!secondCharacter.equals(matchCharacter)) {
-            firstCell.deselect();
-            cell.deselect();
-            firstCell = null;
+            resetClickedCells(cell, firstCell);
             return;
         }
 
@@ -544,6 +568,13 @@ public class GameViewImpl extends Composite implements GameView {
         counterFoundAssociations++;
         if (nbAssociations == counterFoundAssociations) {
             Window.alert("Congrat'!");
+        }
+    }
+
+    private void resetClickedCells(final GameCell... cells) {
+        for (GameCell cell : cells) {
+            cell.deselect();
+            cell = null;
         }
     }
 
