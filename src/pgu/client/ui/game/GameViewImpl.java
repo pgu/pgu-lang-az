@@ -357,9 +357,9 @@ public class GameViewImpl extends Composite implements GameView {
                 final int indexEntry = Random.nextInt(availableEntriesSize);
                 final HashTriMap.Entry<String, String, String> entry = availableEntries.get(indexEntry);
 
-                final String latin = entry.latin();
-                final String foreign = entry.foreign();
-                final String symbol = entry.symbol();
+                final String latin = entry.first();
+                final String foreign = entry.second();
+                final String symbol = entry.third();
 
                 final int indexLatin = getIndexSlot();
                 final int indexForeign = getIndexSlot();
@@ -533,7 +533,55 @@ public class GameViewImpl extends Composite implements GameView {
             return;
         }
 
-        // TODO PGU
+        if (firstCell.tuplePosition() == cell.tuplePosition() //
+                || secondCell.tuplePosition() == cell.tuplePosition()) {
+            resetClickedCells(firstCell, secondCell, cell);
+            return;
+        }
+
+        final String firstCharacter = firstCell.getCharacter();
+        final String secondCharacter = secondCell.getCharacter();
+        final String thirdCharacter = cell.getCharacter();
+        final ArrayList<String> matchCharacters = Lists.newArrayList();
+
+        if (TuplePosition.FIRST == firstCell.tuplePosition() //
+                && TuplePosition.SECOND == secondCell.tuplePosition()) {
+            matchCharacters.addAll(availableTriSymbols.getThirdsFromFirstAndSecond(firstCharacter, secondCharacter));
+
+        } else if (TuplePosition.SECOND == firstCell.tuplePosition() //
+                && TuplePosition.FIRST == secondCell.tuplePosition()) {
+            matchCharacters.addAll(availableTriSymbols.getThirdsFromFirstAndSecond(secondCharacter, firstCharacter));
+
+        } else if (TuplePosition.FIRST == firstCell.tuplePosition() //
+                && TuplePosition.THIRD == secondCell.tuplePosition()) {
+            matchCharacters.addAll(availableTriSymbols.getSecondsFromFirstAndThird(firstCharacter, secondCharacter));
+
+        } else if (TuplePosition.THIRD == firstCell.tuplePosition() //
+                && TuplePosition.FIRST == secondCell.tuplePosition()) {
+            matchCharacters.addAll(availableTriSymbols.getSecondsFromFirstAndThird(secondCharacter, firstCharacter));
+
+        } else if (TuplePosition.SECOND == firstCell.tuplePosition() //
+                && TuplePosition.THIRD == secondCell.tuplePosition()) {
+            matchCharacters.addAll(availableTriSymbols.getFirstsFromSecondAndThird(firstCharacter, secondCharacter));
+
+        } else if (TuplePosition.THIRD == firstCell.tuplePosition() //
+                && TuplePosition.SECOND == secondCell.tuplePosition()) {
+            matchCharacters.addAll(availableTriSymbols.getFirstsFromSecondAndThird(secondCharacter, firstCharacter));
+
+        }
+
+        if (!matchCharacters.contains(thirdCharacter)) {
+            resetClickedCells(firstCell, secondCell, cell);
+            return;
+        }
+
+        firstCell = null;
+        secondCell = null;
+        counterFoundAssociations++;
+        if (nbAssociations == counterFoundAssociations) {
+            Window.alert("Congrat'!");
+        }
+
     }
 
     private void handlesDuo(final GameCell cell) {
@@ -542,13 +590,13 @@ public class GameViewImpl extends Composite implements GameView {
             return;
         }
 
-        final String firstCharacter = firstCell.getCharacter();
-        final String secondCharacter = cell.getCharacter();
-
         if (firstCell.tuplePosition() == cell.tuplePosition()) {
             resetClickedCells(cell, firstCell);
             return;
         }
+
+        final String firstCharacter = firstCell.getCharacter();
+        final String secondCharacter = cell.getCharacter();
 
         String matchCharacter;
         if (TuplePosition.FIRST == firstCell.tuplePosition()) {

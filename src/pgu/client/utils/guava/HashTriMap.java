@@ -86,4 +86,25 @@ public class HashTriMap<F, S, T> {
         return second2third.get(second);
     }
 
+    public ArrayList<T> getThirdsFromFirstAndSecond(final F first, final S second) {
+        final ArrayList<T> thirdsFromFirst = getThirdsFromFirst(first);
+        final ArrayList<T> thirdsFromSecond = getThirdsFromSecond(second);
+        thirdsFromFirst.retainAll(thirdsFromSecond);
+        return thirdsFromFirst;
+    }
+
+    public ArrayList<S> getSecondsFromFirstAndThird(final F first, final T third) {
+        final ArrayList<S> secondsFromFirst = getSecondsFromFirst(first);
+        final ArrayList<S> secondsFromThird = getSecondsFromThird(third);
+        secondsFromFirst.retainAll(secondsFromThird);
+        return secondsFromFirst;
+    }
+
+    public ArrayList<F> getFirstsFromSecondAndThird(final S second, final T third) {
+        final ArrayList<F> firstsFromSecond = getFirstsFromSecond(second);
+        final ArrayList<F> firstsFromThird = getFirstsFromThird(third);
+        firstsFromSecond.retainAll(firstsFromThird);
+        return firstsFromSecond;
+    }
+
 }
