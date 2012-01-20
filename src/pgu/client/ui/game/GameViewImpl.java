@@ -525,7 +525,7 @@ public class GameViewImpl extends Composite implements GameView {
             }
 
             if (!matchCharacters.contains(secondCharacter)) {
-                resetClickedCells(cell, firstCell);
+                resetClickedCells(cell);
                 return;
             }
 
@@ -535,7 +535,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         if (firstCell.tuplePosition() == cell.tuplePosition() //
                 || secondCell.tuplePosition() == cell.tuplePosition()) {
-            resetClickedCells(firstCell, secondCell, cell);
+            resetClickedCells(cell);
             return;
         }
 
@@ -571,7 +571,7 @@ public class GameViewImpl extends Composite implements GameView {
         }
 
         if (!matchCharacters.contains(thirdCharacter)) {
-            resetClickedCells(firstCell, secondCell, cell);
+            resetClickedCells(cell);
             return;
         }
 
@@ -591,7 +591,7 @@ public class GameViewImpl extends Composite implements GameView {
         }
 
         if (firstCell.tuplePosition() == cell.tuplePosition()) {
-            resetClickedCells(cell, firstCell);
+            resetClickedCells(cell);
             return;
         }
 
@@ -608,7 +608,7 @@ public class GameViewImpl extends Composite implements GameView {
         }
 
         if (!secondCharacter.equals(matchCharacter)) {
-            resetClickedCells(cell, firstCell);
+            resetClickedCells(cell);
             return;
         }
 
@@ -619,10 +619,18 @@ public class GameViewImpl extends Composite implements GameView {
         }
     }
 
-    private void resetClickedCells(final GameCell... cells) {
-        for (GameCell cell : cells) {
-            cell.deselect();
-            cell = null;
+    private void resetClickedCells(final GameCell cell) {
+
+        cell.deselect();
+
+        if (null != firstCell) {
+            firstCell.deselect();
+            firstCell = null;
+        }
+
+        if (null != secondCell) {
+            secondCell.deselect();
+            secondCell = null;
         }
     }
 
