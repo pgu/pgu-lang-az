@@ -3,6 +3,7 @@ package pgu.client.ui.welcome;
 import pgu.client.Pgu_game;
 import pgu.client.place.GamePlace;
 import pgu.client.place.LanguageLevelPlace;
+import pgu.client.ui.utils.AppCell;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -28,9 +29,14 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     HTML logo, loginText, levelText, startText;
     @UiField
     HTMLPanel login, level, start;
+    @UiField
+    AppCell loginTest;
 
     public WelcomeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
+
+        loginTest.setText("LOGIN");
+        loginTest.setSize(150, 100);
 
         for (int i = 0; i < 100; i++) {
             // listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
