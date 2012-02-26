@@ -1,0 +1,74 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <ui:style>
+        /* #2 2 a f c a */
+        /* #8 0 C 4 C 8 */
+        
+        .cell-extx {
+            -webkit-box-shadow: #22afca 0 0 30px;
+        }
+        .cell-extx:hover {
+            -webkit-box-shadow: #22afca 0 0 40px;
+            cursor: pointer;
+        }
+        
+        .cell-ext {
+            border: 1px solid #22afca;
+            -webkit-box-shadow: #22afca 0 0 40px;
+        }
+        
+        .cell-med {
+            border: 3px solid white;
+            -webkit-box-shadow: #22afca 0 0 20px;
+        }
+        
+        .cell-int {
+            border: 1px solid #22afca;
+            -webkit-box-shadow: inset #22afca 0 0 40px;
+        }
+        
+        .cell-intx {
+            -webkit-box-shadow: inset #22afca 0 0 30px;
+            /* text */
+            color: white;
+            text-shadow: 0 0 10px white;
+        }
+        .cell-intx:hover {
+            -webkit-box-shadow: inset #22afca 0 0 40px;
+        }
+        .cell-intx:active {
+            -webkit-box-shadow: inset #22afca 0 0 40px;
+            background-color: white;
+            /* text */
+            color: #22afca;
+            text-shadow: 0 0 10px #22afca;
+        }
+        
+        .cell-text {
+            padding-top: 20px;
+            font-size: 3.5em;
+            line-height: 1;
+            text-align: center;
+        }
+    </ui:style>
+
+    <g:HTMLPanel ui:field="cellExt2" addStyleNames="{style.cell-extx}">
+        <g:HTMLPanel ui:field="cellExt1" addStyleNames="{style.cell-extx}">
+            <g:HTMLPanel ui:field="cellExt" addStyleNames="{style.cell-ext}">
+                <g:HTMLPanel ui:field="cellMed" addStyleNames="{style.cell-med}">
+                    <g:HTMLPanel ui:field="cellInt" addStyleNames="{style.cell-int}">
+                        <g:HTMLPanel ui:field="cellInt1" addStyleNames="{style.cell-intx}">
+                            <g:HTMLPanel ui:field="cellInt2" addStyleNames="{style.cell-intx}">
+
+                                <g:HTML ui:field="cellText" addStyleNames="{style.cell-text}" />
+
+                            </g:HTMLPanel>
+                        </g:HTMLPanel>
+                    </g:HTMLPanel>
+                </g:HTMLPanel>
+            </g:HTMLPanel>
+        </g:HTMLPanel>
+    </g:HTMLPanel>
+
+</ui:UiBinder> 
