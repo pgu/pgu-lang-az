@@ -1,6 +1,10 @@
 package pgu.client.ui.utils;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -8,7 +12,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AppCell extends Composite {
+public class AppCell extends Composite implements HasClickHandlers {
 
     private static AppCellUiBinder uiBinder = GWT.create(AppCellUiBinder.class);
 
@@ -46,6 +50,11 @@ public class AppCell extends Composite {
         cellInt1.setHeight(h + "px");
         cellInt2.setHeight(h + "px");
 
+    }
+
+    @Override
+    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+        return addDomHandler(handler, ClickEvent.getType());
     }
 
 }

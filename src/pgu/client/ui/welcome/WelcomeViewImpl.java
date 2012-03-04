@@ -23,20 +23,26 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     private static WelcomeViewImplUiBinder uiBinder = GWT.create(WelcomeViewImplUiBinder.class);
 
     @UiField
-    HTMLPanel listArea, menuArea;
+    HTMLPanel menuArea;
+    // HTMLPanel listArea
 
     @UiField
-    HTML logo, loginText, levelText, startText;
+    HTML logo;
+    // , loginText, levelText, startText
+    // @UiField
+    // HTMLPanel login, level, start;
     @UiField
-    HTMLPanel login, level, start;
-    @UiField
-    AppCell loginTest;
+    AppCell loginTest, levelTest, startTest;
 
     public WelcomeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
 
         loginTest.setText("LOGIN");
-        loginTest.setSize(150, 100);
+        levelTest.setText("LEVEL");
+        startTest.setText("START");
+        loginTest.setSize(175, 100);
+        levelTest.setSize(175, 100);
+        startTest.setSize(175, 100);
 
         for (int i = 0; i < 100; i++) {
             // listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
@@ -53,12 +59,12 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     }
 
-    @UiHandler("startText")
+    @UiHandler("startTest")
     public void clickStart(final ClickEvent e) {
         presenter.goTo(new GamePlace());
     }
 
-    @UiHandler("levelText")
+    @UiHandler("levelTest")
     public void clickLevel(final ClickEvent e) {
         presenter.goTo(new LanguageLevelPlace(Pgu_game.gameConfig.language()));
     }
