@@ -40,6 +40,7 @@
         .cell-intx:active {
             -webkit-box-shadow: inset #22afca 0 0 40px;
             background-color: white;
+            
             /* text */
             color: #22afca;
             text-shadow: 0 0 10px #22afca;
@@ -50,6 +51,25 @@
             font-size: 3.5em;
             line-height: 1;
             text-align: center;
+            z-index: 1;
+        }
+        .cell-int1 {
+            position: relative;
+        }
+        .cell-intbg {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            background-color: #22afca;
+            opacity: 0.2;
+        }
+        .cell-int2 {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            z-index: 10;
         }
     </ui:style>
 
@@ -58,8 +78,11 @@
             <g:HTMLPanel ui:field="cellExt" addStyleNames="{style.cell-ext}">
                 <g:HTMLPanel ui:field="cellMed" addStyleNames="{style.cell-med}">
                     <g:HTMLPanel ui:field="cellInt" addStyleNames="{style.cell-int}">
-                        <g:HTMLPanel ui:field="cellInt1" addStyleNames="{style.cell-intx}">
-                            <g:HTMLPanel ui:field="cellInt2" addStyleNames="{style.cell-intx}">
+                        <g:HTMLPanel ui:field="cellInt1" addStyleNames="{style.cell-intx} {style.cell-int1}">
+                        
+                            <g:HTMLPanel ui:field="cellInt2Bg" addStyleNames="{style.cell-intx} {style.cell-intbg}" /> 
+                            
+                            <g:HTMLPanel ui:field="cellInt2" addStyleNames="{style.cell-intx}  {style.cell-int2}">
 
                                 <g:HTML ui:field="cellText" addStyleNames="{style.cell-text}" />
 

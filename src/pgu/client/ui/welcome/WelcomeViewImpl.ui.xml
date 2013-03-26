@@ -9,7 +9,6 @@
             padding: 0px;
             margin: 0px;
             
-            display: table;
         }
         .cell-logo {
             overflow: hidden;
@@ -34,11 +33,13 @@
             margin-top: 20px;
         }
         .menu-area-row {
-            display: table-row;
         }
         .menu-area-cell {
-            display: table-cell;
             padding-left: 30px;
+        }
+        .btn {
+            margin: 100px auto;
+            line-height: 2;
         }
     </ui:style>
 
@@ -48,24 +49,37 @@
         <g:HTMLPanel ui:field="menuArea" styleName="{style.menu-area}">    
             <g:HTMLPanel addStyleNames="{style.menu-area-row}">
             
-                <g:HTMLPanel addStyleNames="{style.menu-area-cell} {style.cell-logo}">
-                    <g:HTML ui:field="logo" addStyleNames="{style.logo}" >
-                        &#945;<br/>&#x3042;
-                    </g:HTML>
-                </g:HTMLPanel>
                 <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
-                    <pgu:AppCell ui:field="loginTest" />
-                </g:HTMLPanel>
-                <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
-                    <pgu:AppCell ui:field="levelTest" />
-                </g:HTMLPanel>
-                <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
-                    <pgu:AppCell ui:field="startTest" />
+                    <pgu:AppCell ui:field="levelBtn" addStyleNames="{style.btn}" />
                 </g:HTMLPanel>
                 
             </g:HTMLPanel>
+<!--             <g:HTMLPanel addStyleNames="{style.menu-area-row}"> -->
+            
+<!--                 <g:HTMLPanel ui:field="currentLevelPanel"> -->
+<!--                 </g:HTMLPanel> -->
+            
+<!--             </g:HTMLPanel> -->
+            <g:HTMLPanel addStyleNames="{style.menu-area-row}">
+            
+                <g:HTMLPanel addStyleNames="{style.menu-area-cell}">
+                    <pgu:AppCell ui:field="startBtn" addStyleNames="{style.btn}" />
+                </g:HTMLPanel>
+            
+            </g:HTMLPanel>
         </g:HTMLPanel>
         
+<!--                 <g:HTMLPanel addStyleNames="{style.menu-area-cell} {style.cell-logo}"> -->
+<!--                     <g:HTML ui:field="logo" addStyleNames="{style.logo}" > -->
+<!--                         &#945;<br/>&#x3042; -->
+<!--                     </g:HTML> -->
+<!--                 </g:HTMLPanel> -->
+<!--                 <g:HTMLPanel addStyleNames="{style.menu-area-cell}"> -->
+<!--                     <pgu:AppCell ui:field="loginTest" /> -->
+<!--                 </g:HTMLPanel> -->
+<!--                 <g:HTMLPanel addStyleNames="{style.menu-area-cell}"> -->
+<!--                     <pgu:AppCell ui:field="startTest" /> -->
+<!--                 </g:HTMLPanel> -->
         <!-- list area -->
         
     </g:HTMLPanel>

@@ -20,12 +20,16 @@ public class AppCell extends Composite implements HasClickHandlers {
     }
 
     @UiField
-    HTMLPanel cellExt2, cellExt1, cellExt, cellMed, cellInt, cellInt1, cellInt2;
+    HTMLPanel cellExt2, cellExt1, cellExt, cellMed, cellInt, cellInt1, cellInt2, cellInt2Bg;
     @UiField
     HTML cellText;
 
     public AppCell() {
         initWidget(uiBinder.createAndBindUi(this));
+    }
+
+    public void setHTML(final String html) {
+        cellText.setHTML(html);
     }
 
     public void setText(final String text) {
@@ -49,6 +53,7 @@ public class AppCell extends Composite implements HasClickHandlers {
 
         cellInt1.setHeight(h + "px");
         cellInt2.setHeight(h + "px");
+        cellInt2Bg.setHeight(h + "px");
 
     }
 

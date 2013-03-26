@@ -1,5 +1,6 @@
 package pgu.client.ui.welcome;
 
+import pgu.client.GameConfig;
 import pgu.client.Pgu_lang_az;
 import pgu.client.place.GamePlace;
 import pgu.client.place.LanguageLevelPlace;
@@ -11,7 +12,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -26,23 +26,23 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     HTMLPanel menuArea;
     // HTMLPanel listArea
 
-    @UiField
-    HTML logo;
+    //    @UiField
+    //    HTML logo;
     // , loginText, levelText, startText
     // @UiField
     // HTMLPanel login, level, start;
     @UiField
-    AppCell loginTest, levelTest, startTest;
+    AppCell levelBtn, startBtn;
 
     public WelcomeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
 
-        loginTest.setText("LOGIN");
-        levelTest.setText("LEVEL");
-        startTest.setText("START");
-        loginTest.setSize(175, 100);
-        levelTest.setSize(175, 100);
-        startTest.setSize(175, 100);
+        //        loginTest.setText("LOGIN");
+        //        levelBtn.setText("LEVEL");
+        startBtn.setText("START");
+        //        loginTest.setSize(175, 100);
+        levelBtn.setSize(520, 350);
+        startBtn.setSize(220, 100);
 
         for (int i = 0; i < 100; i++) {
             // listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
@@ -57,14 +57,18 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         // }
         // });
 
+        final GameConfig gc = Pgu_lang_az.gameConfig;
+        final String currentLevel= "<div style=\"line-height:2;\"><p>" + gc.language() + "</p><p>" + gc.theme() + "</p><p>" + gc.subselections() +"</p></div>";
+        levelBtn.setHTML(currentLevel);
+
     }
 
-    @UiHandler("startTest")
+    @UiHandler("startBtn")
     public void clickStart(final ClickEvent e) {
         presenter.goTo(new GamePlace());
     }
 
-    @UiHandler("levelTest")
+    @UiHandler("levelBtn")
     public void clickLevel(final ClickEvent e) {
         presenter.goTo(new LanguageLevelPlace(Pgu_lang_az.gameConfig.language()));
     }
