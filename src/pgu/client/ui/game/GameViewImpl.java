@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import pgu.client.Pgu_game;
+import pgu.client.Pgu_lang_az;
 import pgu.client.enums.GameSize;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
@@ -225,7 +225,7 @@ public class GameViewImpl extends Composite implements GameView {
     public void buildGridGame() {
 
         retrieveGameInstanceAndSetGameType();
-        nbCellsOnBoard = getNbCellsOnBoard(isPortrait, gameType, Pgu_game.gameConfig.size());
+        nbCellsOnBoard = getNbCellsOnBoard(isPortrait, gameType, Pgu_lang_az.gameConfig.size());
 
         // nbRows = isPortrait ? NB_ROWS_PORTRAIT : 4;
         // nbCellsByRow = isPortrait ? 4 : 8;
@@ -392,10 +392,10 @@ public class GameViewImpl extends Composite implements GameView {
         hasBiSymbols = null;
         hasTriSymbols = null;
 
-        if (Theme.HIRAGANA == Pgu_game.gameConfig.theme()) {
+        if (Theme.HIRAGANA == Pgu_lang_az.gameConfig.theme()) {
             hasBiSymbols = Hiragana.INSTANCE;
 
-        } else if (Theme.KATAKANA == Pgu_game.gameConfig.theme()) {
+        } else if (Theme.KATAKANA == Pgu_lang_az.gameConfig.theme()) {
             hasBiSymbols = Katakana.INSTANCE;
 
         } else if (isRussianAlphabet()) {
@@ -420,29 +420,29 @@ public class GameViewImpl extends Composite implements GameView {
     private void fetchAvailableSymbols() {
 
         if (null != hasBiSymbols) {
-            availableBiSymbols = hasBiSymbols.availableSymbols(Pgu_game.gameConfig.subselections());
+            availableBiSymbols = hasBiSymbols.availableSymbols(Pgu_lang_az.gameConfig.subselections());
             availableTriSymbols = null;
 
         } else if (null != hasTriSymbols) {
-            availableTriSymbols = hasTriSymbols.availableSymbols(Pgu_game.gameConfig.subselections());
+            availableTriSymbols = hasTriSymbols.availableSymbols(Pgu_lang_az.gameConfig.subselections());
             availableBiSymbols = null;
         }
 
     }
 
     private boolean isChineseWords() {
-        return Language.CHINESE == Pgu_game.gameConfig.language() //
-                && LanguageGranularity.WORD == Pgu_game.gameConfig.granularity();
+        return Language.CHINESE == Pgu_lang_az.gameConfig.language() //
+                && LanguageGranularity.WORD == Pgu_lang_az.gameConfig.granularity();
     }
 
     private boolean isGreekAlphabet() {
-        return Language.GREEK == Pgu_game.gameConfig.language() //
-                && LanguageGranularity.ALPHABET == Pgu_game.gameConfig.granularity();
+        return Language.GREEK == Pgu_lang_az.gameConfig.language() //
+                && LanguageGranularity.ALPHABET == Pgu_lang_az.gameConfig.granularity();
     }
 
     private boolean isRussianAlphabet() {
-        return Language.RUSSIAN == Pgu_game.gameConfig.language()//
-                && LanguageGranularity.ALPHABET == Pgu_game.gameConfig.granularity();
+        return Language.RUSSIAN == Pgu_lang_az.gameConfig.language()//
+                && LanguageGranularity.ALPHABET == Pgu_lang_az.gameConfig.granularity();
     }
 
     private int getIndexSlot() {

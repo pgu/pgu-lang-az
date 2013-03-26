@@ -1,6 +1,6 @@
 package pgu.client.ui.welcome;
 
-import pgu.client.Pgu_game;
+import pgu.client.Pgu_lang_az;
 import pgu.client.place.GamePlace;
 import pgu.client.place.LanguageLevelPlace;
 import pgu.client.ui.utils.AppCell;
@@ -66,7 +66,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     @UiHandler("levelTest")
     public void clickLevel(final ClickEvent e) {
-        presenter.goTo(new LanguageLevelPlace(Pgu_game.gameConfig.language()));
+        presenter.goTo(new LanguageLevelPlace(Pgu_lang_az.gameConfig.language()));
     }
 
     private Presenter presenter;

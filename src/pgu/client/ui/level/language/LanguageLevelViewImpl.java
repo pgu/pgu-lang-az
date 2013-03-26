@@ -1,6 +1,6 @@
 package pgu.client.ui.level.language;
 
-import pgu.client.Pgu_game;
+import pgu.client.Pgu_lang_az;
 import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.place.GranularityLevelPlace;
@@ -103,7 +103,7 @@ public class LanguageLevelViewImpl extends Composite implements LanguageLevelVie
     private void goToGranularityLevel(final Language language) {
         presenter.goTo(new GranularityLevelPlace( //
                 language, //
-                Pgu_game.gameConfig.granularity() //
+                Pgu_lang_az.gameConfig.granularity() //
                 ));
     }
 
