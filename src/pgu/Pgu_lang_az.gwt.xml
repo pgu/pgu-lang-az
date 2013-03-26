@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='pgu_lang_az'>
+    <!-- Inherit the core Web Toolkit stuff. -->
+    <inherits name='com.google.gwt.user.User' />
+
+  <!--   <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
+  <!-- <inherits name="com.google.gwt.user.theme.chrome.Chrome"/> -->
+  <!-- <inherits name="com.google.gwt.user.theme.dark.Dark"/>     -->
+  <!-- <inherits name='com.google.gwt.user.theme.clean.Clean' />  -->
+
+    <!-- Other module inherits -->
+
+    <!-- ClientBundle -->
+    <inherits name="com.google.gwt.resources.Resources" />
+    <!-- MVP -->
+    <inherits name="com.google.gwt.activity.Activity" />
+    <inherits name="com.google.gwt.place.Place" />
+    <!-- GIN -->
+    <inherits name="com.google.gwt.inject.Inject" />
+    <!-- Removes the warning message when running the webapp -->
+    <set-configuration-property name="UiBinder.useSafeHtmlTemplates" value="true" />
+    <!-- Resources and ClientBundle -->
+    <inherits name="com.google.gwt.resources.Resources" />
+    <!-- Guava
+    <inherits name="com.google.common.base.Base" />
+    <inherits name="com.google.common.collect.Collect" />
+     -->
+
+    <!-- Specify the app entry point class. -->
+    <entry-point class='pgu.client.Pgu_lang_az' />
+
+    <!-- Specify the paths for translatable code -->
+    <source path='client' />
+    <source path='shared' />
+
+    <!-- !!! ONLY FOR DEV MODE !!! -->
+    <set-property name="user.agent" value="safari" />
+    <!-- !!! For now only in EN !!! -->
+    <extend-property name="locale" values="en" />
+    <set-property-fallback name="locale" value="en" />
+
+</module>
