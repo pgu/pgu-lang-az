@@ -25,5 +25,24 @@ public interface PguGameResources extends ClientBundle {
 
         String cellSelected();
 
+        String app_cell_text();
+        String app_cell_int1();
+        String app_cell_int2();
+        String app_cell_intbg();
+
+        String app_cell_extx_ice();
+        String app_cell_ext_ice();
+        String app_cell_med_ice();
+        String app_cell_int_ice();
+        String app_cell_intx_ice();
+        String app_cell_intbg_ice();
+
+        String app_cell_extx_fire();
+        String app_cell_ext_fire();
+        String app_cell_med_fire();
+        String app_cell_int_fire();
+        String app_cell_intx_fire();
+        String app_cell_intbg_fire();
+
     }
 }

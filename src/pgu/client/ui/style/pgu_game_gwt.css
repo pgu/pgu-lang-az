@@ -22,3 +22,118 @@
 .separator {
     float: left;
 }
+
+/************************/
+/******* app cell *******/
+/************************/
+.app_cell_int1 {
+    position: relative;
+}
+.app_cell_intbg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    opacity: 0.2;
+}
+.app_cell_int2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 10;
+}
+.app_cell_text {
+    padding-top: 20px;
+    font-size: 3.5em;
+    line-height: 1;
+    text-align: center;
+}
+
+/************************/
+/****  app cell ICE  ****/
+/************************/
+.app_cell_extx_ice {
+    -webkit-box-shadow: #22afca 0 0 30px;
+}
+.app_cell_extx_ice:hover {
+    -webkit-box-shadow: #22afca 0 0 50px;
+    cursor: pointer;
+}
+.app_cell_ext_ice {
+    border: 1px solid #22afca;
+    -webkit-box-shadow: #22afca 0 0 40px;
+}
+.app_cell_med_ice {
+    border: 3px solid white;
+    -webkit-box-shadow: #22afca 0 0 20px;
+}
+.app_cell_int_ice {
+    border: 1px solid #22afca;
+    -webkit-box-shadow: inset #22afca 0 0 40px;
+}
+.app_cell_intx_ice {
+    -webkit-box-shadow: inset #22afca 0 0 30px;
+    /* text */
+    color: white;
+    text-shadow: 0 0 10px white;
+}
+.app_cell_intx_ice:hover {
+    -webkit-box-shadow: inset #22afca 0 0 40px;
+}
+.app_cell_intx_ice:active {
+    -webkit-box-shadow: inset #22afca 0 0 40px;
+    background-color: white;
+    
+    /* text */
+    color: #22afca;
+    text-shadow: 0 0 10px #22afca;
+}
+.app_cell_intbg_ice {
+    background-color: #22afca;
+}
+
+/************************/
+/****  app cell FIRE  ***/
+/************************/
+.app_cell_extx_fire {
+    -webkit-box-shadow: #fe601e 0 0 30px;
+}
+.app_cell_extx_fire:hover {
+    -webkit-box-shadow: #fe601e 0 0 50px;
+    cursor: pointer;
+}
+.app_cell_ext_fire {
+    border: 1px solid fe601e;
+    -webkit-box-shadow: fe601e 0 0 40px;
+}
+.app_cell_med_fire {
+    border: 3px solid #eecd30;
+    -webkit-box-shadow: #fe601e 0 0 20px;
+}
+.app_cell_int_fire {
+    border: 1px solid #fe601e;
+    -webkit-box-shadow: inset #fe601e 0 0 40px;
+}
+.app_cell_intx_fire {
+    -webkit-box-shadow: inset #fe601e 0 0 30px;
+    /* text */
+    color: white;
+    text-shadow: 0 0 10px white;
+}
+.app_cell_intx_fire:hover {
+    -webkit-box-shadow: inset #fe601e 0 0 40px;
+}
+.app_cell_intx_fire:active {
+    -webkit-box-shadow: inset #fe601e 0 0 40px;
+    background-color: #eecd30;
+    
+    /* text */
+    color: #fe601e;
+    text-shadow: 0 0 10px #fe601e;
+}
+.app_cell_intbg_fire {
+    background-color: #fe601e;
+}
+
+

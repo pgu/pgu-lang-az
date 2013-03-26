@@ -39,7 +39,6 @@
         }
         .btn {
             margin: 100px auto;
-            line-height: 2;
         }
     </ui:style>
 

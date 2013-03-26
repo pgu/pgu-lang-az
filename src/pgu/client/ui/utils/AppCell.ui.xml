@@ -4,89 +4,21 @@
     <ui:style>
         /* #2 2 a f c a */
         /* #8 0 C 4 C 8 */
-        
-        .cell-extx {
-            -webkit-box-shadow: #22afca 0 0 30px;
-        }
-        .cell-extx:hover {
-            -webkit-box-shadow: #22afca 0 0 40px;
-            cursor: pointer;
-        }
-        
-        .cell-ext {
-            border: 1px solid #22afca;
-            -webkit-box-shadow: #22afca 0 0 40px;
-        }
-        
-        .cell-med {
-            border: 3px solid white;
-            -webkit-box-shadow: #22afca 0 0 20px;
-        }
-        
-        .cell-int {
-            border: 1px solid #22afca;
-            -webkit-box-shadow: inset #22afca 0 0 40px;
-        }
-        
-        .cell-intx {
-            -webkit-box-shadow: inset #22afca 0 0 30px;
-            /* text */
-            color: white;
-            text-shadow: 0 0 10px white;
-        }
-        .cell-intx:hover {
-            -webkit-box-shadow: inset #22afca 0 0 40px;
-        }
-        .cell-intx:active {
-            -webkit-box-shadow: inset #22afca 0 0 40px;
-            background-color: white;
-            
-            /* text */
-            color: #22afca;
-            text-shadow: 0 0 10px #22afca;
-        }
-        
-        .cell-text {
-            padding-top: 20px;
-            font-size: 3.5em;
-            line-height: 1;
-            text-align: center;
-            z-index: 1;
-        }
-        .cell-int1 {
-            position: relative;
-        }
-        .cell-intbg {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            background-color: #22afca;
-            opacity: 0.2;
-        }
-        .cell-int2 {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            z-index: 10;
-        }
     </ui:style>
 
-    <g:HTMLPanel ui:field="cellExt2" addStyleNames="{style.cell-extx}">
-        <g:HTMLPanel ui:field="cellExt1" addStyleNames="{style.cell-extx}">
-            <g:HTMLPanel ui:field="cellExt" addStyleNames="{style.cell-ext}">
-                <g:HTMLPanel ui:field="cellMed" addStyleNames="{style.cell-med}">
-                    <g:HTMLPanel ui:field="cellInt" addStyleNames="{style.cell-int}">
-                        <g:HTMLPanel ui:field="cellInt1" addStyleNames="{style.cell-intx} {style.cell-int1}">
+    <g:HTMLPanel ui:field="cellExt2" >
+        <g:HTMLPanel ui:field="cellExt1" >
+            <g:HTMLPanel ui:field="cellExt">
+                <g:HTMLPanel ui:field="cellMed">
+                    <g:HTMLPanel ui:field="cellInt">
+                        <g:HTMLPanel ui:field="cellInt1">
                         
-                            <g:HTMLPanel ui:field="cellInt2Bg" addStyleNames="{style.cell-intx} {style.cell-intbg}" /> 
+                            <g:HTMLPanel ui:field="cellInt2Bg"/> 
                             
-                            <g:HTMLPanel ui:field="cellInt2" addStyleNames="{style.cell-intx}  {style.cell-int2}">
-
-                                <g:HTML ui:field="cellText" addStyleNames="{style.cell-text}" />
-
+                            <g:HTMLPanel ui:field="cellInt2">
+                                <g:HTML ui:field="cellText" />
                             </g:HTMLPanel>
+                            
                         </g:HTMLPanel>
                     </g:HTMLPanel>
                 </g:HTMLPanel>

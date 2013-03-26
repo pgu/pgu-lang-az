@@ -31,18 +31,22 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     // , loginText, levelText, startText
     // @UiField
     // HTMLPanel login, level, start;
-    @UiField
+    @UiField(provided=true)
     AppCell levelBtn, startBtn;
 
     public WelcomeViewImpl() {
+
+        levelBtn = new AppCell("ice");
+        startBtn = new AppCell("fire");
+
         initWidget(uiBinder.createAndBindUi(this));
 
         //        loginTest.setText("LOGIN");
         //        levelBtn.setText("LEVEL");
-        startBtn.setText("START");
+        startBtn.setHTML("<div style=\"line-height:2;\"><p>START</p></div>");
         //        loginTest.setSize(175, 100);
         levelBtn.setSize(520, 350);
-        startBtn.setSize(220, 100);
+        startBtn.setSize(320, 150);
 
         for (int i = 0; i < 100; i++) {
             // listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
