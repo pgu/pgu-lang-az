@@ -3,10 +3,10 @@
 
     <ui:style>
     .cell-ext {
-        float: left;
-        cursor: pointer;
-        margin: 10px;
-        margin-top: 5px;
+    /*    float: left;*/
+    /*    cursor: pointer;*/
+    /*    margin: 10px;*/
+    /*    margin-top: 5px;*/
     }
     .cell:active {
     }
@@ -16,34 +16,53 @@
     .cell-out {
     }
     .cell-med {
-        border: 1px solid white;
+      /*  border: 1px solid white;*/
     }
     .cell-in {
     }
     .cell-sub {
-        position: relative;
-        overflow: hidden;
+        /*position: relative;*/
+        /*overflow: hidden;*/
     }
     .cell-text {
-        position: absolute;
-        color: white;
-        font-size: 3.5em;
-        line-height: 1;
-        text-align: center;
+        /*position: absolute;*/
+        /*color: white;*/
+        /*font-size: 3.5em;*/
+        /*line-height: 1;*/
+        /*text-align: center;*/
     }
     
     </ui:style>
-    
-    <g:HTMLPanel ui:field="cellExt" addStyleNames="{style.cell-ext}">
-        <g:HTMLPanel ui:field="cellOut" addStyleNames="{style.cell-out}">
-            <g:HTMLPanel ui:field="cellMed" addStyleNames="{style.cell-med}">
-                <g:HTMLPanel ui:field="cellIn" addStyleNames="{style.cell-in}">
-                    <g:HTMLPanel ui:field="cellSub" addStyleNames="{style.cell-sub}">
-                        <g:HTML ui:field="cellText" addStyleNames="{style.cell-text}"/>
+
+    <g:HTMLPanel ui:field="cellExt2" >
+        <g:HTMLPanel ui:field="cellExt1" >
+            <g:HTMLPanel ui:field="cellExt">
+                <g:HTMLPanel ui:field="cellMed">
+                    <g:HTMLPanel ui:field="cellInt">
+                        <g:HTMLPanel ui:field="cellInt1">
+                        
+                            <g:HTMLPanel ui:field="cellInt2Bg"/> 
+                            
+                            <g:HTMLPanel ui:field="cellInt2">
+                                <g:HTML ui:field="cellText" />
+                            </g:HTMLPanel>
+                            
+                        </g:HTMLPanel>
                     </g:HTMLPanel>
                 </g:HTMLPanel>
             </g:HTMLPanel>
         </g:HTMLPanel>
     </g:HTMLPanel>
+    
+<!--     <g:HTMLPanel ui:field="cellExt" addStyleNames="{style.cell-ext}"> -->
+<!--         <g:HTMLPanel ui:field="cellOut" addStyleNames="{style.cell-out}"> -->
+<!--             <g:HTMLPanel ui:field="cellMed" addStyleNames="{style.cell-med}"> -->
+<!--                 <g:HTMLPanel ui:field="cellIn" addStyleNames="{style.cell-in}"> -->
+<!--                 <g:HTMLPanel ui:field="cellSub" addStyleNames="{style.cell-sub}"> -->
+<!--                     <g:HTML ui:field="cellText" addStyleNames="{style.cell-text}"/> -->
+<!--                 </g:HTMLPanel> -->
+<!--             </g:HTMLPanel> -->
+<!--         </g:HTMLPanel> -->
+<!--     </g:HTMLPanel> -->
     
 </ui:UiBinder> 

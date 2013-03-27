@@ -1,5 +1,7 @@
 package pgu.client.ui.game;
 
+import pgu.client.ui.style.PguGameResources;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
@@ -20,7 +22,11 @@ public class GameCell extends Composite {
     }
 
     @UiField
-    HTMLPanel cellExt, cellOut, cellMed, cellIn, cellSub;
+    HTMLPanel cellExt2, cellExt1, cellExt;
+    @UiField
+    HTMLPanel cellMed;
+    @UiField
+    HTMLPanel cellInt2Bg, cellInt2, cellInt1, cellInt;
     @UiField
     HTML cellText;
 
@@ -35,8 +41,13 @@ public class GameCell extends Composite {
 
     private boolean isSelected = false;
 
+    private final pgu.client.ui.style.PguGameResources.Style style;
+
     public GameCell(final GameCellFactory factory) {
         initWidget(uiBinder.createAndBindUi(this));
+
+        style = PguGameResources.INSTANCE.style();
+
         this.factory = factory;
         applySkin(Skin.WHITE);
         console("builds a cell - white");
@@ -98,20 +109,38 @@ public class GameCell extends Composite {
     public void applySkin(final Skin skin) {
         currentSkin = skin;
 
-        // TODO PGU faire une methode setWebkitBoxShadow for all browsers
-        cellExt.getElement().getStyle().setProperty("webkitBoxShadow", skin.ext() + " 0 0 16px");
+        // clear styles
+        cellExt2.setStyleName("");
+        cellExt1.setStyleName("");
+        cellExt.setStyleName("");
+        cellMed.setStyleName("");
+        cellInt.setStyleName("");
+        cellInt1.setStyleName("");
+        cellInt2.setStyleName("");
+        cellInt2Bg.setStyleName("");
+        cellText.setStyleName("");
 
-        final Style styleOut = cellOut.getElement().getStyle();
-        styleOut.setProperty("border", "1px solid " + skin.mid());
-        styleOut.setProperty("webkitBoxShadow", skin.mid() + " 0 0 16px");
+        if (Skin.ICE == skin) {
 
-        final Style styleIn = cellIn.getElement().getStyle();
-        styleIn.setProperty("border", "1px solid " + skin.mid());
-        styleIn.setProperty("webkitBoxShadow", "inset " + skin.mid() + " 0 0 15px");
+        } else if (Skin.FIRE == skin) {
 
-        cellSub.getElement().getStyle().setProperty("webkitBoxShadow", "inset " + skin.ext() + " 0 0 6px");
+        } else if (Skin.GREEN == skin) {
+            // TODO PGU Mar 27, 2013
+        }
 
-        cellText.getElement().getStyle().setProperty("textShadow", "0 0 23px " + skin.mid());
+        //        cellExt.getElement().getStyle().setProperty("webkitBoxShadow", skin.ext() + " 0 0 16px");
+        //
+        //        final Style styleOut = cellOut.getElement().getStyle();
+        //        styleOut.setProperty("border", "1px solid " + skin.mid());
+        //        styleOut.setProperty("webkitBoxShadow", skin.mid() + " 0 0 16px");
+        //
+        //        final Style styleIn = cellIn.getElement().getStyle();
+        //        styleIn.setProperty("border", "1px solid " + skin.mid());
+        //        styleIn.setProperty("webkitBoxShadow", "inset " + skin.mid() + " 0 0 15px");
+        //
+        //        cellSub.getElement().getStyle().setProperty("webkitBoxShadow", "inset " + skin.ext() + " 0 0 6px");
+        //
+        //        cellText.getElement().getStyle().setProperty("textShadow", "0 0 23px " + skin.mid());
     }
 
     public GameCell index(final int index) {
