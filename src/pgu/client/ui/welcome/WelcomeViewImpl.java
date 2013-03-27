@@ -63,6 +63,10 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfLevelSettings.setVisible(true);
         // TODO PGU Mar 27, 2013 build row of languages and select current languages
 
+        final HTMLPanel rowOfLanguage = new HTMLPanel("");
+        rowOfLanguage.addStyleName("clearfix");
+        rowOfLevelSettings.add(rowOfLanguage);
+
         for (final Language language : LabelHelper.sort(Language.values())) {
             final AppCell.Skin skin = language == Pgu_lang_az.gameConfig.language() ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
@@ -74,8 +78,13 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             style.setFloat(Style.Float.LEFT);
             style.setMargin(20, Unit.PX);
 
-            rowOfLevelSettings.add(appCell);
+            rowOfLanguage.add(appCell);
         }
+
+        final HTMLPanel rowOfGranularity = new HTMLPanel("");
+        rowOfGranularity.addStyleName("clearfix");
+        rowOfLevelSettings.add(rowOfGranularity);
+
 
     }
 

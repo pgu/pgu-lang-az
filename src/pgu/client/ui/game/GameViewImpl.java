@@ -11,7 +11,6 @@ import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
 import pgu.client.language.HasBiSymbols;
 import pgu.client.language.HasTriSymbols;
-import pgu.client.language.chinese.ChineseWords;
 import pgu.client.language.greek.GreekAlphabet;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
@@ -404,8 +403,8 @@ public class GameViewImpl extends Composite implements GameView {
         } else if (isGreekAlphabet()) {
             hasBiSymbols = GreekAlphabet.INSTANCE;
 
-        } else if (isChineseWords()) {
-            hasTriSymbols = ChineseWords.INSTANCE;
+            //        } else if (isChineseWords()) {
+            //            hasTriSymbols = ChineseWords.INSTANCE;
         }
 
         if (null != hasBiSymbols) {
@@ -430,10 +429,10 @@ public class GameViewImpl extends Composite implements GameView {
 
     }
 
-    private boolean isChineseWords() {
-        return Language.CHINESE == Pgu_lang_az.gameConfig.language() //
-                && LanguageGranularity.WORD == Pgu_lang_az.gameConfig.granularity();
-    }
+    //    private boolean isChineseWords() {
+    //        return Language.CHINESE == Pgu_lang_az.gameConfig.language() //
+    //                && LanguageGranularity.WORD == Pgu_lang_az.gameConfig.granularity();
+    //    }
 
     private boolean isGreekAlphabet() {
         return Language.GREEK == Pgu_lang_az.gameConfig.language() //

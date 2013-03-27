@@ -9,7 +9,6 @@ import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
 import pgu.client.language.HasLevels;
-import pgu.client.language.chinese.ChineseWords;
 import pgu.client.language.greek.GreekAlphabet;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
@@ -122,8 +121,8 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
         } else if (isGreekAlphabet()) {
             hasLevels = GreekAlphabet.INSTANCE;
 
-        } else if (isChineseWords()) {
-            hasLevels = ChineseWords.INSTANCE;
+            //        } else if (isChineseWords()) {
+            //            hasLevels = ChineseWords.INSTANCE;
 
         }
 
@@ -183,25 +182,25 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
     @UiHandler("btnOk")
     public void clickOk(final ClickEvent e) {
         Pgu_lang_az.gameConfig //
-                .size(GameSize.BIG) //
-                .language(language) //
-                .granularity(granularity) //
-                .theme(theme);
+        .size(GameSize.BIG) //
+        .language(language) //
+        .granularity(granularity) //
+        .theme(theme);
 
         Pgu_lang_az.gameConfig.subselections().clear();
         Pgu_lang_az.gameConfig.subselections().addAll(getSelectedSubselections());
 
-        if (isChineseWords()) {
-            Pgu_lang_az.gameConfig.size(GameSize.MEDIUM);
-        }
+        //        if (isChineseWords()) {
+        //            Pgu_lang_az.gameConfig.size(GameSize.MEDIUM);
+        //        }
 
         presenter.goTo(new GamePlace());
     }
 
-    private boolean isChineseWords() {
-        return Language.CHINESE == language //
-                && LanguageGranularity.WORD == granularity;
-    }
+    //    private boolean isChineseWords() {
+    //        return Language.CHINESE == language //
+    //                && LanguageGranularity.WORD == granularity;
+    //    }
 
     private ArrayList<String> getSelectedSubselections() {
         final ArrayList<String> selecteds = Lists.newArrayList();

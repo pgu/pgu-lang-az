@@ -72,7 +72,8 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
         for (int i = 0; i < granularitiesPanel.getWidgetCount(); i++) {
             final HTML cell = (HTML) granularitiesPanel.getWidget(i);
             if (LanguageGranularity.ALPHABET.label().equals(cell.getHTML())) {
-                cell.setVisible(language != Language.CHINESE);
+                //                cell.setVisible(language != Language.CHINESE);
+                cell.setVisible(true);
                 break;
             }
         }
@@ -123,8 +124,8 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     private void goToNextStep(final LanguageGranularity granularity) {
         if (isRussianAlphabet(granularity) //
                 || isGreekAlphabet(granularity) //
-                || isChineseWords(granularity) //
-        ) {
+                //                || isChineseWords(granularity) //
+                ) {
 
             goToSubselectionLevel(granularity);
 
@@ -133,10 +134,10 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
         }
     }
 
-    private boolean isChineseWords(final LanguageGranularity granularity) {
-        return Language.CHINESE == language //
-                && LanguageGranularity.WORD == granularity;
-    }
+    //    private boolean isChineseWords(final LanguageGranularity granularity) {
+    //        return Language.CHINESE == language //
+    //                && LanguageGranularity.WORD == granularity;
+    //    }
 
     private boolean isGreekAlphabet(final LanguageGranularity granularity) {
         return Language.GREEK == language //
