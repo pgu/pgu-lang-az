@@ -181,4 +181,9 @@ public class GameCell extends Composite {
     public TuplePosition tuplePosition() {
         return tuplePosition;
     }
+
+    public void reset() {
+        // TODO Auto-generated method stub
+
+    }
 }

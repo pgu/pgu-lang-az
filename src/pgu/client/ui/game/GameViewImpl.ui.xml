@@ -126,24 +126,24 @@
 
     <g:HTMLPanel>
     
-        <!-- menu area -->
-        <g:HTMLPanel ui:field="menuArea" styleName="{style.menu-area}">    
-            <g:HTMLPanel ui:field="help" addStyleNames="{style.header-btn}" >
-                <g:HTML ui:field="helpText" addStyleNames="{style.btn-text}">HELP</g:HTML>
-            </g:HTMLPanel>
-            <g:HTMLPanel ui:field="time" addStyleNames="{style.time}" >
-                <g:HTML ui:field="timeText" addStyleNames="{style.btn-text}">Hi!</g:HTML>
-            </g:HTMLPanel>
+<!--         menu area -->
+<!--         <g:HTMLPanel ui:field="menuArea" styleName="{style.menu-area}">     -->
+<!--             <g:HTMLPanel ui:field="help" addStyleNames="{style.header-btn}" > -->
+<!--                 <g:HTML ui:field="helpText" addStyleNames="{style.btn-text}">HELP</g:HTML> -->
+<!--             </g:HTMLPanel> -->
+<!--             <g:HTMLPanel ui:field="time" addStyleNames="{style.time}" > -->
+<!--                 <g:HTML ui:field="timeText" addStyleNames="{style.btn-text}">Hi!</g:HTML> -->
+<!--             </g:HTMLPanel> -->
             
-            <g:HTMLPanel ui:field="menuRight" styleName="{style.menu-right}">    
-                <g:HTMLPanel ui:field="restart" addStyleNames="{style.header-btn}" >
-                    <g:HTML ui:field="restartText" addStyleNames="{style.btn-text}">RESTART</g:HTML>
-                </g:HTMLPanel>
-                <g:HTMLPanel ui:field="exit" addStyleNames="{style.header-btn}" >
-                    <g:HTML ui:field="exitText" addStyleNames="{style.btn-text}">EXIT</g:HTML>
-                </g:HTMLPanel>
-            </g:HTMLPanel>
-        </g:HTMLPanel>
+<!--             <g:HTMLPanel ui:field="menuRight" styleName="{style.menu-right}">     -->
+<!--                 <g:HTMLPanel ui:field="restart" addStyleNames="{style.header-btn}" > -->
+<!--                     <g:HTML ui:field="restartText" addStyleNames="{style.btn-text}">RESTART</g:HTML> -->
+<!--                 </g:HTMLPanel> -->
+<!--                 <g:HTMLPanel ui:field="exit" addStyleNames="{style.header-btn}" > -->
+<!--                     <g:HTML ui:field="exitText" addStyleNames="{style.btn-text}">EXIT</g:HTML> -->
+<!--                 </g:HTMLPanel> -->
+<!--             </g:HTMLPanel> -->
+<!--         </g:HTMLPanel> -->
     
         <!-- grid area -->
         <g:HTMLPanel ui:field="gridArea" styleName="{style.grid-area}">    

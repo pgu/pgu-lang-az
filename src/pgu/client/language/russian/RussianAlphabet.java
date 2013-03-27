@@ -2,12 +2,11 @@ package pgu.client.language.russian;
 
 import java.util.ArrayList;
 
-import pgu.client.language.HasBiSymbols;
-import pgu.client.language.HasLevels;
+import pgu.client.language.Alphabet;
 import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.Lists;
 
-public enum RussianAlphabet implements HasLevels, HasBiSymbols {
+public enum RussianAlphabet implements Alphabet {
     INSTANCE;
 
     private final HashBiMap<String, String> latin2russian = HashBiMap.create();

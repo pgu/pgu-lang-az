@@ -1,6 +1,6 @@
 package pgu.client.enums;
 
-import pgu.client.language.HasLevels;
+import pgu.client.language.Alphabet;
 import pgu.client.language.greek.GreekAlphabet;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
@@ -15,11 +15,11 @@ public enum Language implements HasLabel {
     GREEK("Greek", GreekAlphabet.INSTANCE);
 
     private String    label;
-    private HasLevels hasLevels;
+    private Alphabet alphabet;
 
-    private Language(final String label, final HasLevels hasLevels) {
+    private Language(final String label, final Alphabet alphabet) {
         this.label = label;
-        this.hasLevels = hasLevels;
+        this.alphabet = alphabet;
     }
 
     @Override
@@ -27,8 +27,8 @@ public enum Language implements HasLabel {
         return label;
     }
 
-    public HasLevels getHasLevels() {
-        return hasLevels;
+    public Alphabet getAlphabet() {
+        return alphabet;
     }
 
 }

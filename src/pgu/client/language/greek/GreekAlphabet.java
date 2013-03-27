@@ -2,12 +2,11 @@ package pgu.client.language.greek;
 
 import java.util.ArrayList;
 
-import pgu.client.language.HasBiSymbols;
-import pgu.client.language.HasLevels;
+import pgu.client.language.Alphabet;
 import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.Lists;
 
-public enum GreekAlphabet implements HasLevels, HasBiSymbols {
+public enum GreekAlphabet implements Alphabet {
     INSTANCE;
 
     private static final String omega = "omega";

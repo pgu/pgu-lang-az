@@ -100,7 +100,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         final Language language = presenter.getLanguage();
         final ArrayList<String> subSelections = presenter.getSubSelections();
 
-        final HasLevels hasLevels = language.getHasLevels();
+        final HasLevels hasLevels = language.getAlphabet();
 
         for (final String level : hasLevels.availableLevels()) {
             final AppCell.Skin skin = subSelections.contains(level) ? AppCell.Skin.FIRE : AppCell.Skin.ICE;

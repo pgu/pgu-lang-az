@@ -8,6 +8,7 @@ import pgu.client.mvp.HasPlace;
 import pgu.client.place.GamePlace;
 import pgu.client.place.WelcomePlace;
 import pgu.client.ui.game.GameView;
+import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.Lists;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -47,7 +48,7 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
         panel.setWidget(view.asWidget());
 
         view.resize();
-        view.buildGridGame();
+        //        view.buildGridGame();
         view.fillGridWithSymbols();
     }
 
@@ -77,6 +78,11 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
         place = null;
         lg = null;
         subSelections = null;
+    }
+
+    @Override
+    public HashBiMap<String, String> getAvailableSymbols() {
+        return lg.getAlphabet().availableSymbols(subSelections);
     }
 
 }
