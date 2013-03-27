@@ -69,6 +69,7 @@ public class GameViewImpl extends Composite implements GameView {
     public GameViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
 
+        resize();
         buildGridGame();
 
         Window.addResizeHandler(new ResizeHandler() {
