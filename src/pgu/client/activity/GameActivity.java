@@ -61,11 +61,6 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     }
 
     @Override
-    public void goTo(final Place place) {
-        placeController.goTo(place);
-    }
-
-    @Override
     public Activity place(final Place place) {
         this.place = (GamePlace) place;
         return this;
@@ -91,5 +86,10 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     private native void console(String msg) /*-{
         $wnd.console.log(msg);
     }-*/;
+
+    @Override
+    public void goToWelcomePage() {
+        placeController.goTo(new WelcomePlace(lg, subSelections));
+    }
 
 }

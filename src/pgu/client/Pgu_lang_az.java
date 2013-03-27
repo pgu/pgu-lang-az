@@ -10,6 +10,9 @@ import pgu.client.ui.style.PguGameResources;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.Position;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.user.client.Window;
@@ -37,6 +40,13 @@ public class Pgu_lang_az implements EntryPoint {
         final GameGinjector ginjector = GWT.create(GameGinjector.class);
 
         final SimplePanel displayContent = ginjector.getWidget();
+        final Style style = displayContent.getElement().getStyle();
+        style.setPosition(Position.ABSOLUTE);
+        style.setTop(0, Unit.PX);
+        style.setBottom(0, Unit.PX);
+        style.setLeft(0, Unit.PX);
+        style.setRight(0, Unit.PX);
+
         ginjector.getActivityManager().setDisplay(displayContent);
 
         final VerticalPanel vp = new VerticalPanel();

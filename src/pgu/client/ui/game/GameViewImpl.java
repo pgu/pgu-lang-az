@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import pgu.client.ui.game.GameCell.TuplePosition;
+import pgu.client.ui.utils.AppCell;
 import pgu.client.utils.guava.HashBiMap;
 import pgu.client.utils.guava.Lists;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
@@ -28,6 +30,8 @@ public class GameViewImpl extends Composite implements GameView {
 
     @UiField
     HTMLPanel gridArea;
+    @UiField(provided = true)
+    AppCell exitBtn;
     //    @UiField
     //    HTMLPanel menuArea, gridArea;
 
@@ -67,7 +71,14 @@ public class GameViewImpl extends Composite implements GameView {
     //    private GameCellFactory cellFactory;
 
     public GameViewImpl() {
+        exitBtn = new AppCell(AppCell.Skin.ICE);
+
         initWidget(uiBinder.createAndBindUi(this));
+
+        exitBtn.setSize(320, 150);
+        exitBtn.setHTML("<div><p>EXIT</p></div>");
+
+        // TODO PGU Mar 27, 2013 popup with success and time
 
         resize();
         buildGridGame();
@@ -106,6 +117,11 @@ public class GameViewImpl extends Composite implements GameView {
         return super.asWidget();
     }
 
+    @UiHandler("exitBtn")
+    public void exitBtn(final ClickEvent e) {
+        presenter.goToWelcomePage();
+    }
+
     public boolean isPortrait() {
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
@@ -121,15 +137,15 @@ public class GameViewImpl extends Composite implements GameView {
         final int w = Window.getClientWidth();
         final int h = Window.getClientHeight();
 
-        final int hMenu = isPortrait() ? MENU_HEIGHT_PORTRAIT : MENU_HEIGHT_LANDSCAPE;
+        //        final int hMenu = isPortrait() ? MENU_HEIGHT_PORTRAIT : MENU_HEIGHT_LANDSCAPE;
         //        menuArea.setPixelSize(w, hMenu);
-        gridArea.getElement().getStyle().setTop(hMenu, Unit.PX);
+        //        gridArea.getElement().getStyle().setTop(hMenu, Unit.PX);
 
-        final int gridW = w;
-        gridArea.setWidth(gridW + "px");
-
-        final int gridH = h - hMenu;
-        gridArea.setHeight(gridH + "px");
+        //        final int gridW = w;
+        //        gridArea.setWidth(gridW + "px");
+        //
+        //        final int gridH = h - hMenu;
+        //        gridArea.setHeight(gridH + "px");
 
         //        final int btnTop = isPortrait ? 25 : 0;
 
