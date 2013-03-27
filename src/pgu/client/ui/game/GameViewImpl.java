@@ -31,7 +31,7 @@ public class GameViewImpl extends Composite implements GameView {
     @UiField
     HTMLPanel gridArea;
     @UiField(provided = true)
-    AppCell exitBtn;
+    AppCell exitBtn, score, restartBtn;
     //    @UiField
     //    HTMLPanel menuArea, gridArea;
 
@@ -71,14 +71,19 @@ public class GameViewImpl extends Composite implements GameView {
     //    private GameCellFactory cellFactory;
 
     public GameViewImpl() {
+
+        score = new AppCell(AppCell.Skin.ICE);
+        restartBtn = new AppCell(AppCell.Skin.FIRE);
         exitBtn = new AppCell(AppCell.Skin.ICE);
 
         initWidget(uiBinder.createAndBindUi(this));
 
+        score.setSize(720, 150);
+        restartBtn.setSize(320, 150);
         exitBtn.setSize(320, 150);
-        exitBtn.setHTML("<div><p>EXIT</p></div>");
 
-        // TODO PGU Mar 27, 2013 popup with success and time
+        restartBtn.setHTML("RESTART");
+        exitBtn.setHTML("EXIT");
 
         resize();
         buildGridGame();
@@ -120,6 +125,11 @@ public class GameViewImpl extends Composite implements GameView {
     @UiHandler("exitBtn")
     public void exitBtn(final ClickEvent e) {
         presenter.goToWelcomePage();
+    }
+
+    @UiHandler("restartBtn")
+    public void restartBtn(final ClickEvent e) {
+        presenter.reload();
     }
 
     public boolean isPortrait() {
@@ -315,6 +325,8 @@ public class GameViewImpl extends Composite implements GameView {
     @Override
     public void fillGridWithSymbols() {
         GWT.log("generateGame...");
+
+        gridArea.setVisible(true);
 
         for (int i = 0; i < gridArea.getWidgetCount(); i++) {
             availableSlots.add(i);
@@ -627,7 +639,10 @@ public class GameViewImpl extends Composite implements GameView {
         firstCell = null;
         counterFoundAssociations++;
         if (nbAssociations == counterFoundAssociations) {
-            Window.alert("Congrat'!");
+            // TODO PGU Mar 27, 2013
+            score.setHTML("<p>Congratulations!</p><p>Game done in </p>");
+            score.setVisible(true);
+            restartBtn.setVisible(true);
         }
     }
 
@@ -649,11 +664,18 @@ public class GameViewImpl extends Composite implements GameView {
     @Override
     public void onStop() {
 
+        restartBtn.setVisible(false);
+        score.setVisible(false);
+
+        score.setText("");
+
         occupiedSlots.clear();
         availableSlots.clear();
         counterFoundAssociations = 0;
         nbAssociations = 0;
         availableBiSymbols = null;
+
+        gridArea.setVisible(false);
 
         for (int i = 0; i < gridArea.getWidgetCount(); i++) {
             final GameCell gameCell = (GameCell) gridArea.getWidget(i);

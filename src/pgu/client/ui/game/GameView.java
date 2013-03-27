@@ -12,6 +12,8 @@ public interface GameView extends IsWidget {
 
         void goToWelcomePage();
 
+        void reload();
+
     }
 
     void setPresenter(Presenter presenter);

@@ -135,11 +135,17 @@
     .btn {
         margin: 100px auto;
     }
+    .score {
+        margin: 50px auto;
+    }
     
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.page}">
     
+        <pgu:AppCell ui:field="score" addStyleNames="{style.score}" />
+        <pgu:AppCell ui:field="restartBtn" addStyleNames="{style.btn}" />
+        
 <!--         menu area -->
 <!--         <g:HTMLPanel ui:field="menuArea" styleName="{style.menu-area}">     -->
 <!--             <g:HTMLPanel ui:field="help" addStyleNames="{style.header-btn}" > -->

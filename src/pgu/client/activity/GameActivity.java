@@ -92,4 +92,9 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
         placeController.goTo(new WelcomePlace(lg, subSelections));
     }
 
+    @Override
+    public void reload() {
+        placeController.goTo(new GamePlace(lg, subSelections));
+    }
+
 }
