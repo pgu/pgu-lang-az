@@ -53,6 +53,7 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
         //        view.resize();
         //        view.buildGridGame();
         view.fillGridWithSymbols();
+        view.startChrono();
     }
 
     private boolean areGameSettingsInvalid() {

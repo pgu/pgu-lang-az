@@ -28,4 +28,6 @@ public interface GameView extends IsWidget {
 
     void onStop();
 
+    void startChrono();
+
 }
