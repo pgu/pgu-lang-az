@@ -3,6 +3,7 @@ package pgu.client.ui.welcome;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import pgu.client.GameConfig;
 import pgu.client.Pgu_lang_az;
 import pgu.client.enums.Language;
 import pgu.client.language.HasLevels;
@@ -95,8 +96,10 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     private void fillRowOfSubSelections(final Language currentLanguage) {
         rowOfSubSelections.clear();
 
+        final GameConfig gc = Pgu_lang_az.gameConfig;
+
         final HasLevels currentHasLevels = currentLanguage.getHasLevels();
-        final ArrayList<String> currentSubselections = Pgu_lang_az.gameConfig.subselections();
+        final ArrayList<String> currentSubselections = currentLanguage == gc.language() ? gc.subselections() : new ArrayList<String>();
 
         for (final String level : currentHasLevels.availableLevels()) {
             final AppCell.Skin skin = currentSubselections.contains(level) ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
@@ -138,6 +141,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             // select new language
             final Language newLanguage = view.cell2lg.get(cell);
             Pgu_lang_az.gameConfig.language(newLanguage);
+
             cell.setSkin(Skin.FIRE);
 
             // clear the subselections and re-populate according to the new language
