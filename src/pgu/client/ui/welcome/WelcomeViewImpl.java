@@ -55,23 +55,18 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     @UiHandler("levelBtn")
     public void clickLevel(final ClickEvent e) {
-        // TODO PGU Mar 27, 2013
-        // TODO PGU Mar 27, 2013 remove LanguageLevelPlace
-        // TODO PGU Mar 27, 2013 insert LanguageLevelView
-        // TODO PGU Mar 27, 2013
         //        presenter.goTo(new LanguageLevelPlace(Pgu_lang_az.gameConfig.language()));
 
         rowOfCurrentLevel.setVisible(false);
         rowOfLevelSettings.setVisible(true);
-        // TODO PGU Mar 27, 2013 build row of languages and select current languages
 
+        // alphabet
         final HTMLPanel rowOfLanguage = new HTMLPanel("");
         rowOfLanguage.addStyleName("clearfix");
         rowOfLevelSettings.add(rowOfLanguage);
 
         final Language currentLanguage = Pgu_lang_az.gameConfig.language();
 
-        // alphabet
         for (final Language language : Language.values()) {
             final AppCell.Skin skin = language == currentLanguage ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
