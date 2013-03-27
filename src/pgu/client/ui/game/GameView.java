@@ -20,4 +20,6 @@ public interface GameView extends IsWidget {
 
     void buildGridGame();
 
+    void onStop();
+
 }

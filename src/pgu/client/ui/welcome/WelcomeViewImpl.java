@@ -2,6 +2,7 @@ package pgu.client.ui.welcome;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import pgu.client.enums.Language;
 import pgu.client.language.HasLevels;
@@ -45,9 +46,26 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         initWidget(uiBinder.createAndBindUi(this));
 
         startBtn.setHTML("<div><p>START</p></div>");
+
         levelBtn.setSize(520, 250);
         startBtn.setSize(320, 150);
 
+        // lg cells
+        for (final Language language : Language.values()) {
+
+            final AppCell appCell = buildAppCellForLevel(AppCell.Skin.ICE, language.label());
+            rowOfLanguages.add(appCell);
+
+            cell2lg.put(appCell, language);
+            lg2cell.put(language, appCell);
+        }
+
+        final ClickOnLanguageCell lgHandler = new ClickOnLanguageCell(this);
+        for (int i = 0; i < rowOfLanguages.getWidgetCount(); i++) {
+            ((AppCell) rowOfLanguages.getWidget(i)).addClickHandler(lgHandler);
+        }
+
+        // init values
         onStop();
     }
 
@@ -64,25 +82,13 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfCurrentLevel.setVisible(false);
         rowOfLevelSettings.setVisible(true);
 
-        // lazy init on rowOfLanguages
         // alphabet
         final Language currentLanguage = presenter.getLanguage();
 
-        for (final Language language : Language.values()) {
-            final AppCell.Skin skin = language == currentLanguage ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
-
-            final AppCell appCell = buildAppCellForLevel(skin, language.label());
-            rowOfLanguages.add(appCell);
-
-            cell2lg.put(appCell, language);
-            lg2cell.put(language, appCell);
+        for (final Entry<Language, AppCell> en : lg2cell.entrySet()) {
+            final boolean isCurrent = en.getKey() == currentLanguage;
+            en.getValue().setSkin(isCurrent ? AppCell.Skin.FIRE : AppCell.Skin.ICE);
         }
-
-        final ClickOnLanguageCell lgHandler = new ClickOnLanguageCell(this);
-        for (int i = 0; i < rowOfLanguages.getWidgetCount(); i++) {
-            ((AppCell) rowOfLanguages.getWidget(i)).addClickHandler(lgHandler);
-        }
-
 
         // subselections
         fillRowOfSubSelections();
@@ -246,13 +252,20 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     @Override
     public void onStop() {
         levelBtn.setHTML("");
+
         rowOfCurrentLevel.setVisible(true);
         rowOfLevelSettings.setVisible(false);
         rowOfStart.setVisible(true);
 
-        rowOfLanguages.clear();
-        rowOfSubSelections.clear();
+        for (int i = 0; i < rowOfLanguages.getWidgetCount(); i++) {
+            final AppCell cell = (AppCell) rowOfLanguages.getWidget(i);
 
+            if (cell.getSkin() == Skin.FIRE) {
+                cell.setSkin(AppCell.Skin.ICE);
+            }
+        }
+
+        rowOfSubSelections.clear();
     }
 
 }

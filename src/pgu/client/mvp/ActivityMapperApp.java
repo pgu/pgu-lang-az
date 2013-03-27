@@ -42,7 +42,7 @@ public class ActivityMapperApp implements ActivityMapper {
         }
 
         if (place instanceof GamePlace) {
-            return gameActivityProvider.get();
+            return gameActivityProvider.get().place(place);
         }
 
         if (place instanceof LanguageLevelPlace) {

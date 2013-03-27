@@ -635,4 +635,10 @@ public class GameViewImpl extends Composite implements GameView {
         }
     }
 
+    @Override
+    public void onStop() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

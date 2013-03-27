@@ -36,8 +36,7 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
         lg = place.getLanguage();
         subSelections.addAll(place.getSubselections());
 
-        if (lg == null //
-                || subSelections.isEmpty()) {
+        if (areGameSettingsInvalid()) {
 
             final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
             placeController.goTo(new WelcomePlace(Language.HIRAGANA, Lists.newArrayList(firstPartOfHiraga)));
@@ -51,8 +50,17 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
         panel.setWidget(view.asWidget());
     }
 
+    private boolean areGameSettingsInvalid() {
+        return lg == null //
+                || subSelections.isEmpty();
+    }
+
     @Override
     public void goToGame() {
+        if (areGameSettingsInvalid()) {
+            return;
+        }
+
         placeController.goTo(new GamePlace(lg, subSelections));
     }
 
@@ -62,7 +70,10 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
         view = null;
         placeController = null;
+
         place = null;
+        lg = null;
+        subSelections = null;
     }
 
     @Override
