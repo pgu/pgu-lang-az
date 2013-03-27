@@ -232,7 +232,8 @@ public class GameViewImpl extends Composite implements GameView {
         //        retrieveGameInstanceAndSetGameType();
 
         final boolean isPortrait = isPortrait();
-        final int nbCellsOnBoard = isPortrait ? NbCells.portrait_big.forBi : NbCells.landscape_big.forBi;
+        //        final int nbCellsOnBoard = isPortrait ? NbCells.portrait_big.forBi : NbCells.landscape_big.forBi;
+        final int nbCellsOnBoard = 4;
         //        nbCellsOnBoard = getNbCellsOnBoard();
 
         // nbRows = isPortrait ? NB_ROWS_PORTRAIT : 4;
