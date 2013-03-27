@@ -39,7 +39,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
         initWidget(uiBinder.createAndBindUi(this));
 
-        startBtn.setHTML("<div style=\"line-height:2;\"><p>START</p></div>");
+        startBtn.setHTML("<div><p>START</p></div>");
         levelBtn.setSize(520, 350);
         startBtn.setSize(320, 150);
 

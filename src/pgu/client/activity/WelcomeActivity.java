@@ -23,7 +23,7 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
         view.setPresenter(this);
 
         final GameConfig gc = Pgu_lang_az.gameConfig;
-        final String currentLevel= "<div style=\"line-height:2;\"><p>" + gc.language() + "</p><p>" + gc.theme() + "</p><p>" + gc.subselections() +"</p></div>";
+        final String currentLevel= "<div><p>" + gc.language() + "</p><p>" + gc.theme() + "</p><p>" + gc.subselections() +"</p></div>";
         view.setCurrentLevel(currentLevel);
 
         panel.setWidget(view.asWidget());
