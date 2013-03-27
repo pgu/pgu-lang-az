@@ -332,11 +332,11 @@ public class GameViewImpl extends Composite implements GameView {
 
             final GameCell cellLatin = (GameCell) gridArea.getWidget(indexLatin);
             cellLatin.setCharacter(latin, TuplePosition.FIRST);
-            cellLatin.ice().setDefaultSkin();
+            cellLatin.ice().flagAsDefaultSkin();
 
             final GameCell cellForeign = (GameCell) gridArea.getWidget(indexForeign);
             cellForeign.setCharacter(foreign, TuplePosition.SECOND);
-            cellForeign.green().setDefaultSkin();
+            cellForeign.green().flagAsDefaultSkin();
         }
 
         //        } else if (null != availableTriSymbols) {

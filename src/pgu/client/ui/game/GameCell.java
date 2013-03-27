@@ -39,7 +39,7 @@ public class GameCell extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
         this.factory = factory;
         applySkin(Skin.WHITE);
-        GWT.log("builds a cell - white");
+        console("builds a cell - white");
     }
 
     private static enum Skin {
@@ -73,24 +73,24 @@ public class GameCell extends Composite {
 
     public GameCell ice() {
         applySkin(Skin.ICE);
-        GWT.log("ice...");
+        console("ice...");
         return this;
     }
 
     public GameCell green() {
         applySkin(Skin.GREEN);
-        GWT.log("green...");
+        console("green...");
         return this;
     }
 
     public GameCell violet() {
         applySkin(Skin.VIOLET);
-        GWT.log("violet...");
+        console("violet...");
         return this;
     }
 
-    public GameCell setDefaultSkin() {
-        GWT.log("setDefaultSkin... default: " + defaultSkin + ", current: " + currentSkin);
+    public GameCell flagAsDefaultSkin() {
+        console("setDefaultSkin... default: " + defaultSkin + ", current: " + currentSkin);
         defaultSkin = currentSkin;
         return this;
     }
@@ -191,4 +191,9 @@ public class GameCell extends Composite {
 
         isSelected = false;
     }
+
+    private native void console(String msg) /*-{
+        $wnd.console.log(msg);
+    }-*/;
+
 }

@@ -28,7 +28,7 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
 
     private GamePlace place;
     private Language          lg;
-    private ArrayList<String> subSelections;
+    private ArrayList<String> subSelections = new ArrayList<String>();
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
@@ -39,11 +39,14 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
 
         if (areGameSettingsInvalid()) {
 
+            console("game settings invalid");
+
             final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
             placeController.goTo(new WelcomePlace(Language.HIRAGANA, Lists.newArrayList(firstPartOfHiraga)));
             return;
         }
 
+        console("game settings valid");
 
         panel.setWidget(view.asWidget());
 
@@ -84,5 +87,9 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     public HashBiMap<String, String> getAvailableSymbols() {
         return lg.getAlphabet().availableSymbols(subSelections);
     }
+
+    private native void console(String msg) /*-{
+        $wnd.console.log(msg);
+    }-*/;
 
 }

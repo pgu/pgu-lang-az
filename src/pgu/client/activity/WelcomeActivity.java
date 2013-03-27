@@ -27,7 +27,7 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
     private WelcomePlace      place;
     private Language          lg;
-    private ArrayList<String> subSelections;
+    private ArrayList<String> subSelections = new ArrayList<String>();
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
@@ -38,10 +38,14 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
         if (areGameSettingsInvalid()) {
 
+            console("invalid");
+
             final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
             placeController.goTo(new WelcomePlace(Language.HIRAGANA, Lists.newArrayList(firstPartOfHiraga)));
             return;
         }
+
+        console("valid");
 
         final String currentLevel = "<div><p>" + lg + "</p><p class=\"ellipsis_for_long_text\">" + subSelections
                 + "</p></div>";
@@ -96,5 +100,9 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
     public void setLanguage(final Language newLanguage) {
         lg = newLanguage;
     }
+
+    private native void console(String msg) /*-{
+        $wnd.console.log(msg);
+    }-*/;
 
 }
