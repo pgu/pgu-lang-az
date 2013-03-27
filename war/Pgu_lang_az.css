@@ -55,3 +55,9 @@ body {
   clear: both;
 }
 
+.ellipsis_for_long_text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
