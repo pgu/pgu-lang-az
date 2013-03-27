@@ -36,6 +36,9 @@
     width: 100%;
     opacity: 0.2;
 }
+.app_cell_intbg_selected {
+    opacity: 0.8;
+}
 .app_cell_int2 {
     position: absolute;
     top: 0px;

@@ -282,14 +282,18 @@ public class GameCell extends Composite {
             return;
         }
 
-        blue();
+        setSelectUI();
         isSelected = true;
 
         factory.gameView().clicksOn(this);
     }
 
+    private void setSelectUI() {
+        cellInt2Bg.addStyleName(style.app_cell_intbg_selected());
+    }
+
     public void deselect() {
-        applySkin(defaultSkin);
+        cellInt2Bg.removeStyleName(style.app_cell_intbg_selected());
         isSelected = false;
     }
 

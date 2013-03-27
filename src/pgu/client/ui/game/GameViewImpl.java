@@ -259,7 +259,7 @@ public class GameViewImpl extends Composite implements GameView {
         // retrieveGameInstanceAndSetGameType();
 
         final boolean isPortrait = isPortrait();
-        final int nbCellsOnBoard = isPortrait ? NbCells.portrait_big.forBi : NbCells.landscape_big.forBi;
+        final int nbCellsOnBoard = isPortrait ? NbCells.portrait_small.forBi : NbCells.landscape_small.forBi;
         //        final int nbCellsOnBoard = 4;
         // nbCellsOnBoard = getNbCellsOnBoard();
 
@@ -639,7 +639,6 @@ public class GameViewImpl extends Composite implements GameView {
         firstCell = null;
         counterFoundAssociations++;
         if (nbAssociations == counterFoundAssociations) {
-            // TODO PGU Mar 27, 2013
 
             final long stopInMs = new Date().getTime();
 
