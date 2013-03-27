@@ -83,11 +83,11 @@
 }
 .app_cell_intx_ice:active {
     -webkit-box-shadow: inset #22afca 0 0 40px;
-    background-color: white;
-    
-    /* text */
-    color: #22afca;
-    text-shadow: 0 0 10px #22afca;
+}
+.app_cell_int2_ice {
+}
+.app_cell_int2_ice:active { /* http://www.color-hex.com/color/22afca */
+    background-color: #115765;
 }
 .app_cell_intbg_ice {
     background-color: #22afca;
@@ -126,11 +126,11 @@
 }
 .app_cell_intx_fire:active {
     -webkit-box-shadow: inset #fe601e 0 0 40px;
-    background-color: #eecd30;
-    
-    /* text */
-    color: #fe601e;
-    text-shadow: 0 0 10px #fe601e;
+}
+.app_cell_int2_fire {
+}
+.app_cell_int2_fire:active { /* http://www.color-hex.com/color/fe601e */
+    background-color: #7f300f;
 }
 .app_cell_intbg_fire {
     background-color: #fe601e;

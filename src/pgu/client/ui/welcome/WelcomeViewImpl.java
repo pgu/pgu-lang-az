@@ -1,6 +1,5 @@
 package pgu.client.ui.welcome;
 
-import pgu.client.GameConfig;
 import pgu.client.Pgu_lang_az;
 import pgu.client.place.GamePlace;
 import pgu.client.place.LanguageLevelPlace;
@@ -60,11 +59,6 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         // resize();
         // }
         // });
-
-        final GameConfig gc = Pgu_lang_az.gameConfig;
-        final String currentLevel= "<div style=\"line-height:2;\"><p>" + gc.language() + "</p><p>" + gc.theme() + "</p><p>" + gc.subselections() +"</p></div>";
-        levelBtn.setHTML(currentLevel);
-
     }
 
     @UiHandler("startBtn")
@@ -124,6 +118,16 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         // final Score score = (Score) listArea.getWidget(i);
         // score.setScoreSize(orientation, w - 50, hMenu);
         // }
+    }
+
+    @Override
+    public void setCurrentLevel(final String currentLevel) {
+        levelBtn.setHTML(currentLevel);
+    }
+
+    @Override
+    public void onStop() {
+        levelBtn.setHTML("");
     }
 
 }

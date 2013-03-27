@@ -47,8 +47,10 @@ public class AppCell extends Composite implements HasClickHandlers {
 
             cellInt1.addStyleName(style.app_cell_intx_ice());
             cellInt2Bg.addStyleName(style.app_cell_intx_ice());
-            cellInt2Bg.addStyleName(style.app_cell_intbg_ice());
             cellInt2.addStyleName(style.app_cell_intx_ice());
+
+            cellInt2.addStyleName(style.app_cell_int2_ice());
+            cellInt2Bg.addStyleName(style.app_cell_intbg_ice());
 
         } else if (Skin.FIRE == skin) {
 
@@ -60,8 +62,10 @@ public class AppCell extends Composite implements HasClickHandlers {
 
             cellInt1.addStyleName(style.app_cell_intx_fire());
             cellInt2Bg.addStyleName(style.app_cell_intx_fire());
-            cellInt2Bg.addStyleName(style.app_cell_intbg_fire());
             cellInt2.addStyleName(style.app_cell_intx_fire());
+
+            cellInt2.addStyleName(style.app_cell_int2_fire());
+            cellInt2Bg.addStyleName(style.app_cell_intbg_fire());
 
         } else {
             throw new UnsupportedOperationException();

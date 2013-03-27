@@ -12,4 +12,8 @@ public interface WelcomeView extends IsWidget {
 
     void setPresenter(Presenter presenter);
 
+    void setCurrentLevel(String currentLevel);
+
+    void onStop();
+
 }

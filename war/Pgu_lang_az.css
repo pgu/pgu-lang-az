@@ -25,6 +25,7 @@ body, input, select, textarea {
 }
 
 body {
+    padding-bottom: 40px;
     margin: 0 !important;
     z-index: 0;
     position: relative;
