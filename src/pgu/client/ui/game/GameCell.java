@@ -25,9 +25,15 @@ public class GameCell extends Composite {
     HTML cellText;
 
     private final GameCellFactory factory;
+    private int index;
 
     private Skin currentSkin = null;
     private Skin defaultSkin = Skin.WHITE;
+
+    private TuplePosition tuplePosition;
+    private String character;
+
+    private boolean isSelected = false;
 
     public GameCell(final GameCellFactory factory) {
         initWidget(uiBinder.createAndBindUi(this));
@@ -36,7 +42,7 @@ public class GameCell extends Composite {
         GWT.log("builds a cell - white");
     }
 
-    private enum Skin {
+    private static enum Skin {
         WHITE("#fff", "#fff") //
         , FIRE("#fe601e", "#eecd30") //
         , ICE("#22afca", "#9ad5d8") //
@@ -84,8 +90,7 @@ public class GameCell extends Composite {
     }
 
     public GameCell setDefaultSkin() {
-        GWT.log("setDefaultSkin... defaultSkin: " + defaultSkin);
-        GWT.log("setDefaultSkin... currentSkin: " + currentSkin);
+        GWT.log("setDefaultSkin... default: " + defaultSkin + ", current: " + currentSkin);
         defaultSkin = currentSkin;
         return this;
     }
@@ -108,8 +113,6 @@ public class GameCell extends Composite {
 
         cellText.getElement().getStyle().setProperty("textShadow", "0 0 23px " + skin.mid());
     }
-
-    private int index;
 
     public GameCell index(final int index) {
         this.index = index;
@@ -141,17 +144,12 @@ public class GameCell extends Composite {
         FIRST, SECOND, THIRD;
     }
 
-    private TuplePosition tuplePosition;
-    private String character;
-
     public void setCharacter(final String character, final TuplePosition tuplePosition) {
         this.tuplePosition = tuplePosition;
         this.character = character;
 
         cellText.setHTML("" + character);
     }
-
-    private boolean isSelected = false;
 
     @UiHandler("cellText")
     public void clickCell(final ClickEvent e) {
@@ -182,8 +180,15 @@ public class GameCell extends Composite {
         return tuplePosition;
     }
 
-    public void reset() {
-        // TODO Auto-generated method stub
+    public void onStop() {
+        currentSkin = null;
+        applySkin(Skin.WHITE);
 
+        tuplePosition = null;
+        character = "";
+
+        cellText.setHTML("");
+
+        isSelected = false;
     }
 }

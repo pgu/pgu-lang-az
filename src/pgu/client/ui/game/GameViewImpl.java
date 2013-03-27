@@ -639,7 +639,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         for (int i = 0; i < gridArea.getWidgetCount(); i++) {
             final GameCell gameCell = (GameCell) gridArea.getWidget(i);
-            gameCell.reset();
+            gameCell.onStop();
         }
 
         firstCell = null;
