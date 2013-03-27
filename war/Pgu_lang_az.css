@@ -40,4 +40,18 @@ body {
 /*    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f394f', endColorstr='#000',GradientType=0 ); /* IE6-9 */    
 }
 
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
 

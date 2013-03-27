@@ -1,9 +1,14 @@
 package pgu.client.ui.welcome;
 
+import pgu.client.Pgu_lang_az;
+import pgu.client.enums.LabelHelper;
+import pgu.client.enums.Language;
 import pgu.client.place.GamePlace;
 import pgu.client.ui.utils.AppCell;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -58,7 +63,19 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfLevelSettings.setVisible(true);
         // TODO PGU Mar 27, 2013 build row of languages and select current languages
 
+        for (final Language language : LabelHelper.sort(Language.values())) {
+            final AppCell.Skin skin = language == Pgu_lang_az.gameConfig.language() ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
+            final AppCell appCell = new AppCell(skin);
+            appCell.setSize(320, 150);
+            appCell.setText(language.label());
+
+            final Style style = appCell.getElement().getStyle();
+            style.setFloat(Style.Float.LEFT);
+            style.setMargin(20, Unit.PX);
+
+            rowOfLevelSettings.add(appCell);
+        }
 
     }
 
@@ -122,6 +139,9 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfCurrentLevel.setVisible(true);
         rowOfLevelSettings.setVisible(false);
         rowOfStart.setVisible(true);
+
+        rowOfLevelSettings.clear();
+
     }
 
 }
