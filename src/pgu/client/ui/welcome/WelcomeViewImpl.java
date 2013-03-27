@@ -36,8 +36,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     public WelcomeViewImpl() {
 
-        levelBtn = new AppCell("ice");
-        startBtn = new AppCell("fire");
+        levelBtn = new AppCell(AppCell.Skin.ICE);
+        startBtn = new AppCell(AppCell.Skin.FIRE);
 
         initWidget(uiBinder.createAndBindUi(this));
 

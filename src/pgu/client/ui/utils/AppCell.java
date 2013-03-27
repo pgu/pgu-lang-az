@@ -29,11 +29,15 @@ public class AppCell extends Composite implements HasClickHandlers {
     @UiField
     HTML cellText;
 
-    public AppCell(final String skin) {
+    public static enum Skin {
+        ICE, FIRE
+    }
+
+    public AppCell(final Skin skin) {
         initWidget(uiBinder.createAndBindUi(this));
         style = PguGameResources.INSTANCE.style();
 
-        if ("ice".equals(skin)) {
+        if (Skin.ICE == skin) {
 
             cellExt1.addStyleName(style.app_cell_extx_ice());
             cellExt2.addStyleName(style.app_cell_extx_ice());
@@ -45,7 +49,9 @@ public class AppCell extends Composite implements HasClickHandlers {
             cellInt2Bg.addStyleName(style.app_cell_intx_ice());
             cellInt2Bg.addStyleName(style.app_cell_intbg_ice());
             cellInt2.addStyleName(style.app_cell_intx_ice());
-        } else {
+
+        } else if (Skin.FIRE == skin) {
+
             cellExt1.addStyleName(style.app_cell_extx_fire());
             cellExt2.addStyleName(style.app_cell_extx_fire());
             cellExt.addStyleName(style.app_cell_ext_fire());
@@ -56,6 +62,9 @@ public class AppCell extends Composite implements HasClickHandlers {
             cellInt2Bg.addStyleName(style.app_cell_intx_fire());
             cellInt2Bg.addStyleName(style.app_cell_intbg_fire());
             cellInt2.addStyleName(style.app_cell_intx_fire());
+
+        } else {
+            throw new UnsupportedOperationException();
         }
 
         cellText.addStyleName(style.app_cell_text());
