@@ -38,7 +38,7 @@ public class ActivityMapperApp implements ActivityMapper {
     public Activity getActivity(final Place place) {
 
         if (place instanceof WelcomePlace) {
-            return welcomeActivityProvider.get();
+            return welcomeActivityProvider.get().place(place);
         }
 
         if (place instanceof GamePlace) {

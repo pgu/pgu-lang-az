@@ -1,12 +1,21 @@
 package pgu.client.ui.welcome;
 
-import com.google.gwt.place.shared.Place;
+import java.util.ArrayList;
+
+import pgu.client.enums.Language;
+
 import com.google.gwt.user.client.ui.IsWidget;
 
 public interface WelcomeView extends IsWidget {
 
     public interface Presenter {
-        void goTo(Place place);
+        void goToGame();
+
+        Language getLanguage();
+
+        ArrayList<String> getSubSelections();
+
+        void setLanguage(Language newLanguage);
 
     }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import pgu.client.GameConfig;
 import pgu.client.Pgu_lang_az;
 import pgu.client.enums.GameSize;
 import pgu.client.enums.Language;
@@ -73,7 +74,8 @@ public class GameViewImpl extends Composite implements GameView {
 
     @UiHandler("exitText")
     public void clickExit(final ClickEvent e) {
-        presenter.goTo(new WelcomePlace());
+        final GameConfig gc = Pgu_lang_az.gameConfig;
+        presenter.goTo(new WelcomePlace(gc.language(), gc.subselections()));
     }
 
     @UiHandler("restartText")
