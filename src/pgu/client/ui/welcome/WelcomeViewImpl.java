@@ -1,8 +1,10 @@
 package pgu.client.ui.welcome;
 
+import java.util.ArrayList;
+
 import pgu.client.Pgu_lang_az;
-import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
+import pgu.client.language.HasLevels;
 import pgu.client.place.GamePlace;
 import pgu.client.ui.utils.AppCell;
 
@@ -67,8 +69,11 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfLanguage.addStyleName("clearfix");
         rowOfLevelSettings.add(rowOfLanguage);
 
-        for (final Language language : LabelHelper.sort(Language.values())) {
-            final AppCell.Skin skin = language == Pgu_lang_az.gameConfig.language() ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
+        final Language currentLanguage = Pgu_lang_az.gameConfig.language();
+
+        // alphabet
+        for (final Language language : Language.values()) {
+            final AppCell.Skin skin = language == currentLanguage ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
             final AppCell appCell = new AppCell(skin);
             appCell.setSize(320, 150);
@@ -81,11 +86,28 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             rowOfLanguage.add(appCell);
         }
 
-        final HTMLPanel rowOfGranularity = new HTMLPanel("");
-        rowOfGranularity.addStyleName("clearfix");
-        rowOfLevelSettings.add(rowOfGranularity);
+        // subselections
+        final HTMLPanel rowOfSubSelection = new HTMLPanel("");
+        rowOfSubSelection.addStyleName("clearfix");
+        rowOfLevelSettings.add(rowOfSubSelection);
 
+        final HasLevels currentHasLevels = currentLanguage.getHasLevels();
+        final ArrayList<String> currentSubselections = Pgu_lang_az.gameConfig.subselections();
 
+        for (final String level : currentHasLevels.availableLevels()) {
+
+            final AppCell.Skin skin = currentSubselections.contains(level) ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
+
+            final AppCell appCell = new AppCell(skin);
+            appCell.setSize(320, 150);
+            appCell.setText(level);
+
+            final Style style = appCell.getElement().getStyle();
+            style.setFloat(Style.Float.LEFT);
+            style.setMargin(20, Unit.PX);
+
+            rowOfSubSelection.add(appCell);
+        }
     }
 
     private Presenter presenter;

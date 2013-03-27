@@ -98,18 +98,18 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
 
         final ArrayList<Theme> themes = Lists.newArrayList();
 
-        if (isJapaneseAlphabet()) {
-            themes.add(Theme.HIRAGANA);
-            themes.add(Theme.KATAKANA);
-        }
+        //        if (isJapaneseAlphabet()) {
+        //            themes.add(Theme.HIRAGANA);
+        //            themes.add(Theme.KATAKANA);
+        //        }
 
         return LabelHelper.sort(themes);
     }
 
-    private boolean isJapaneseAlphabet() {
-        return Language.JAPANESE == language //
-                && LanguageGranularity.ALPHABET == granularity;
-    }
+    //    private boolean isJapaneseAlphabet() {
+    //        return Language.JAPANESE == language //
+    //                && LanguageGranularity.ALPHABET == granularity;
+    //    }
 
     private Widget buildCellTheme(final Theme theme) {
 

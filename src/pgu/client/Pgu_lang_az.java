@@ -23,7 +23,7 @@ public class Pgu_lang_az implements EntryPoint {
 
     static {
         gameConfig.size(GameSize.BIG);
-        gameConfig.language(Language.JAPANESE);
+        gameConfig.language(Language.HIRAGANA);
         gameConfig.granularity(LanguageGranularity.ALPHABET);
         gameConfig.theme(Theme.HIRAGANA);
         gameConfig.subselections().add(Hiragana.INSTANCE.availableLevels().get(0));
