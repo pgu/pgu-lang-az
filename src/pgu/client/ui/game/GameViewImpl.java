@@ -11,8 +11,6 @@ import pgu.client.utils.guava.Lists;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.logical.shared.ResizeEvent;
-import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -77,7 +75,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         score = new AppCell(AppCell.Skin.ICE);
         restartBtn = new AppCell(AppCell.Skin.FIRE);
-        exitBtn = new AppCell(AppCell.Skin.ICE);
+        exitBtn = new AppCell(AppCell.Skin.FIRE);
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -91,13 +89,13 @@ public class GameViewImpl extends Composite implements GameView {
         resize();
         buildGridGame();
 
-        Window.addResizeHandler(new ResizeHandler() {
-
-            @Override
-            public void onResize(final ResizeEvent event) {
-                resize();
-            }
-        });
+        //        Window.addResizeHandler(new ResizeHandler() {
+        //
+        //            @Override
+        //            public void onResize(final ResizeEvent event) {
+        //                resize();
+        //            }
+        //        });
 
         onStop();
     }
@@ -261,8 +259,8 @@ public class GameViewImpl extends Composite implements GameView {
         // retrieveGameInstanceAndSetGameType();
 
         final boolean isPortrait = isPortrait();
-        // final int nbCellsOnBoard = isPortrait ? NbCells.portrait_big.forBi : NbCells.landscape_big.forBi;
-        final int nbCellsOnBoard = 4;
+        final int nbCellsOnBoard = isPortrait ? NbCells.portrait_big.forBi : NbCells.landscape_big.forBi;
+        //        final int nbCellsOnBoard = 4;
         // nbCellsOnBoard = getNbCellsOnBoard();
 
         // nbRows = isPortrait ? NB_ROWS_PORTRAIT : 4;

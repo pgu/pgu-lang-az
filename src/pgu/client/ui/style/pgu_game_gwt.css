@@ -104,8 +104,8 @@
     cursor: pointer;
 }
 .app_cell_ext_fire {
-    border: 1px solid fe601e;
-    -webkit-box-shadow: fe601e 0 0 40px;
+    border: 1px solid #fe601e;
+    -webkit-box-shadow: #fe601e 0 0 40px;
 }
 .app_cell_med_fire {
     border: 3px solid #eecd30;
@@ -135,5 +135,92 @@
 .app_cell_intbg_fire {
     background-color: #fe601e;
 }
+
+/************************/
+/****  app cell GREEN  ***/
+/************************/
+.app_cell_extx_green {
+    -webkit-box-shadow: #6fca22 0 0 30px; /* 22ca3b */
+}
+.app_cell_extx_green:hover {
+    -webkit-box-shadow: #6fca22 0 0 50px;
+    cursor: pointer;
+}
+.app_cell_ext_green {
+    border: 1px solid #6fca22;
+    -webkit-box-shadow: #6fca22 0 0 40px;
+}
+.app_cell_med_green {
+    border: 3px solid #d1e3d2;
+    -webkit-box-shadow: #6fca22 0 0 20px;
+}
+.app_cell_int_green {
+    border: 1px solid #6fca22;
+    -webkit-box-shadow: inset #6fca22 0 0 40px;
+}
+.app_cell_intx_green {
+    -webkit-box-shadow: inset #6fca22 0 0 30px;
+    /* text */
+    color: white;
+    text-shadow: 0 0 10px white;
+}
+.app_cell_intx_green:hover {
+    -webkit-box-shadow: inset #6fca22 0 0 40px;
+}
+.app_cell_intx_green:active {
+    -webkit-box-shadow: inset #6fca22 0 0 40px;
+}
+.app_cell_int2_green {
+}
+.app_cell_int2_green:active { /* http://www.color-hex.com/color/fe601e */
+    background-color: #116529;
+}
+.app_cell_intbg_green {
+    background-color: #6fca22;
+}
+
+/************************/
+/****  app cell BLUE  ***/
+/************************/
+.app_cell_extx_blue {
+    -webkit-box-shadow: #2c22ca 0 0 30px; /* 22ca3b */
+}
+.app_cell_extx_blue:hover {
+    -webkit-box-shadow: #2c22ca 0 0 50px;
+    cursor: pointer;
+}
+.app_cell_ext_blue {
+    border: 1px solid #2c22ca;
+    -webkit-box-shadow: #2c22ca 0 0 40px;
+}
+.app_cell_med_blue {
+    border: 3px solid #bfbddd;
+    -webkit-box-shadow: #2c22ca 0 0 20px;
+}
+.app_cell_int_blue {
+    border: 1px solid #2c22ca;
+    -webkit-box-shadow: inset #2c22ca 0 0 40px;
+}
+.app_cell_intx_blue {
+    -webkit-box-shadow: inset #2c22ca 0 0 30px;
+    /* text */
+    color: white;
+    text-shadow: 0 0 10px white;
+}
+.app_cell_intx_blue:hover {
+    -webkit-box-shadow: inset #2c22ca 0 0 40px;
+}
+.app_cell_intx_blue:active {
+    -webkit-box-shadow: inset #2c22ca 0 0 40px;
+}
+.app_cell_int2_blue {
+}
+.app_cell_int2_blue:active { /* http://www.color-hex.com/color/fe601e */
+    background-color: #115765;
+}
+.app_cell_intbg_blue {
+    background-color: #2c22ca;
+}
+
 
 

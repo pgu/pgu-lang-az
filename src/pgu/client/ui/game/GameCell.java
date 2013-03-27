@@ -34,7 +34,7 @@ public class GameCell extends Composite {
     private int index;
 
     private Skin currentSkin = null;
-    private Skin defaultSkin = Skin.WHITE;
+    private Skin defaultSkin = Skin.ICE;
 
     private TuplePosition tuplePosition;
     private String character;
@@ -49,32 +49,36 @@ public class GameCell extends Composite {
         style = PguGameResources.INSTANCE.style();
 
         this.factory = factory;
-        applySkin(Skin.WHITE);
-        console("builds a cell - white");
+        applySkin(Skin.ICE);
+        console("builds a cell - ice");
     }
 
     private static enum Skin {
-        WHITE("#fff", "#fff") //
-        , FIRE("#fe601e", "#eecd30") //
-        , ICE("#22afca", "#9ad5d8") //
-        , VIOLET("#ae22ca", "#d89ac7") //
-        , GREEN("#22ca3b", "#9ad89e");
+        FIRE //
+        , ICE//
+        , BLUE//
+        , GREEN;
+        //        WHITE("#fff", "#fff") //
+        //        , FIRE("#fe601e", "#eecd30") //
+        //        , ICE("#22afca", "#9ad5d8") //
+        //        , VIOLET("#ae22ca", "#d89ac7") //
+        //        , GREEN("#22ca3b", "#9ad89e");
 
-        private String colorExt;
-        private String colorMid;
-
-        private Skin(final String ext, final String mid) {
-            colorExt = ext;
-            colorMid = mid;
-        }
-
-        public String ext() {
-            return colorExt;
-        }
-
-        public String mid() {
-            return colorMid;
-        }
+        //        private String colorExt;
+        //        private String colorMid;
+        //
+        //        private Skin(final String ext, final String mid) {
+        //            colorExt = ext;
+        //            colorMid = mid;
+        //        }
+        //
+        //        public String ext() {
+        //            return colorExt;
+        //        }
+        //
+        //        public String mid() {
+        //            return colorMid;
+        //        }
     }
 
     public GameCell fire() {
@@ -94,11 +98,17 @@ public class GameCell extends Composite {
         return this;
     }
 
-    public GameCell violet() {
-        applySkin(Skin.VIOLET);
-        console("violet...");
+    public GameCell blue() {
+        applySkin(Skin.BLUE);
+        console("blue...");
         return this;
     }
+
+    //    public GameCell violet() {
+    //        applySkin(Skin.VIOLET);
+    //        console("violet...");
+    //        return this;
+    //    }
 
     public GameCell flagAsDefaultSkin() {
         console("setDefaultSkin... default: " + defaultSkin + ", current: " + currentSkin);
@@ -120,12 +130,77 @@ public class GameCell extends Composite {
         cellInt2Bg.setStyleName("");
         cellText.setStyleName("");
 
+        //
+
+        final Style style2 = cellExt2.getElement().getStyle();
+        style2.setFloat(Style.Float.LEFT);
+        style2.setMargin(20, Unit.PX);
+
+        cellText.addStyleName(style.app_cell_text());
+        cellInt1.addStyleName(style.app_cell_int1());
+        cellInt2Bg.addStyleName(style.app_cell_intbg());
+        cellInt2.addStyleName(style.app_cell_int2());
+
         if (Skin.ICE == skin) {
+
+            cellExt1.addStyleName(style.app_cell_extx_ice());
+            cellExt2.addStyleName(style.app_cell_extx_ice());
+            cellExt.addStyleName(style.app_cell_ext_ice());
+            cellMed.addStyleName(style.app_cell_med_ice());
+            cellInt.addStyleName(style.app_cell_int_ice());
+
+            cellInt1.addStyleName(style.app_cell_intx_ice());
+            cellInt2Bg.addStyleName(style.app_cell_intx_ice());
+            cellInt2.addStyleName(style.app_cell_intx_ice());
+
+            cellInt2.addStyleName(style.app_cell_int2_ice());
+            cellInt2Bg.addStyleName(style.app_cell_intbg_ice());
 
         } else if (Skin.FIRE == skin) {
 
+            cellExt1.addStyleName(style.app_cell_extx_fire());
+            cellExt2.addStyleName(style.app_cell_extx_fire());
+            cellExt.addStyleName(style.app_cell_ext_fire());
+            cellMed.addStyleName(style.app_cell_med_fire());
+            cellInt.addStyleName(style.app_cell_int_fire());
+
+            cellInt1.addStyleName(style.app_cell_intx_fire());
+            cellInt2Bg.addStyleName(style.app_cell_intx_fire());
+            cellInt2.addStyleName(style.app_cell_intx_fire());
+
+            cellInt2.addStyleName(style.app_cell_int2_fire());
+            cellInt2Bg.addStyleName(style.app_cell_intbg_fire());
+
         } else if (Skin.GREEN == skin) {
-            // TODO PGU Mar 27, 2013
+
+            cellExt1.addStyleName(style.app_cell_extx_green());
+            cellExt2.addStyleName(style.app_cell_extx_green());
+            cellExt.addStyleName(style.app_cell_ext_green());
+            cellMed.addStyleName(style.app_cell_med_green());
+            cellInt.addStyleName(style.app_cell_int_green());
+
+            cellInt1.addStyleName(style.app_cell_intx_green());
+            cellInt2Bg.addStyleName(style.app_cell_intx_green());
+            cellInt2.addStyleName(style.app_cell_intx_green());
+
+            cellInt2.addStyleName(style.app_cell_int2_green());
+            cellInt2Bg.addStyleName(style.app_cell_intbg_green());
+
+        } else if (Skin.BLUE == skin) {
+
+            cellExt1.addStyleName(style.app_cell_extx_blue());
+            cellExt2.addStyleName(style.app_cell_extx_blue());
+            cellExt.addStyleName(style.app_cell_ext_blue());
+            cellMed.addStyleName(style.app_cell_med_blue());
+            cellInt.addStyleName(style.app_cell_int_blue());
+
+            cellInt1.addStyleName(style.app_cell_intx_blue());
+            cellInt2Bg.addStyleName(style.app_cell_intx_blue());
+            cellInt2.addStyleName(style.app_cell_intx_blue());
+
+            cellInt2.addStyleName(style.app_cell_int2_blue());
+            cellInt2Bg.addStyleName(style.app_cell_intbg_blue());
+
         }
 
         //        cellExt.getElement().getStyle().setProperty("webkitBoxShadow", skin.ext() + " 0 0 16px");
@@ -149,17 +224,38 @@ public class GameCell extends Composite {
     }
 
     public void size() {
-        cellExt.setPixelSize(factory.extW(), factory.extH());
-        cellOut.setPixelSize(factory.outW(), factory.outH());
-        cellMed.setPixelSize(factory.medW(), factory.medH());
-        cellIn.setPixelSize(factory.inW(), factory.inH());
-        cellSub.setPixelSize(factory.subW(), factory.subH());
 
-        final Style styleText = cellText.getElement().getStyle();
-        styleText.setWidth(factory.width() - 7, Unit.PX);
+        int h = factory.height();
+        final int width = factory.width();
 
-        final boolean isPortrait = factory.isPortrait();
-        styleText.setTop(isPortrait ? 10 : 5, Unit.PX);
+        cellExt2.setSize(width + "px", h + "px");
+        cellExt1.setHeight(h + "px");
+        h = h - 2 * 1;
+
+        cellExt.setHeight(h + "px");
+        h = h - 2 * 2;
+
+        cellMed.setHeight(h + "px");
+        h = h - 2 * 1;
+
+        cellInt.setHeight(h + "px");
+
+        cellInt1.setHeight(h + "px");
+        cellInt2.setHeight(h + "px");
+        cellInt2Bg.setHeight(h + "px");
+
+        //
+        //        cellExt.setPixelSize(factory.extW(), factory.extH());
+        //        cellOut.setPixelSize(factory.outW(), factory.outH());
+        //        cellMed.setPixelSize(factory.medW(), factory.medH());
+        //        cellIn.setPixelSize(factory.inW(), factory.inH());
+        //        cellSub.setPixelSize(factory.subW(), factory.subH());
+
+        //        final Style styleText = cellText.getElement().getStyle();
+        //        styleText.setWidth(factory.width() - 7, Unit.PX);
+        //
+        //        final boolean isPortrait = factory.isPortrait();
+        //        styleText.setTop(isPortrait ? 10 : 5, Unit.PX);
 
         // cellExt.getElement().getStyle().setMarginTop(isPortrait ? 5 : 10, Unit.PX);
     }
@@ -186,7 +282,7 @@ public class GameCell extends Composite {
             return;
         }
 
-        fire();
+        blue();
         isSelected = true;
 
         factory.gameView().clicksOn(this);
@@ -211,7 +307,7 @@ public class GameCell extends Composite {
 
     public void onStop() {
         currentSkin = null;
-        applySkin(Skin.WHITE);
+        applySkin(Skin.ICE);
 
         tuplePosition = null;
         character = "";
