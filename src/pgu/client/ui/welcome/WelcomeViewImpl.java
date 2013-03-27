@@ -1,8 +1,6 @@
 package pgu.client.ui.welcome;
 
-import pgu.client.Pgu_lang_az;
 import pgu.client.place.GamePlace;
-import pgu.client.place.LanguageLevelPlace;
 import pgu.client.ui.utils.AppCell;
 
 import com.google.gwt.core.client.GWT;
@@ -23,13 +21,9 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     @UiField
     HTMLPanel menuArea;
-    // HTMLPanel listArea
+    @UiField
+    HTMLPanel rowOfCurrentLevel, rowOfLevelSettings, rowOfStart;
 
-    //    @UiField
-    //    HTML logo;
-    // , loginText, levelText, startText
-    // @UiField
-    // HTMLPanel login, level, start;
     @UiField(provided=true)
     AppCell levelBtn, startBtn;
 
@@ -40,25 +34,11 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
         initWidget(uiBinder.createAndBindUi(this));
 
-        //        loginTest.setText("LOGIN");
-        //        levelBtn.setText("LEVEL");
         startBtn.setHTML("<div style=\"line-height:2;\"><p>START</p></div>");
-        //        loginTest.setSize(175, 100);
         levelBtn.setSize(520, 350);
         startBtn.setSize(320, 150);
 
-        for (int i = 0; i < 100; i++) {
-            // listArea.add(new Score("Business girl", i + " min 30 sec, Jap > Hir > 1"));
-            // listArea.add(new Score("Awesome dude", i + "0 min 30 sec, Jap > Hir > 10"));
-        }
-
-        // Window.addResizeHandler(new ResizeHandler() {
-        //
-        // @Override
-        // public void onResize(final ResizeEvent event) {
-        // resize();
-        // }
-        // });
+        onStop();
     }
 
     @UiHandler("startBtn")
@@ -68,7 +48,18 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     @UiHandler("levelBtn")
     public void clickLevel(final ClickEvent e) {
-        presenter.goTo(new LanguageLevelPlace(Pgu_lang_az.gameConfig.language()));
+        // TODO PGU Mar 27, 2013
+        // TODO PGU Mar 27, 2013 remove LanguageLevelPlace
+        // TODO PGU Mar 27, 2013 insert LanguageLevelView
+        // TODO PGU Mar 27, 2013
+        //        presenter.goTo(new LanguageLevelPlace(Pgu_lang_az.gameConfig.language()));
+
+        rowOfCurrentLevel.setVisible(false);
+        rowOfLevelSettings.setVisible(true);
+        // TODO PGU Mar 27, 2013 build row of languages and select current languages
+
+
+
     }
 
     private Presenter presenter;
@@ -128,6 +119,9 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     @Override
     public void onStop() {
         levelBtn.setHTML("");
+        rowOfCurrentLevel.setVisible(true);
+        rowOfLevelSettings.setVisible(false);
+        rowOfStart.setVisible(true);
     }
 
 }
