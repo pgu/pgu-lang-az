@@ -49,6 +49,8 @@
                 
             </g:HTMLPanel>
             <g:HTMLPanel ui:field="rowOfLevelSettings" addStyleNames="{style.menu-area-row}">
+                <g:HTMLPanel ui:field="rowOfLanguages" addStyleNames="clearfix" />
+                <g:HTMLPanel ui:field="rowOfSubSelections" addStyleNames="clearfix" />
             </g:HTMLPanel>
             <g:HTMLPanel ui:field="rowOfStart" addStyleNames="{style.menu-area-row}">
             

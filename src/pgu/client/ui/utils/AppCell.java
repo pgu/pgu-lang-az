@@ -33,9 +33,77 @@ public class AppCell extends Composite implements HasClickHandlers {
         ICE, FIRE
     }
 
+    private Skin skin;
+
     public AppCell(final Skin skin) {
         initWidget(uiBinder.createAndBindUi(this));
+
         style = PguGameResources.INSTANCE.style();
+
+        setSkin(skin);
+    }
+
+    public void setHTML(final String html) {
+        cellText.setHTML(html);
+    }
+
+    public void setText(final String text) {
+        cellText.setText(text);
+    }
+
+    public String getText() {
+        return cellText.getText();
+    }
+
+    public void setSize(final int width, final int height) {
+        int h = height;
+
+        cellExt2.setSize(width + "px", h + "px");
+        cellExt1.setHeight(h + "px");
+        h = h - 2 * 1;
+
+        cellExt.setHeight(h + "px");
+        h = h - 2 * 2;
+
+        cellMed.setHeight(h + "px");
+        h = h - 2 * 1;
+
+        cellInt.setHeight(h + "px");
+
+        cellInt1.setHeight(h + "px");
+        cellInt2.setHeight(h + "px");
+        cellInt2Bg.setHeight(h + "px");
+
+    }
+
+    @Override
+    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+        return addDomHandler(handler, ClickEvent.getType());
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public void setSkin(final Skin skin) {
+        this.skin = skin;
+
+        // clear styles
+        cellExt1.setStyleName("");
+        cellExt2.setStyleName("");
+        cellExt.setStyleName("");
+        cellMed.setStyleName("");
+        cellInt.setStyleName("");
+
+        cellInt1.setStyleName("");
+        cellInt2Bg.setStyleName("");
+        cellInt2.setStyleName("");
+
+        //
+        cellText.addStyleName(style.app_cell_text());
+        cellInt1.addStyleName(style.app_cell_int1());
+        cellInt2Bg.addStyleName(style.app_cell_intbg());
+        cellInt2.addStyleName(style.app_cell_int2());
 
         if (Skin.ICE == skin) {
 
@@ -71,45 +139,6 @@ public class AppCell extends Composite implements HasClickHandlers {
             throw new UnsupportedOperationException();
         }
 
-        cellText.addStyleName(style.app_cell_text());
-        cellInt1.addStyleName(style.app_cell_int1());
-        cellInt2Bg.addStyleName(style.app_cell_intbg());
-        cellInt2.addStyleName(style.app_cell_int2());
-
-    }
-
-    public void setHTML(final String html) {
-        cellText.setHTML(html);
-    }
-
-    public void setText(final String text) {
-        cellText.setText(text);
-    }
-
-    public void setSize(final int width, final int height) {
-        int h = height;
-
-        cellExt2.setSize(width + "px", h + "px");
-        cellExt1.setHeight(h + "px");
-        h = h - 2 * 1;
-
-        cellExt.setHeight(h + "px");
-        h = h - 2 * 2;
-
-        cellMed.setHeight(h + "px");
-        h = h - 2 * 1;
-
-        cellInt.setHeight(h + "px");
-
-        cellInt1.setHeight(h + "px");
-        cellInt2.setHeight(h + "px");
-        cellInt2Bg.setHeight(h + "px");
-
-    }
-
-    @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
-        return addDomHandler(handler, ClickEvent.getType());
     }
 
 }

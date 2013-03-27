@@ -1,17 +1,20 @@
 package pgu.client.ui.welcome;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import pgu.client.Pgu_lang_az;
 import pgu.client.enums.Language;
 import pgu.client.language.HasLevels;
 import pgu.client.place.GamePlace;
 import pgu.client.ui.utils.AppCell;
+import pgu.client.ui.utils.AppCell.Skin;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -30,6 +33,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     HTMLPanel menuArea;
     @UiField
     HTMLPanel rowOfCurrentLevel, rowOfLevelSettings, rowOfStart;
+    @UiField
+    HTMLPanel rowOfLanguages, rowOfSubSelections;
 
     @UiField(provided=true)
     AppCell levelBtn, startBtn;
@@ -53,6 +58,9 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         presenter.goTo(new GamePlace());
     }
 
+    private final HashMap<AppCell, Language> cell2lg = new HashMap<AppCell, Language>();
+    private final HashMap<Language, AppCell> lg2cell = new HashMap<Language, AppCell>();
+
     @UiHandler("levelBtn")
     public void clickLevel(final ClickEvent e) {
         //        presenter.goTo(new LanguageLevelPlace(Pgu_lang_az.gameConfig.language()));
@@ -60,24 +68,32 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfCurrentLevel.setVisible(false);
         rowOfLevelSettings.setVisible(true);
 
+        // lazy init on rowOfLanguages
         // alphabet
-        final HTMLPanel rowOfLanguage = new HTMLPanel("");
-        rowOfLanguage.addStyleName("clearfix");
-        rowOfLevelSettings.add(rowOfLanguage);
-
         final Language currentLanguage = Pgu_lang_az.gameConfig.language();
 
         for (final Language language : Language.values()) {
             final AppCell.Skin skin = language == currentLanguage ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
             final AppCell appCell = buildAppCellForLevel(skin, language.label());
-            rowOfLanguage.add(appCell);
+            rowOfLanguages.add(appCell);
+
+            cell2lg.put(appCell, language);
+            lg2cell.put(language, appCell);
         }
 
+        final ClickOnLanguageCell lgHandler = new ClickOnLanguageCell(this);
+        for (int i = 0; i < rowOfLanguages.getWidgetCount(); i++) {
+            ((AppCell) rowOfLanguages.getWidget(i)).addClickHandler(lgHandler);
+        }
+
+
         // subselections
-        final HTMLPanel rowOfSubSelection = new HTMLPanel("");
-        rowOfSubSelection.addStyleName("clearfix");
-        rowOfLevelSettings.add(rowOfSubSelection);
+        fillRowOfSubSelections(currentLanguage);
+    }
+
+    private void fillRowOfSubSelections(final Language currentLanguage) {
+        rowOfSubSelections.clear();
 
         final HasLevels currentHasLevels = currentLanguage.getHasLevels();
         final ArrayList<String> currentSubselections = Pgu_lang_az.gameConfig.subselections();
@@ -86,7 +102,70 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             final AppCell.Skin skin = currentSubselections.contains(level) ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
             final AppCell appCell = buildAppCellForLevel(skin, level);
-            rowOfSubSelection.add(appCell);
+            rowOfSubSelections.add(appCell);
+        }
+
+        final ClickOnSubSelectionCell subHandler = new ClickOnSubSelectionCell();
+        for (int i = 0; i < rowOfSubSelections.getWidgetCount(); i++) {
+            ((AppCell) rowOfSubSelections.getWidget(i)).addClickHandler(subHandler);
+        }
+    }
+
+    private static class ClickOnLanguageCell implements ClickHandler {
+
+        WelcomeViewImpl view;
+
+        public ClickOnLanguageCell(final WelcomeViewImpl view) {
+            this.view =view;
+        }
+
+        @Override
+        public void onClick(final ClickEvent event) {
+            final AppCell cell = (AppCell) event.getSource();
+
+            final boolean isSelected = AppCell.Skin.FIRE == cell.getSkin();
+            if (isSelected) {
+                return;
+            }
+
+            // deselect current language
+            final Language oldLanguage = Pgu_lang_az.gameConfig.language();
+            view.lg2cell.get(oldLanguage).setSkin(Skin.ICE);
+
+            Pgu_lang_az.gameConfig.language(null);
+            Pgu_lang_az.gameConfig.subselections().clear();
+
+            // select new language
+            final Language newLanguage = view.cell2lg.get(cell);
+            Pgu_lang_az.gameConfig.language(newLanguage);
+            cell.setSkin(Skin.FIRE);
+
+            // clear the subselections and re-populate according to the new language
+            view.fillRowOfSubSelections(newLanguage);
+        }
+
+    }
+
+    private static class ClickOnSubSelectionCell implements ClickHandler {
+
+        @Override
+        public void onClick(final ClickEvent event) {
+            final AppCell cell = (AppCell) event.getSource();
+            final String subSelection = cell.getText();
+
+            final boolean isSelected = AppCell.Skin.FIRE == cell.getSkin();
+            if (isSelected) {
+                // deselect the subSelection
+                Pgu_lang_az.gameConfig.subselections().remove(subSelection);
+
+                cell.setSkin(AppCell.Skin.ICE);
+
+            } else {
+                // select the subSelection
+                Pgu_lang_az.gameConfig.subselections().add(subSelection);
+
+                cell.setSkin(AppCell.Skin.FIRE);
+            }
         }
     }
 
@@ -164,7 +243,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfLevelSettings.setVisible(false);
         rowOfStart.setVisible(true);
 
-        rowOfLevelSettings.clear();
+        rowOfLanguages.clear();
+        rowOfSubSelections.clear();
 
     }
 
