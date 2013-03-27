@@ -70,14 +70,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         for (final Language language : Language.values()) {
             final AppCell.Skin skin = language == currentLanguage ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
-            final AppCell appCell = new AppCell(skin);
-            appCell.setSize(320, 150);
-            appCell.setText(language.label());
-
-            final Style style = appCell.getElement().getStyle();
-            style.setFloat(Style.Float.LEFT);
-            style.setMargin(20, Unit.PX);
-
+            final AppCell appCell = buildAppCellForLevel(skin, language.label());
             rowOfLanguage.add(appCell);
         }
 
@@ -90,19 +83,24 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         final ArrayList<String> currentSubselections = Pgu_lang_az.gameConfig.subselections();
 
         for (final String level : currentHasLevels.availableLevels()) {
-
             final AppCell.Skin skin = currentSubselections.contains(level) ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
-            final AppCell appCell = new AppCell(skin);
-            appCell.setSize(320, 150);
-            appCell.setText(level);
-
-            final Style style = appCell.getElement().getStyle();
-            style.setFloat(Style.Float.LEFT);
-            style.setMargin(20, Unit.PX);
-
+            final AppCell appCell = buildAppCellForLevel(skin, level);
             rowOfSubSelection.add(appCell);
         }
+    }
+
+    private AppCell buildAppCellForLevel(final AppCell.Skin skin, final String text) {
+
+        final AppCell appCell = new AppCell(skin);
+        appCell.setSize(320, 150);
+        appCell.setText(text);
+
+        final Style style = appCell.getElement().getStyle();
+        style.setFloat(Style.Float.LEFT);
+        style.setMargin(20, Unit.PX);
+
+        return appCell;
     }
 
     private Presenter presenter;
