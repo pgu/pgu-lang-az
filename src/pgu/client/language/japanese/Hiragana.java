@@ -169,11 +169,11 @@ public enum Hiragana implements Alphabet {
     }
 
     private static final String GRP_A = "A";
-    private static final String GRP_K = "K - G";
-    private static final String GRP_S = "S - Z";
-    private static final String GRP_T = "T - D";
+    private static final String GRP_K = "K";
+    private static final String GRP_S = "S";
+    private static final String GRP_T = "T";
     private static final String GRP_N = "N";
-    private static final String GRP_H = "H - B - P";
+    private static final String GRP_H = "H";
     private static final String GRP_M = "M";
     private static final String GRP_Y = "Y";
     private static final String GRP_R = "R";
