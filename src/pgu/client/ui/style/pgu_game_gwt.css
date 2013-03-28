@@ -47,9 +47,9 @@
     z-index: 10;
 }
 .app_cell_text {
-    padding-top: 20px;
+    /* padding-top: 20px; */
     font-size: 3.5em;
-    line-height: 2;
+    line-height: 2.5;
     text-align: center;
 }
 

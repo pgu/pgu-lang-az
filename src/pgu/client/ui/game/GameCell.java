@@ -50,7 +50,7 @@ public class GameCell extends Composite {
 
         this.factory = factory;
         applySkin(Skin.ICE);
-        console("builds a cell - ice");
+        //        console("builds a cell - ice");
     }
 
     private static enum Skin {
@@ -88,19 +88,19 @@ public class GameCell extends Composite {
 
     public GameCell ice() {
         applySkin(Skin.ICE);
-        console("ice...");
+        //        console("ice...");
         return this;
     }
 
     public GameCell green() {
         applySkin(Skin.GREEN);
-        console("green...");
+        //        console("green...");
         return this;
     }
 
     public GameCell blue() {
         applySkin(Skin.BLUE);
-        console("blue...");
+        //        console("blue...");
         return this;
     }
 
@@ -111,7 +111,7 @@ public class GameCell extends Composite {
     //    }
 
     public GameCell flagAsDefaultSkin() {
-        console("setDefaultSkin... default: " + defaultSkin + ", current: " + currentSkin);
+        //        console("setDefaultSkin... default: " + defaultSkin + ", current: " + currentSkin);
         defaultSkin = currentSkin;
         return this;
     }
