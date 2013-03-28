@@ -12,9 +12,11 @@ public enum Katakana implements Alphabet {
     private final HashBiMap<String, String> latin2katakana = HashBiMap.create();
     private final ArrayList<String> availableLevels = Lists.newArrayList( //
             GRP_A, GRP_K, GRP_S, GRP_T, GRP_N, //
-            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W, GRP_V, //
-            GRP_KY, GRP_SH, GRP_CH, //
-            GRP_TRAP_1, GRP_TRAP_2, GRP_TRAP_3);
+            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W //
+            //            , GRP_V //
+            //            , GRP_KY, GRP_SH, GRP_CH //
+            //            , GRP_TRAP_1, GRP_TRAP_2, GRP_TRAP_3 //
+            );
 
     @Override
     public ArrayList<String> availableLevels() {
@@ -40,11 +42,11 @@ public enum Katakana implements Alphabet {
                 availableSymbols.put(KU, latin2katakana.get(KU));
                 availableSymbols.put(KE, latin2katakana.get(KE));
                 availableSymbols.put(KO, latin2katakana.get(KO));
-                availableSymbols.put(GA, latin2katakana.get(GA));
-                availableSymbols.put(GI, latin2katakana.get(GI));
-                availableSymbols.put(GU, latin2katakana.get(GU));
-                availableSymbols.put(GE, latin2katakana.get(GE));
-                availableSymbols.put(GO, latin2katakana.get(GO));
+                //                availableSymbols.put(GA, latin2katakana.get(GA));
+                //                availableSymbols.put(GI, latin2katakana.get(GI));
+                //                availableSymbols.put(GU, latin2katakana.get(GU));
+                //                availableSymbols.put(GE, latin2katakana.get(GE));
+                //                availableSymbols.put(GO, latin2katakana.get(GO));
 
             } else if (GRP_S.equals(selectedLevel)) {
                 availableSymbols.put(SA, latin2katakana.get(SA));
@@ -52,11 +54,11 @@ public enum Katakana implements Alphabet {
                 availableSymbols.put(SU, latin2katakana.get(SU));
                 availableSymbols.put(SE, latin2katakana.get(SE));
                 availableSymbols.put(SO, latin2katakana.get(SO));
-                availableSymbols.put(ZA, latin2katakana.get(ZA));
-                availableSymbols.put(S_JI, latin2katakana.get(S_JI));
-                availableSymbols.put(S_ZU, latin2katakana.get(S_ZU));
-                availableSymbols.put(ZE, latin2katakana.get(ZE));
-                availableSymbols.put(ZO, latin2katakana.get(ZO));
+                //                availableSymbols.put(ZA, latin2katakana.get(ZA));
+                //                availableSymbols.put(S_JI, latin2katakana.get(S_JI));
+                //                availableSymbols.put(S_ZU, latin2katakana.get(S_ZU));
+                //                availableSymbols.put(ZE, latin2katakana.get(ZE));
+                //                availableSymbols.put(ZO, latin2katakana.get(ZO));
 
             } else if (GRP_T.equals(selectedLevel)) {
                 availableSymbols.put(TA, latin2katakana.get(TA));
@@ -64,11 +66,11 @@ public enum Katakana implements Alphabet {
                 availableSymbols.put(TSU, latin2katakana.get(TSU));
                 availableSymbols.put(TE, latin2katakana.get(TE));
                 availableSymbols.put(TO, latin2katakana.get(TO));
-                availableSymbols.put(DA, latin2katakana.get(DA));
-                availableSymbols.put(T_JI, latin2katakana.get(T_JI));
-                availableSymbols.put(T_ZU, latin2katakana.get(T_ZU));
-                availableSymbols.put(DE, latin2katakana.get(DE));
-                availableSymbols.put(DO, latin2katakana.get(DO));
+                //                availableSymbols.put(DA, latin2katakana.get(DA));
+                //                availableSymbols.put(T_JI, latin2katakana.get(T_JI));
+                //                availableSymbols.put(T_ZU, latin2katakana.get(T_ZU));
+                //                availableSymbols.put(DE, latin2katakana.get(DE));
+                //                availableSymbols.put(DO, latin2katakana.get(DO));
 
             } else if (GRP_N.equals(selectedLevel)) {
                 availableSymbols.put(NA, latin2katakana.get(NA));
@@ -83,16 +85,16 @@ public enum Katakana implements Alphabet {
                 availableSymbols.put(FU, latin2katakana.get(FU));
                 availableSymbols.put(HE, latin2katakana.get(HE));
                 availableSymbols.put(HO, latin2katakana.get(HO));
-                availableSymbols.put(BA, latin2katakana.get(BA));
-                availableSymbols.put(BI, latin2katakana.get(BI));
-                availableSymbols.put(BU, latin2katakana.get(BU));
-                availableSymbols.put(BE, latin2katakana.get(BE));
-                availableSymbols.put(BO, latin2katakana.get(BO));
-                availableSymbols.put(PA, latin2katakana.get(PA));
-                availableSymbols.put(PI, latin2katakana.get(PI));
-                availableSymbols.put(PU, latin2katakana.get(PU));
-                availableSymbols.put(PE, latin2katakana.get(PE));
-                availableSymbols.put(PO, latin2katakana.get(PO));
+                //                availableSymbols.put(BA, latin2katakana.get(BA));
+                //                availableSymbols.put(BI, latin2katakana.get(BI));
+                //                availableSymbols.put(BU, latin2katakana.get(BU));
+                //                availableSymbols.put(BE, latin2katakana.get(BE));
+                //                availableSymbols.put(BO, latin2katakana.get(BO));
+                //                availableSymbols.put(PA, latin2katakana.get(PA));
+                //                availableSymbols.put(PI, latin2katakana.get(PI));
+                //                availableSymbols.put(PU, latin2katakana.get(PU));
+                //                availableSymbols.put(PE, latin2katakana.get(PE));
+                //                availableSymbols.put(PO, latin2katakana.get(PO));
 
             } else if (GRP_M.equals(selectedLevel)) {
                 availableSymbols.put(MA, latin2katakana.get(MA));
@@ -116,72 +118,73 @@ public enum Katakana implements Alphabet {
             } else if (GRP_W.equals(selectedLevel)) {
                 availableSymbols.put(WA, latin2katakana.get(WA));
                 availableSymbols.put(WI, latin2katakana.get(WI));
+                availableSymbols.put(VU, latin2katakana.get(VU));
                 availableSymbols.put(WE, latin2katakana.get(WE));
                 availableSymbols.put(WO, latin2katakana.get(WO));
 
-            } else if (GRP_V.equals(selectedLevel)) {
-                availableSymbols.put(VU, latin2katakana.get(VU));
-                availableSymbols.put(VA, latin2katakana.get(VA));
-                availableSymbols.put(VI, latin2katakana.get(VI));
-                availableSymbols.put(VE, latin2katakana.get(VE));
-                availableSymbols.put(VO, latin2katakana.get(VO));
+                //            } else if (GRP_V.equals(selectedLevel)) {
+                //                availableSymbols.put(VU, latin2katakana.get(VU));
+                //                availableSymbols.put(VA, latin2katakana.get(VA));
+                //                availableSymbols.put(VI, latin2katakana.get(VI));
+                //                availableSymbols.put(VE, latin2katakana.get(VE));
+                //                availableSymbols.put(VO, latin2katakana.get(VO));
 
-            } else if (GRP_KY.equals(selectedLevel)) {
-                availableSymbols.put(KYA, latin2katakana.get(KYA));
-                availableSymbols.put(KYU, latin2katakana.get(KYU));
-                availableSymbols.put(KYO, latin2katakana.get(KYO));
-                availableSymbols.put(NYA, latin2katakana.get(NYA));
-                availableSymbols.put(NYU, latin2katakana.get(NYU));
-                availableSymbols.put(NYO, latin2katakana.get(NYO));
-                availableSymbols.put(RYA, latin2katakana.get(RYA));
-                availableSymbols.put(RYU, latin2katakana.get(RYU));
-                availableSymbols.put(RYO, latin2katakana.get(RYO));
-                availableSymbols.put(BYA, latin2katakana.get(BYA));
-                availableSymbols.put(BYU, latin2katakana.get(BYU));
-                availableSymbols.put(BYO, latin2katakana.get(BYO));
+                //            } else if (GRP_KY.equals(selectedLevel)) {
+                //                availableSymbols.put(KYA, latin2katakana.get(KYA));
+                //                availableSymbols.put(KYU, latin2katakana.get(KYU));
+                //                availableSymbols.put(KYO, latin2katakana.get(KYO));
+                //                availableSymbols.put(NYA, latin2katakana.get(NYA));
+                //                availableSymbols.put(NYU, latin2katakana.get(NYU));
+                //                availableSymbols.put(NYO, latin2katakana.get(NYO));
+                //                availableSymbols.put(RYA, latin2katakana.get(RYA));
+                //                availableSymbols.put(RYU, latin2katakana.get(RYU));
+                //                availableSymbols.put(RYO, latin2katakana.get(RYO));
+                //                availableSymbols.put(BYA, latin2katakana.get(BYA));
+                //                availableSymbols.put(BYU, latin2katakana.get(BYU));
+                //                availableSymbols.put(BYO, latin2katakana.get(BYO));
+                //
+                //            } else if (GRP_SH.equals(selectedLevel)) {
+                //                availableSymbols.put(SHA, latin2katakana.get(SHA));
+                //                availableSymbols.put(SHU, latin2katakana.get(SHU));
+                //                availableSymbols.put(SHO, latin2katakana.get(SHO));
+                //                availableSymbols.put(HYA, latin2katakana.get(HYA));
+                //                availableSymbols.put(HYU, latin2katakana.get(HYU));
+                //                availableSymbols.put(HYO, latin2katakana.get(HYO));
+                //                availableSymbols.put(GYA, latin2katakana.get(GYA));
+                //                availableSymbols.put(GYU, latin2katakana.get(GYU));
+                //                availableSymbols.put(GYO, latin2katakana.get(GYO));
+                //                availableSymbols.put(PYA, latin2katakana.get(PYA));
+                //                availableSymbols.put(PYU, latin2katakana.get(PYU));
+                //                availableSymbols.put(PYO, latin2katakana.get(PYO));
+                //
+                //            } else if (GRP_CH.equals(selectedLevel)) {
+                //                availableSymbols.put(CHA, latin2katakana.get(CHA));
+                //                availableSymbols.put(CHU, latin2katakana.get(CHU));
+                //                availableSymbols.put(CHO, latin2katakana.get(CHO));
+                //                availableSymbols.put(MYA, latin2katakana.get(MYA));
+                //                availableSymbols.put(MYU, latin2katakana.get(MYU));
+                //                availableSymbols.put(MYO, latin2katakana.get(MYO));
+                //                availableSymbols.put(JA, latin2katakana.get(JA));
+                //                availableSymbols.put(JU, latin2katakana.get(JU));
+                //                availableSymbols.put(JO, latin2katakana.get(JO));
+                //
+                //            } else if (GRP_TRAP_1.equals(selectedLevel)) {
+                //                availableSymbols.put(SHI, latin2katakana.get(SHI));
+                //                availableSymbols.put(TSU, latin2katakana.get(TSU));
+                //                availableSymbols.put(SO, latin2katakana.get(SO));
+                //                availableSymbols.put(N, latin2katakana.get(N));
 
-            } else if (GRP_SH.equals(selectedLevel)) {
-                availableSymbols.put(SHA, latin2katakana.get(SHA));
-                availableSymbols.put(SHU, latin2katakana.get(SHU));
-                availableSymbols.put(SHO, latin2katakana.get(SHO));
-                availableSymbols.put(HYA, latin2katakana.get(HYA));
-                availableSymbols.put(HYU, latin2katakana.get(HYU));
-                availableSymbols.put(HYO, latin2katakana.get(HYO));
-                availableSymbols.put(GYA, latin2katakana.get(GYA));
-                availableSymbols.put(GYU, latin2katakana.get(GYU));
-                availableSymbols.put(GYO, latin2katakana.get(GYO));
-                availableSymbols.put(PYA, latin2katakana.get(PYA));
-                availableSymbols.put(PYU, latin2katakana.get(PYU));
-                availableSymbols.put(PYO, latin2katakana.get(PYO));
+                //            } else if (GRP_TRAP_2.equals(selectedLevel)) {
+                //                availableSymbols.put(KO, latin2katakana.get(KO));
+                //                availableSymbols.put(YO, latin2katakana.get(YO));
+                //                availableSymbols.put(YU, latin2katakana.get(YU));
+                //                availableSymbols.put(E, latin2katakana.get(E));
 
-            } else if (GRP_CH.equals(selectedLevel)) {
-                availableSymbols.put(CHA, latin2katakana.get(CHA));
-                availableSymbols.put(CHU, latin2katakana.get(CHU));
-                availableSymbols.put(CHO, latin2katakana.get(CHO));
-                availableSymbols.put(MYA, latin2katakana.get(MYA));
-                availableSymbols.put(MYU, latin2katakana.get(MYU));
-                availableSymbols.put(MYO, latin2katakana.get(MYO));
-                availableSymbols.put(JA, latin2katakana.get(JA));
-                availableSymbols.put(JU, latin2katakana.get(JU));
-                availableSymbols.put(JO, latin2katakana.get(JO));
-
-            } else if (GRP_TRAP_1.equals(selectedLevel)) {
-                availableSymbols.put(SHI, latin2katakana.get(SHI));
-                availableSymbols.put(TSU, latin2katakana.get(TSU));
-                availableSymbols.put(SO, latin2katakana.get(SO));
-                availableSymbols.put(N, latin2katakana.get(N));
-
-            } else if (GRP_TRAP_2.equals(selectedLevel)) {
-                availableSymbols.put(KO, latin2katakana.get(KO));
-                availableSymbols.put(YO, latin2katakana.get(YO));
-                availableSymbols.put(YU, latin2katakana.get(YU));
-                availableSymbols.put(E, latin2katakana.get(E));
-
-            } else if (GRP_TRAP_3.equals(selectedLevel)) {
-                availableSymbols.put(U, latin2katakana.get(U));
-                availableSymbols.put(WA, latin2katakana.get(WA));
-                availableSymbols.put(KU, latin2katakana.get(KU));
-                availableSymbols.put(TA, latin2katakana.get(TA));
+                //            } else if (GRP_TRAP_3.equals(selectedLevel)) {
+                //                availableSymbols.put(U, latin2katakana.get(U));
+                //                availableSymbols.put(WA, latin2katakana.get(WA));
+                //                availableSymbols.put(KU, latin2katakana.get(KU));
+                //                availableSymbols.put(TA, latin2katakana.get(TA));
 
             } else {
                 throw new IllegalArgumentException("Unknown level: " + selectedLevel);

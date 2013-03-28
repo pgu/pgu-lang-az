@@ -9,7 +9,6 @@ import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
 import pgu.client.language.HasLevels;
-import pgu.client.language.greek.GreekAlphabet;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.language.japanese.Katakana;
 import pgu.client.language.russian.RussianAlphabet;
@@ -118,8 +117,8 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
         } else if (isRussianAlphabet()) {
             hasLevels = RussianAlphabet.INSTANCE;
 
-        } else if (isGreekAlphabet()) {
-            hasLevels = GreekAlphabet.INSTANCE;
+            //        } else if (isGreekAlphabet()) {
+            //            hasLevels = GreekAlphabet.INSTANCE;
 
             //        } else if (isChineseWords()) {
             //            hasLevels = ChineseWords.INSTANCE;
@@ -136,10 +135,10 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
                 && LanguageGranularity.ALPHABET == granularity;
     }
 
-    private boolean isGreekAlphabet() {
-        return Language.GREEK == language //
-                && LanguageGranularity.ALPHABET == granularity;
-    }
+    //    private boolean isGreekAlphabet() {
+    //        return Language.GREEK == language //
+    //                && LanguageGranularity.ALPHABET == granularity;
+    //    }
 
     private static class CellSubselection extends HTML {
 

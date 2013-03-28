@@ -33,6 +33,7 @@ public enum GreekAlphabet implements Alphabet {
     private static final String gamma = "gamma";
     private static final String beta = "beta";
     private static final String alpha = "alpha";
+
     private static final String OMEGA = "OMEGA";
     private static final String PSI = "PSI";
     private static final String CHI = "CHI";

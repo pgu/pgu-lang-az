@@ -123,7 +123,7 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
 
     private void goToNextStep(final LanguageGranularity granularity) {
         if (isRussianAlphabet(granularity) //
-                || isGreekAlphabet(granularity) //
+                //                || isGreekAlphabet(granularity) //
                 //                || isChineseWords(granularity) //
                 ) {
 
@@ -139,10 +139,10 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
     //                && LanguageGranularity.WORD == granularity;
     //    }
 
-    private boolean isGreekAlphabet(final LanguageGranularity granularity) {
-        return Language.GREEK == language //
-                && LanguageGranularity.ALPHABET == granularity;
-    }
+    //    private boolean isGreekAlphabet(final LanguageGranularity granularity) {
+    //        return Language.GREEK == language //
+    //                && LanguageGranularity.ALPHABET == granularity;
+    //    }
 
     private boolean isRussianAlphabet(final LanguageGranularity granularity) {
         return Language.RUSSIAN == language //
