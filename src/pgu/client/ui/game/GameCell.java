@@ -1,5 +1,6 @@
 package pgu.client.ui.game;
 
+import pgu.client.AppHelper;
 import pgu.client.ui.style.PguGameResources;
 
 import com.google.gwt.core.client.GWT;
@@ -43,13 +44,23 @@ public class GameCell extends Composite {
 
     private final pgu.client.ui.style.PguGameResources.Style style;
 
+    private final AppHelper   h             = new AppHelper();
+
     public GameCell(final GameCellFactory factory) {
+
+        //        final long start = new Date().getTime();
+        //        h.console("start " + start);
+
         initWidget(uiBinder.createAndBindUi(this));
+
+        //        h.console("stop1 " + (new Date().getTime() - start) + " ms");
 
         style = PguGameResources.INSTANCE.style();
 
+        //        h.console("stop2 " + (new Date().getTime() - start) + " ms");
+
         this.factory = factory;
-        applySkin(Skin.ICE);
+        //        applySkin(Skin.ICE);
         //        console("builds a cell - ice");
     }
 

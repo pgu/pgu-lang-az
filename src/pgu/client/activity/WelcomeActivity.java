@@ -2,6 +2,7 @@ package pgu.client.activity;
 
 import java.util.ArrayList;
 
+import pgu.client.AppHelper;
 import pgu.client.enums.Language;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.mvp.HasPlace;
@@ -29,6 +30,8 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
     private Language          lg;
     private ArrayList<String> subSelections = new ArrayList<String>();
 
+    private final AppHelper   h             = new AppHelper();
+
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view.setPresenter(this);
@@ -36,16 +39,16 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
         lg = place.getLanguage();
         subSelections.addAll(place.getSubselections());
 
-        if (areGameSettingsInvalid()) {
+        if (h.areGameSettingsInvalid(lg, subSelections)) {
 
-            console("invalid");
+            // console("invalid");
 
             final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
             placeController.goTo(new WelcomePlace(Language.HIRAGANA, Lists.newArrayList(firstPartOfHiraga)));
             return;
         }
 
-        console("valid");
+        // console("valid");
 
         final String currentLevel = "<div><p>" + lg + "</p><p class=\"ellipsis_for_long_text\">" + subSelections
                 + "</p></div>";
@@ -54,14 +57,10 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
         panel.setWidget(view.asWidget());
     }
 
-    private boolean areGameSettingsInvalid() {
-        return lg == null //
-                || subSelections.isEmpty();
-    }
 
     @Override
     public void goToGame() {
-        if (areGameSettingsInvalid()) {
+        if (h.areGameSettingsInvalid(lg, subSelections)) {
             return;
         }
 
@@ -100,9 +99,5 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
     public void setLanguage(final Language newLanguage) {
         lg = newLanguage;
     }
-
-    private native void console(String msg) /*-{
-        $wnd.console.log(msg);
-    }-*/;
 
 }

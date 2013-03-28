@@ -1,9 +1,11 @@
 package pgu.client.ui.game;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
+import pgu.client.AppHelper;
 import pgu.client.ui.game.GameCell.TuplePosition;
 import pgu.client.ui.utils.AppCell;
 import pgu.client.utils.guava.HashBiMap;
@@ -28,7 +30,7 @@ public class GameViewImpl extends Composite implements GameView {
     private static GameViewImplUiBinder uiBinder                 = GWT.create(GameViewImplUiBinder.class);
 
     @UiField
-    HTMLPanel                           gridArea;
+    HTMLPanel                           containerGridArea;
     @UiField(provided = true)
     AppCell                             exitBtn, score, restartBtn;
     // @UiField
@@ -38,6 +40,7 @@ public class GameViewImpl extends Composite implements GameView {
     // HTMLPanel help, time, restart, exit;
     // @UiField
     // HTML helpText, timeText, restartText, exitText;
+    HTMLPanel                           gridArea                 = new HTMLPanel("");
 
     private final List<Integer>         occupiedSlots            = Lists.newArrayList();
     private final List<Integer>         availableSlots           = Lists.newArrayList();
@@ -71,6 +74,8 @@ public class GameViewImpl extends Composite implements GameView {
     // private int cellW = -10;
     // private GameCellFactory cellFactory;
 
+    private final AppHelper             h                        = new AppHelper();
+
     public GameViewImpl() {
 
         score = new AppCell(AppCell.Skin.ICE);
@@ -87,17 +92,24 @@ public class GameViewImpl extends Composite implements GameView {
         exitBtn.setHTML("EXIT");
 
         resize();
+
+        final long start = new Date().getTime();
+        h.console("start " + start);
+
         buildGridGame();
 
-        //        Window.addResizeHandler(new ResizeHandler() {
+        h.console("stop " + (new Date().getTime() - start) + " ms");
+
+        // Window.addResizeHandler(new ResizeHandler() {
         //
-        //            @Override
-        //            public void onResize(final ResizeEvent event) {
-        //                resize();
-        //            }
-        //        });
+        // @Override
+        // public void onResize(final ResizeEvent event) {
+        // resize();
+        // }
+        // });
 
         onStop();
+
     }
 
     private Presenter presenter;
@@ -258,15 +270,15 @@ public class GameViewImpl extends Composite implements GameView {
 
         // retrieveGameInstanceAndSetGameType();
 
-        //        final int nbCellsOnBoard = isPortrait ? NbCells.portrait_small.forBi : NbCells.landscape_small.forBi;
-        //        final int nbCellsOnBoard = 4;
+        // final int nbCellsOnBoard = isPortrait ? NbCells.portrait_small.forBi : NbCells.landscape_small.forBi;
+        // final int nbCellsOnBoard = 4;
         // nbCellsOnBoard = getNbCellsOnBoard();
 
         // nbRows = isPortrait ? NB_ROWS_PORTRAIT : 4;
         // nbCellsByRow = isPortrait ? 4 : 8;
 
-        //        final int cellH = isPortrait ? 300 : 150;
-        //        final int cellW = isPortrait ? 150 : 300;
+        // final int cellH = isPortrait ? 300 : 150;
+        // final int cellW = isPortrait ? 150 : 300;
 
         int counterIdxCell = 0;
 
@@ -282,11 +294,19 @@ public class GameViewImpl extends Composite implements GameView {
         // gridArea.add(createRow());
 
         // gridArea.clear();
+
+        final ArrayList<GameCell> cells = new ArrayList<GameCell>(nbCellsOnBoard);
+
         for (int i = 0; i < nbCellsOnBoard; i++) {
             counterIdxCell++;
-            gridArea.add(createCell(cellFactory, counterIdxCell));
+            cells.add(createCell(cellFactory, counterIdxCell));
         }
 
+        for (final GameCell gameCell : cells) {
+            gridArea.add(gameCell);
+        }
+
+        containerGridArea.add(gridArea);
         // return;
         // }
 

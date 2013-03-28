@@ -158,7 +158,7 @@
 <!--         </g:HTMLPanel> -->
     
         <!-- grid area -->
-        <g:HTMLPanel ui:field="gridArea" addStyleNames="{style.grid-area} clearfix">    
+        <g:HTMLPanel ui:field="containerGridArea" addStyleNames="{style.grid-area} clearfix">    
         </g:HTMLPanel>
     
         <pgu:AppCell ui:field="exitBtn" addStyleNames="{style.btn}" />

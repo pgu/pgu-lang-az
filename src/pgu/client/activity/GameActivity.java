@@ -2,6 +2,7 @@ package pgu.client.activity;
 
 import java.util.ArrayList;
 
+import pgu.client.AppHelper;
 import pgu.client.enums.Language;
 import pgu.client.language.japanese.Hiragana;
 import pgu.client.mvp.HasPlace;
@@ -22,13 +23,15 @@ import com.google.inject.Inject;
 public class GameActivity extends AbstractActivity implements GameView.Presenter, HasPlace {
 
     @Inject
-    private GameView view;
+    private GameView          view;
     @Inject
-    private PlaceController placeController;
+    private PlaceController   placeController;
 
-    private GamePlace place;
+    private GamePlace         place;
     private Language          lg;
     private ArrayList<String> subSelections = new ArrayList<String>();
+
+    private final AppHelper   h             = new AppHelper();
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
@@ -37,28 +40,23 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
         lg = place.getLanguage();
         subSelections.addAll(place.getSubselections());
 
-        if (areGameSettingsInvalid()) {
+        if (h.areGameSettingsInvalid(lg, subSelections)) {
 
-            console("game settings invalid");
+            //            console("game settings invalid");
 
             final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
             placeController.goTo(new WelcomePlace(Language.HIRAGANA, Lists.newArrayList(firstPartOfHiraga)));
             return;
         }
 
-        console("game settings valid");
+        //        console("game settings valid");
 
         panel.setWidget(view.asWidget());
 
-        //        view.resize();
-        //        view.buildGridGame();
+        // view.resize();
+        // view.buildGridGame();
         view.fillGridWithSymbols();
         view.startChrono();
-    }
-
-    private boolean areGameSettingsInvalid() {
-        return lg == null //
-                || subSelections.isEmpty();
     }
 
     @Override
@@ -83,10 +81,6 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     public HashBiMap<String, String> getAvailableSymbols() {
         return lg.getAlphabet().availableSymbols(subSelections);
     }
-
-    private native void console(String msg) /*-{
-        $wnd.console.log(msg);
-    }-*/;
 
     @Override
     public void goToWelcomePage() {
