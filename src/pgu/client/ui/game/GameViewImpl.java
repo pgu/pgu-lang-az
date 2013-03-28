@@ -93,7 +93,7 @@ public class GameViewImpl extends Composite implements GameView {
 
         resize();
 
-        final long start = new Date().getTime();
+        //        final long start = new Date().getTime();
         //        h.console("start " + start);
 
         buildGridGame();
