@@ -25,8 +25,6 @@ public class AppHelper {
     private static String str_lgName;
     private static String str_lgSel;
 
-    private static GameConfig gameConfig = new GameConfig();
-
     private boolean isBlank(final String str) {
         return str == null || str.trim().isEmpty();
     }
@@ -61,11 +59,11 @@ public class AppHelper {
         final String str_lgName = lg.label();
         final String str_lgSel = subSelections.toString();
 
-        writeLanguageToGameSettings(str_lgName);
-        writeSubSelectionsToGameSettings(str_lgSel);
+        writeLanguageToGameSettingsInternal(str_lgName);
+        writeSubSelectionsToGameSettingsInternal(str_lgSel);
     }
 
-    private void writeLanguageToGameSettings(final String str_lgName) {
+    private void writeLanguageToGameSettingsInternal(final String str_lgName) {
 
         if (supportsLocalStorage()) {
             writeToLocalStorage(KEY_LG, str_lgName);
@@ -78,7 +76,7 @@ public class AppHelper {
         }
     }
 
-    private void writeSubSelectionsToGameSettings(final String str_lgSel) {
+    private void writeSubSelectionsToGameSettingsInternal(final String str_lgSel) {
 
         if (supportsLocalStorage()) {
             writeToLocalStorage(KEY_SS, str_lgSel);
