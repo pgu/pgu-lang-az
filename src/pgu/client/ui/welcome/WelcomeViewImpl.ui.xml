@@ -54,7 +54,6 @@
             <g:HTMLPanel ui:field="rowOfLevelSettings" addStyleNames="{style.menu-area-row}">
                 <g:HTMLPanel ui:field="rowOfLanguages" addStyleNames="clearfix {style.sub_row}" />
                 <g:HTMLPanel ui:field="rowOfSubSelections" addStyleNames="clearfix {style.sub_row}" />
-                <g:HTMLPanel ui:field="rowOfAlphabet" addStyleNames="clearfix {style.sub_row}" />
             </g:HTMLPanel>
             <g:HTMLPanel ui:field="rowOfStart" addStyleNames="{style.menu-area-row}">
             
@@ -62,6 +61,9 @@
                     <pgu:AppCell ui:field="startBtn" addStyleNames="{style.btn}" />
                 </g:HTMLPanel>
             
+            </g:HTMLPanel>
+            <g:HTMLPanel addStyleNames="{style.menu-area-row}">
+                <g:HTMLPanel ui:field="rowOfAlphabet" addStyleNames="clearfix {style.sub_row}" />
             </g:HTMLPanel>
         </g:HTMLPanel>
         
