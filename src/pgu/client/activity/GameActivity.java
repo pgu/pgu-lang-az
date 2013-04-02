@@ -18,13 +18,13 @@ import com.google.inject.Inject;
 public class GameActivity extends AbstractActivity implements GameView.Presenter, HasPlace {
 
     @Inject
-    private GameView          view;
+    private GameView        view;
     @Inject
-    private PlaceController   placeController;
+    private PlaceController placeController;
 
-    private GamePlace         place;
+    private GamePlace       place;
 
-    private final AppHelper   h             = new AppHelper();
+    private final AppHelper h = new AppHelper();
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {

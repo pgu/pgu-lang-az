@@ -9,13 +9,12 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface WelcomeView extends IsWidget {
 
     public interface Presenter {
+
         void goToGame();
 
         boolean isCurrentLanguage(Language otherLanguage);
 
         void fillRowOfSubSelections();
-
-        void setSubSelections(ArrayList<String> selections);
 
         void selectNewLanguage(Language newLanguage);
 

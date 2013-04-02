@@ -20,11 +20,11 @@ import com.google.inject.Inject;
 public class WelcomeActivity extends AbstractActivity implements WelcomeView.Presenter, HasPlace {
 
     @Inject
-    private WelcomeView       view;
+    private WelcomeView     view;
     @Inject
-    private PlaceController   placeController;
+    private PlaceController placeController;
 
-    private final AppHelper   h             = new AppHelper();
+    private final AppHelper h = new AppHelper();
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
@@ -37,13 +37,12 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
             return;
         }
 
-        final String currentLevel = "<div><p>" + h.gc().language() + "</p><p class=\"ellipsis_for_long_text\">" + h.gc().subselections()
-                + "</p></div>";
+        final String currentLevel = "<div><p>" + h.gc().language() + "</p><p class=\"ellipsis_for_long_text\">"
+                + h.gc().subselections() + "</p></div>";
         view.setCurrentLevel(currentLevel);
 
         panel.setWidget(view.asWidget());
     }
-
 
     @Override
     public void goToGame() {
@@ -65,11 +64,6 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
     @Override
     public Activity place(final Place place) {
         return this;
-    }
-
-    @Override
-    public void setSubSelections(final ArrayList<String> selections) {
-        h.gc().subselections(selections);
     }
 
     @Override
