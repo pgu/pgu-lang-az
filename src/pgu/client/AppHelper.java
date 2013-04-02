@@ -73,17 +73,17 @@ public class AppHelper {
 
     private void writeLanguageToGameSettingsInternal(final String str_lgName) {
 
-        console("write to ");
+        //        console("write to ");
         if (supportsLocalStorage()) {
-            console("localStorage");
+            //            console("localStorage");
             writeToLocalStorage(KEY_LG, str_lgName);
 
         } else if (Cookies.isCookieEnabled()) {
-            console("cookie");
+            //            console("cookie");
             Cookies.setCookie(KEY_LG, str_lgName);
 
         } else {
-            console("static");
+            //            console("static");
             AppHelper.str_lgName = str_lgName;
         }
     }
@@ -106,19 +106,18 @@ public class AppHelper {
     }-*/;
 
     private String readLanguageOfGameSettingsInternal() {
-
-        console("read from ");
+        //        console("read from ");
 
         if (supportsLocalStorage()) {
-            console("localstorage ");
+            //            console("localstorage ");
             return readFromLocalStorage(KEY_LG);
 
         } else if (Cookies.isCookieEnabled()) {
-            console("cookie ");
+            //            console("cookie ");
             return Cookies.getCookie(KEY_LG);
 
         } else {
-            console("static ");
+            //            console("static ");
             return str_lgName;
         }
     }
