@@ -12,8 +12,6 @@ public enum Arabic implements Alphabet {
     private final HashBiMap<String, String> latin2arabic = HashBiMap.create();
     private final ArrayList<String> availableLevels = Lists.newArrayList( //
             GRP_1, GRP_2, GRP_3, GRP_4 //
-            //            GRP_H, GRP_M, GRP_Y, GRP_R, GRP_W //
-            //            , GRP_KY, GRP_SH, GRP_CH //
             );
 
     @Override
@@ -69,95 +67,6 @@ public enum Arabic implements Alphabet {
                 availableSymbols.put(y, latin2arabic.get(y));
                 availableSymbols.put(la, latin2arabic.get(la));
 
-                //            } else if (GRP_N.equals(selectedLevel)) {
-                //                availableSymbols.put(NA, latin2arabic.get(NA));
-                //                availableSymbols.put(NI, latin2arabic.get(NI));
-                //                availableSymbols.put(NU, latin2arabic.get(NU));
-                //                availableSymbols.put(NE, latin2arabic.get(NE));
-                //                availableSymbols.put(NO, latin2arabic.get(NO));
-                //
-                //            } else if (GRP_H.equals(selectedLevel)) {
-                //                availableSymbols.put(HA, latin2arabic.get(HA));
-                //                availableSymbols.put(HI, latin2arabic.get(HI));
-                //                availableSymbols.put(FU, latin2arabic.get(FU));
-                //                availableSymbols.put(HE, latin2arabic.get(HE));
-                //                availableSymbols.put(HO, latin2arabic.get(HO));
-                //                availableSymbols.put(BA, latin2hiragana.get(BA));
-                //                availableSymbols.put(BI, latin2hiragana.get(BI));
-                //                availableSymbols.put(BU, latin2hiragana.get(BU));
-                //                availableSymbols.put(BE, latin2hiragana.get(BE));
-                //                availableSymbols.put(BO, latin2hiragana.get(BO));
-                //                availableSymbols.put(PA, latin2hiragana.get(PA));
-                //                availableSymbols.put(PI, latin2hiragana.get(PI));
-                //                availableSymbols.put(PU, latin2hiragana.get(PU));
-                //                availableSymbols.put(PE, latin2hiragana.get(PE));
-                //                availableSymbols.put(PO, latin2hiragana.get(PO));
-
-                //            } else if (GRP_M.equals(selectedLevel)) {
-                //                availableSymbols.put(MA, latin2arabic.get(MA));
-                //                availableSymbols.put(MI, latin2arabic.get(MI));
-                //                availableSymbols.put(MU, latin2arabic.get(MU));
-                //                availableSymbols.put(ME, latin2arabic.get(ME));
-                //                availableSymbols.put(MO, latin2arabic.get(MO));
-                //
-                //            } else if (GRP_Y.equals(selectedLevel)) {
-                //                availableSymbols.put(YA, latin2arabic.get(YA));
-                //                availableSymbols.put(YU, latin2arabic.get(YU));
-                //                availableSymbols.put(YO, latin2arabic.get(YO));
-                //
-                //            } else if (GRP_R.equals(selectedLevel)) {
-                //                availableSymbols.put(RA, latin2arabic.get(RA));
-                //                availableSymbols.put(RI, latin2arabic.get(RI));
-                //                availableSymbols.put(RU, latin2arabic.get(RU));
-                //                availableSymbols.put(RE, latin2arabic.get(RE));
-                //                availableSymbols.put(RO, latin2arabic.get(RO));
-                //
-                //            } else if (GRP_W.equals(selectedLevel)) {
-                //                availableSymbols.put(WA, latin2arabic.get(WA));
-                //                availableSymbols.put(WI, latin2arabic.get(WI));
-                //                availableSymbols.put(VU, latin2arabic.get(VU));
-                //                availableSymbols.put(WE, latin2arabic.get(WE));
-                //                availableSymbols.put(WO, latin2arabic.get(WO));
-                //
-                //            } else if (GRP_KY.equals(selectedLevel)) {
-                //                availableSymbols.put(KYA, latin2hiragana.get(KYA));
-                //                availableSymbols.put(KYU, latin2hiragana.get(KYU));
-                //                availableSymbols.put(KYO, latin2hiragana.get(KYO));
-                //                availableSymbols.put(NYA, latin2hiragana.get(NYA));
-                //                availableSymbols.put(NYU, latin2hiragana.get(NYU));
-                //                availableSymbols.put(NYO, latin2hiragana.get(NYO));
-                //                availableSymbols.put(RYA, latin2hiragana.get(RYA));
-                //                availableSymbols.put(RYU, latin2hiragana.get(RYU));
-                //                availableSymbols.put(RYO, latin2hiragana.get(RYO));
-                //                availableSymbols.put(BYA, latin2hiragana.get(BYA));
-                //                availableSymbols.put(BYU, latin2hiragana.get(BYU));
-                //                availableSymbols.put(BYO, latin2hiragana.get(BYO));
-
-                //            } else if (GRP_SH.equals(selectedLevel)) {
-                //                availableSymbols.put(SHA, latin2hiragana.get(SHA));
-                //                availableSymbols.put(SHU, latin2hiragana.get(SHU));
-                //                availableSymbols.put(SHO, latin2hiragana.get(SHO));
-                //                availableSymbols.put(HYA, latin2hiragana.get(HYA));
-                //                availableSymbols.put(HYU, latin2hiragana.get(HYU));
-                //                availableSymbols.put(HYO, latin2hiragana.get(HYO));
-                //                availableSymbols.put(GYA, latin2hiragana.get(GYA));
-                //                availableSymbols.put(GYU, latin2hiragana.get(GYU));
-                //                availableSymbols.put(GYO, latin2hiragana.get(GYO));
-                //                availableSymbols.put(PYA, latin2hiragana.get(PYA));
-                //                availableSymbols.put(PYU, latin2hiragana.get(PYU));
-                //                availableSymbols.put(PYO, latin2hiragana.get(PYO));
-
-                //            } else if (GRP_CH.equals(selectedLevel)) {
-                //                availableSymbols.put(CHA, latin2hiragana.get(CHA));
-                //                availableSymbols.put(CHU, latin2hiragana.get(CHU));
-                //                availableSymbols.put(CHO, latin2hiragana.get(CHO));
-                //                availableSymbols.put(MYA, latin2hiragana.get(MYA));
-                //                availableSymbols.put(MYU, latin2hiragana.get(MYU));
-                //                availableSymbols.put(MYO, latin2hiragana.get(MYO));
-                //                availableSymbols.put(JA, latin2hiragana.get(JA));
-                //                availableSymbols.put(JU, latin2hiragana.get(JU));
-                //                availableSymbols.put(JO, latin2hiragana.get(JO));
-
             } else {
                 throw new IllegalArgumentException("Unknown level: " + selectedLevel);
             }
@@ -165,15 +74,6 @@ public enum Arabic implements Alphabet {
 
         return availableSymbols;
     }
-
-    //    private static final String GRP_H = "H - B - P";
-    //    private static final String GRP_M = "M";
-    //    private static final String GRP_Y = "Y";
-    //    private static final String GRP_R = "R";
-    //    private static final String GRP_W = "W";
-    //    private static final String GRP_KY = "KY-NRB";
-    //    private static final String GRP_SH = "SH-HGP";
-    //    private static final String GRP_CH = "CH-MJ";
 
     private final static String a = "a";
     private final static String b = "b";
@@ -237,12 +137,9 @@ public enum Arabic implements Alphabet {
         latin2arabic.put(la, "&#65275;");
     }
 
-    private String tsl(final String... alphas) {
-        final StringBuilder sb = new StringBuilder();
-        for (final String alpha : alphas) {
-            sb.append(latin2arabic.get(alpha));
-        }
-        return sb.toString();
+    @Override
+    public HashBiMap<String, String> getAllLatin2Symbol() {
+        return latin2arabic;
     }
 
 }

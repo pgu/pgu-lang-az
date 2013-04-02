@@ -270,7 +270,7 @@ public enum RussianAlphabet implements Alphabet {
         TS = "TS";
         CH_IP = "TCH";
         SH_UT = "SH";
-        SH_EER = "SH";
+        SH_EER = "SHH";
         I_SHORT = "I";
         E = "E";
         JU = "YU";
@@ -301,7 +301,7 @@ public enum RussianAlphabet implements Alphabet {
         ts = "ts";
         ch_ip = "tch";
         sh_ut = "sh";
-        sh_eer = "sh";
+        sh_eer = "shh";
         i_short = "i";
         e = "e";
         ju = "yu";
@@ -369,6 +369,11 @@ public enum RussianAlphabet implements Alphabet {
         latin2russian.put(e, "&#x044D;");
         latin2russian.put(ju, "&#x044E;");
         latin2russian.put(ja, "&#x044F;");
+    }
+
+    @Override
+    public HashBiMap<String, String> getAllLatin2Symbol() {
+        return latin2russian;
     }
 
 }

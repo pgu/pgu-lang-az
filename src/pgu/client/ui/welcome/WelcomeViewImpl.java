@@ -18,6 +18,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -261,6 +262,13 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     public void fillRowOfAlphabet(final Alphabet alphabet) {
         rowOfAlphabet.clear();
 
+        for (final Entry<String, String> e : alphabet.getAllLatin2Symbol().entrySet()) {
+            final String latin = e.getKey();
+            final String symbol = e.getValue();
+
+            rowOfAlphabet.add(new HTML(symbol));
+            rowOfAlphabet.add(new HTML(latin));
+        }
     }
 
 }

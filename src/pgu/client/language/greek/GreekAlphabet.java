@@ -191,4 +191,9 @@ public enum GreekAlphabet implements Alphabet {
         return availableSymbols;
     }
 
+    @Override
+    public HashBiMap<String, String> getAllLatin2Symbol() {
+        return latin2greek;
+    }
+
 }
