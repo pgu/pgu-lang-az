@@ -61,7 +61,7 @@ public interface PguGameResources extends ClientBundle {
         String app_cell_int2_green();
         String app_cell_intbg_green();
 
-        // green
+        // blue
         String app_cell_extx_blue();
         String app_cell_ext_blue();
         String app_cell_med_blue();
@@ -70,6 +70,11 @@ public interface PguGameResources extends ClientBundle {
 
         String app_cell_int2_blue();
         String app_cell_intbg_blue();
+
+        // alphabet
+        String alphabet_cell();
+        String alphabet_cell_symbol();
+        String alphabet_cell_latin();
 
     }
 }

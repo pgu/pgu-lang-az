@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import pgu.client.enums.Language;
 import pgu.client.language.Alphabet;
+import pgu.client.ui.style.PguGameResources;
 import pgu.client.ui.utils.AppCell;
 import pgu.client.ui.utils.AppCell.Skin;
 
@@ -27,17 +28,19 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     interface WelcomeViewImplUiBinder extends UiBinder<Widget, WelcomeViewImpl> {
     }
 
-    private static WelcomeViewImplUiBinder uiBinder = GWT.create(WelcomeViewImplUiBinder.class);
+    private static WelcomeViewImplUiBinder                   uiBinder = GWT.create(WelcomeViewImplUiBinder.class);
 
     @UiField
-    HTMLPanel menuArea;
+    HTMLPanel                                                menuArea;
     @UiField
-    HTMLPanel rowOfCurrentLevel, rowOfLevelSettings, rowOfStart;
+    HTMLPanel                                                rowOfCurrentLevel, rowOfLevelSettings, rowOfStart;
     @UiField
-    HTMLPanel rowOfLanguages, rowOfSubSelections, rowOfAlphabet;
+    HTMLPanel                                                rowOfLanguages, rowOfSubSelections, rowOfAlphabet;
 
-    @UiField(provided=true)
-    AppCell levelBtn, startBtn;
+    @UiField(provided = true)
+    AppCell                                                  levelBtn, startBtn;
+
+    private final pgu.client.ui.style.PguGameResources.Style style;
 
     public WelcomeViewImpl() {
 
@@ -45,6 +48,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         startBtn = new AppCell(AppCell.Skin.FIRE);
 
         initWidget(uiBinder.createAndBindUi(this));
+
+        style = PguGameResources.INSTANCE.style();
 
         startBtn.setHTML("<div><p>START</p></div>");
 
@@ -115,7 +120,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         WelcomeViewImpl view;
 
         public ClickOnLanguageCell(final WelcomeViewImpl view) {
-            this.view =view;
+            this.view = view;
         }
 
         @Override
@@ -148,7 +153,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         WelcomeViewImpl view;
 
         public ClickOnSubSelectionCell(final WelcomeViewImpl view) {
-            this.view =view;
+            this.view = view;
         }
 
         @Override
@@ -266,9 +271,20 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             final String latin = e.getKey();
             final String symbol = e.getValue();
 
-            rowOfAlphabet.add(new HTML(symbol));
-            rowOfAlphabet.add(new HTML(latin));
+            final HTML symbolCell = new HTML(symbol);
+            symbolCell.addStyleName(style.app_cell_text());
+            symbolCell.addStyleName(style.alphabet_cell());
+            symbolCell.addStyleName(style.alphabet_cell_symbol());
+
+            final HTML latinCell = new HTML(latin);
+            latinCell.addStyleName(style.app_cell_text());
+            latinCell.addStyleName(style.alphabet_cell());
+            latinCell.addStyleName(style.alphabet_cell_latin());
+
+            rowOfAlphabet.add(symbolCell);
+            rowOfAlphabet.add(latinCell);
         }
+
     }
 
 }
