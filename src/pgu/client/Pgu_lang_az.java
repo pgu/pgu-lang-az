@@ -1,8 +1,6 @@
 package pgu.client;
 
-import pgu.client.enums.Language;
 import pgu.client.gin.GameGinjector;
-import pgu.client.language.japanese.Hiragana;
 import pgu.client.ui.style.PguGameResources;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -12,18 +10,16 @@ import com.google.gwt.user.client.ui.SimplePanel;
 
 public class Pgu_lang_az implements EntryPoint {
 
-    public static GameConfig gameConfig = new GameConfig();
+    //        gameConfig.size(GameSize.BIG);
+    //        gameConfig.granularity(LanguageGranularity.ALPHABET);
+    //        gameConfig.theme(Theme.HIRAGANA);
 
-    static {
-        gameConfig.language(Language.HIRAGANA);
-        gameConfig.subselections().add(Hiragana.INSTANCE.availableLevels().get(0));
-        //        gameConfig.size(GameSize.BIG);
-        //        gameConfig.granularity(LanguageGranularity.ALPHABET);
-        //        gameConfig.theme(Theme.HIRAGANA);
-    }
+    private final AppHelper h = new AppHelper();
 
     @Override
     public void onModuleLoad() {
+
+        h.initGameSettings();
 
         PguGameResources.INSTANCE.style().ensureInjected();
 

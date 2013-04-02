@@ -10,10 +10,13 @@ import pgu.client.utils.guava.Lists;
 
 public class GameConfig {
 
-    private GameSize size;
-    private Language language;
-    private LanguageGranularity granularity;
-    private Theme theme;
+    private String str_lgName;
+    private String str_lgSel;
+
+    private GameSize                size;
+    private Language                language;
+    private LanguageGranularity     granularity;
+    private Theme                   theme;
     private final ArrayList<String> subselections = Lists.newArrayList();
 
     public GameConfig language(final Language language) {
@@ -56,13 +59,30 @@ public class GameConfig {
         return new ArrayList<String>(subselections);
     }
 
-    public void subselections(final String oneSelection) {
-        subselections.clear();
-        subselections.add(oneSelection);
-    }
-
     public void subselections(final ArrayList<String> selections) {
         subselections.clear();
         subselections.addAll(selections);
     }
+
+    private boolean isBlank(final String str) {
+        return str == null || str.trim().isEmpty();
+    }
+
+    public void str_lgName(final String str_lgName) {
+        this.str_lgName = str_lgName;
+    }
+
+    public void str_lgSel(final String str_lgSel) {
+        this.str_lgSel = str_lgSel;
+    }
+
+    public String str_lgName() {
+        return str_lgName;
+    }
+
+    public String str_lgSel() {
+        return str_lgSel;
+    }
+
+
 }
