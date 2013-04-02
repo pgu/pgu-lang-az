@@ -2,7 +2,6 @@ package pgu.client.ui.level.theme;
 
 import java.util.ArrayList;
 
-import pgu.client.Pgu_lang_az;
 import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
@@ -65,8 +64,9 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
         fillThemesPanel();
 
         if (null != currentTheme //
-                && Pgu_lang_az.gameConfig.granularity() == this.granularity //
-                && Pgu_lang_az.gameConfig.language() == language) {
+                //                && Pgu_lang_az.gameConfig.granularity() == this.granularity //
+                //                && Pgu_lang_az.gameConfig.language() == language
+                ) {
 
             selectCellForTheme(currentTheme);
         }
@@ -134,7 +134,8 @@ public class ThemeLevelViewImpl extends Composite implements ThemeLevelView {
                 language, //
                 granularity, //
                 theme, //
-                Pgu_lang_az.gameConfig.subselections() //
+                //                Pgu_lang_az.gameConfig.subselections() //
+                null
                 ));
     }
 

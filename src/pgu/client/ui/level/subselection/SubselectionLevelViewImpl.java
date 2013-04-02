@@ -3,8 +3,6 @@ package pgu.client.ui.level.subselection;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import pgu.client.Pgu_lang_az;
-import pgu.client.enums.GameSize;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
 import pgu.client.enums.Theme;
@@ -78,9 +76,10 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
         fillSubselectionsPanel();
 
         if (!currentSubselections.isEmpty() //
-                && Pgu_lang_az.gameConfig.theme() == this.theme //
-                && Pgu_lang_az.gameConfig.granularity() == this.granularity //
-                && Pgu_lang_az.gameConfig.language() == this.language) {
+                //                && Pgu_lang_az.gameConfig.theme() == this.theme //
+                //                && Pgu_lang_az.gameConfig.granularity() == this.granularity //
+                //                && Pgu_lang_az.gameConfig.language() == this.language //
+                ) {
 
             selectCellsForSubselections(currentSubselections);
         }
@@ -180,14 +179,14 @@ public class SubselectionLevelViewImpl extends Composite implements Subselection
 
     @UiHandler("btnOk")
     public void clickOk(final ClickEvent e) {
-        Pgu_lang_az.gameConfig //
-        .size(GameSize.BIG) //
-        .language(language) //
-        .granularity(granularity) //
-        .theme(theme);
-
-        Pgu_lang_az.gameConfig.subselections().clear();
-        Pgu_lang_az.gameConfig.subselections().addAll(getSelectedSubselections());
+        //        Pgu_lang_az.gameConfig //
+        //        .size(GameSize.BIG) //
+        //        .language(language) //
+        //        .granularity(granularity) //
+        //        .theme(theme);
+        //
+        //        Pgu_lang_az.gameConfig.subselections().clear();
+        //        Pgu_lang_az.gameConfig.subselections().addAll(getSelectedSubselections());
 
         //        if (isChineseWords()) {
         //            Pgu_lang_az.gameConfig.size(GameSize.MEDIUM);

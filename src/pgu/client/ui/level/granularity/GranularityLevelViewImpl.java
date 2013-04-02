@@ -1,6 +1,5 @@
 package pgu.client.ui.level.granularity;
 
-import pgu.client.Pgu_lang_az;
 import pgu.client.enums.LabelHelper;
 import pgu.client.enums.Language;
 import pgu.client.enums.LanguageGranularity;
@@ -57,7 +56,8 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
         }
 
         if (null != currentGranularity //
-                && Pgu_lang_az.gameConfig.language() == language) {
+                //                && Pgu_lang_az.gameConfig.language() == language //
+                ) {
 
             selectCellForGranularity(currentGranularity);
 
@@ -154,7 +154,8 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
                 language, //
                 granularity, //
                 null, // Theme
-                Pgu_lang_az.gameConfig.subselections() //
+                //                Pgu_lang_az.gameConfig.subselections() //
+                null
                 ));
     }
 
@@ -162,7 +163,8 @@ public class GranularityLevelViewImpl extends Composite implements GranularityLe
         presenter.goTo(new ThemeLevelPlace( //
                 language, //
                 granularity, //
-                Pgu_lang_az.gameConfig.theme() //
+                //                Pgu_lang_az.gameConfig.theme() //
+                null
                 ));
     }
 }
