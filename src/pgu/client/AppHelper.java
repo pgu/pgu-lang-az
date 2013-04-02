@@ -1,8 +1,9 @@
 package pgu.client;
 
-import java.util.ArrayList;
-
 import pgu.client.enums.Language;
+import pgu.client.language.japanese.Hiragana;
+
+
 
 public class AppHelper {
 
@@ -16,14 +17,23 @@ public class AppHelper {
     //		$doc.getElementById('mask').style.display = 'inline';
     //    }-*/;
 
-    public boolean areGameSettingsInvalid(final Language lg, final ArrayList<String> subSelections) {
-        return lg == null //
-                || subSelections.isEmpty();
+    public boolean areInvalidGameSettings() {
+        return gc().language() == null //
+                || gc().subselections().isEmpty();
     }
 
     public native void console(String msg) /*-{
         $wnd.console.log(msg);
     }-*/;
 
+    public GameConfig gc() {
+        return Pgu_lang_az.gameConfig;
+    }
+
+    public void resetGameSettings() {
+        final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
+        gc().language(Language.HIRAGANA);
+        gc().subselections(firstPartOfHiraga);
+    }
 
 }

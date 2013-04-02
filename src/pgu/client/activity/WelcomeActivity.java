@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 import pgu.client.AppHelper;
 import pgu.client.enums.Language;
-import pgu.client.language.japanese.Hiragana;
 import pgu.client.mvp.HasPlace;
 import pgu.client.place.GamePlace;
 import pgu.client.place.WelcomePlace;
 import pgu.client.ui.welcome.WelcomeView;
-import pgu.client.utils.guava.Lists;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.Activity;
@@ -26,31 +24,20 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
     @Inject
     private PlaceController   placeController;
 
-    private WelcomePlace      place;
-    private Language          lg;
-    private ArrayList<String> subSelections = new ArrayList<String>();
-
     private final AppHelper   h             = new AppHelper();
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view.setPresenter(this);
 
-        lg = place.getLanguage();
-        subSelections.addAll(place.getSubselections());
+        if (h.areInvalidGameSettings()) {
 
-        if (h.areGameSettingsInvalid(lg, subSelections)) {
-
-            // console("invalid");
-
-            final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
-            placeController.goTo(new WelcomePlace(Language.HIRAGANA, Lists.newArrayList(firstPartOfHiraga)));
+            h.resetGameSettings();
+            placeController.goTo(new WelcomePlace());
             return;
         }
 
-        // console("valid");
-
-        final String currentLevel = "<div><p>" + lg + "</p><p class=\"ellipsis_for_long_text\">" + subSelections
+        final String currentLevel = "<div><p>" + h.gc().language() + "</p><p class=\"ellipsis_for_long_text\">" + h.gc().subselections()
                 + "</p></div>";
         view.setCurrentLevel(currentLevel);
 
@@ -60,11 +47,11 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
     @Override
     public void goToGame() {
-        if (h.areGameSettingsInvalid(lg, subSelections)) {
+        if (h.areInvalidGameSettings()) {
             return;
         }
 
-        placeController.goTo(new GamePlace(lg, subSelections));
+        placeController.goTo(new GamePlace(h.gc().language(), h.gc().subselections()));
     }
 
     @Override
@@ -73,31 +60,55 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
         view = null;
         placeController = null;
-
-        place = null;
-        lg = null;
-        subSelections = null;
     }
 
     @Override
     public Activity place(final Place place) {
-        this.place = (WelcomePlace) place;
         return this;
     }
 
     @Override
-    public Language getLanguage() {
-        return lg;
+    public void setSubSelections(final ArrayList<String> selections) {
+        h.gc().subselections(selections);
     }
 
     @Override
-    public ArrayList<String> getSubSelections() {
-        return subSelections;
+    public boolean isCurrentLanguage(final Language otherLanguage) {
+        return h.gc().language() == otherLanguage;
     }
 
     @Override
-    public void setLanguage(final Language newLanguage) {
-        lg = newLanguage;
+    public void fillRowOfSubSelections() {
+        view.fillRowOfSubSelections(h.gc().language().getAlphabet().availableLevels(), h.gc().subselections());
+    }
+
+    @Override
+    public void selectNewLanguage(final Language newLanguage) {
+        final Language oldLanguage = h.gc().language();
+        h.gc().language(newLanguage);
+
+        h.gc().subselections(new ArrayList<String>());
+
+        view.deselectLanguage(oldLanguage);
+        view.selectLanguage(newLanguage);
+
+        fillRowOfSubSelections();
+    }
+
+    @Override
+    public void removeSubSelection(final String subSelection) {
+        final ArrayList<String> newSubSelections = h.gc().subselections();
+        newSubSelections.remove(subSelection);
+
+        h.gc().subselections(newSubSelections);
+    }
+
+    @Override
+    public void addSubSelection(final String subSelection) {
+        final ArrayList<String> newSubSelections = h.gc().subselections();
+        newSubSelections.add(subSelection);
+
+        h.gc().subselections(newSubSelections);
     }
 
 }

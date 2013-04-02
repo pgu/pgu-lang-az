@@ -1,16 +1,11 @@
 package pgu.client.activity;
 
-import java.util.ArrayList;
-
 import pgu.client.AppHelper;
-import pgu.client.enums.Language;
-import pgu.client.language.japanese.Hiragana;
 import pgu.client.mvp.HasPlace;
 import pgu.client.place.GamePlace;
 import pgu.client.place.WelcomePlace;
 import pgu.client.ui.game.GameView;
 import pgu.client.utils.guava.HashBiMap;
-import pgu.client.utils.guava.Lists;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.Activity;
@@ -28,8 +23,6 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     private PlaceController   placeController;
 
     private GamePlace         place;
-    private Language          lg;
-    private ArrayList<String> subSelections = new ArrayList<String>();
 
     private final AppHelper   h             = new AppHelper();
 
@@ -37,19 +30,15 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view.setPresenter(this);
 
-        lg = place.getLanguage();
-        subSelections.addAll(place.getSubselections());
+        h.gc().language(place.getLanguage());
+        h.gc().subselections(place.getSubselections());
 
-        if (h.areGameSettingsInvalid(lg, subSelections)) {
+        if (h.areInvalidGameSettings()) {
 
-            //            console("game settings invalid");
-
-            final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
-            placeController.goTo(new WelcomePlace(Language.HIRAGANA, Lists.newArrayList(firstPartOfHiraga)));
+            h.resetGameSettings();
+            placeController.goTo(new WelcomePlace());
             return;
         }
-
-        //        console("game settings valid");
 
         panel.setWidget(view.asWidget());
 

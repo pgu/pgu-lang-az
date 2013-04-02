@@ -53,7 +53,16 @@ public class GameConfig {
     }
 
     public ArrayList<String> subselections() {
-        return subselections;
+        return new ArrayList<String>(subselections);
     }
 
+    public void subselections(final String oneSelection) {
+        subselections.clear();
+        subselections.add(oneSelection);
+    }
+
+    public void subselections(final ArrayList<String> selections) {
+        subselections.clear();
+        subselections.addAll(selections);
+    }
 }

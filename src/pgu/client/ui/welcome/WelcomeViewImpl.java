@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import pgu.client.enums.Language;
-import pgu.client.language.HasLevels;
 import pgu.client.ui.utils.AppCell;
 import pgu.client.ui.utils.AppCell.Skin;
 
@@ -83,26 +82,20 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         rowOfLevelSettings.setVisible(true);
 
         // alphabet
-        final Language currentLanguage = presenter.getLanguage();
-
         for (final Entry<Language, AppCell> en : lg2cell.entrySet()) {
-            final boolean isCurrent = en.getKey() == currentLanguage;
+            final boolean isCurrent = presenter.isCurrentLanguage(en.getKey());
             en.getValue().setSkin(isCurrent ? AppCell.Skin.FIRE : AppCell.Skin.ICE);
         }
 
         // subselections
-        fillRowOfSubSelections();
+        presenter.fillRowOfSubSelections();
     }
 
-    private void fillRowOfSubSelections() {
+    @Override
+    public void fillRowOfSubSelections(final ArrayList<String> availableLevels, final ArrayList<String> subSelections) {
         rowOfSubSelections.clear();
 
-        final Language language = presenter.getLanguage();
-        final ArrayList<String> subSelections = presenter.getSubSelections();
-
-        final HasLevels hasLevels = language.getAlphabet();
-
-        for (final String level : hasLevels.availableLevels()) {
+        for (final String level : availableLevels) {
             final AppCell.Skin skin = subSelections.contains(level) ? AppCell.Skin.FIRE : AppCell.Skin.ICE;
 
             final AppCell appCell = buildAppCellForLevel(skin, level);
@@ -132,25 +125,20 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
                 return;
             }
 
-            // deselect current language
-            final Language oldLanguage = view.presenter.getLanguage();
-            view.lg2cell.get(oldLanguage).setSkin(Skin.ICE);
-
-            view.presenter.setLanguage(null);
-            view.presenter.getSubSelections().clear();
-
-            // select new language
             final Language newLanguage = view.cell2lg.get(cell);
-            cell.setSkin(Skin.FIRE);
-
-            view.presenter.setLanguage(newLanguage);
-            view.presenter.getSubSelections().clear();
-
-
-            // clear the subselections and re-populate according to the new language
-            view.fillRowOfSubSelections();
+            view.presenter.selectNewLanguage(newLanguage);
         }
 
+    }
+
+    @Override
+    public void deselectLanguage(final Language oldLanguage) {
+        lg2cell.get(oldLanguage).setSkin(Skin.ICE);
+    }
+
+    @Override
+    public void selectLanguage(final Language newLanguage) {
+        lg2cell.get(newLanguage).setSkin(Skin.FIRE);
     }
 
     private static class ClickOnSubSelectionCell implements ClickHandler {
@@ -169,15 +157,14 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
             final boolean isSelected = AppCell.Skin.FIRE == cell.getSkin();
             if (isSelected) {
                 // deselect the subSelection
-                view.presenter.getSubSelections().remove(subSelection);
-
                 cell.setSkin(AppCell.Skin.ICE);
+                view.presenter.removeSubSelection(subSelection);
 
             } else {
                 // select the subSelection
-                view.presenter.getSubSelections().add(subSelection);
-
                 cell.setSkin(AppCell.Skin.FIRE);
+                view.presenter.addSubSelection(subSelection);
+
             }
         }
     }

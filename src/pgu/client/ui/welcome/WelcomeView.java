@@ -11,11 +11,17 @@ public interface WelcomeView extends IsWidget {
     public interface Presenter {
         void goToGame();
 
-        Language getLanguage();
+        boolean isCurrentLanguage(Language otherLanguage);
 
-        ArrayList<String> getSubSelections();
+        void fillRowOfSubSelections();
 
-        void setLanguage(Language newLanguage);
+        void setSubSelections(ArrayList<String> selections);
+
+        void selectNewLanguage(Language newLanguage);
+
+        void removeSubSelection(String subSelection);
+
+        void addSubSelection(String subSelection);
 
     }
 
@@ -24,5 +30,11 @@ public interface WelcomeView extends IsWidget {
     void setCurrentLevel(String currentLevel);
 
     void onStop();
+
+    void fillRowOfSubSelections(ArrayList<String> availableLevels, ArrayList<String> subselections);
+
+    void deselectLanguage(Language oldLanguage);
+
+    void selectLanguage(Language newLanguage);
 
 }
