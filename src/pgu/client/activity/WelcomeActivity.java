@@ -85,11 +85,11 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
     @Override
     public void selectNewLanguage(final Language newLanguage) {
         final Language oldLanguage = h.gc().language();
-        h.gc().language(newLanguage);
+        view.deselectLanguage(oldLanguage);
 
+        h.gc().language(newLanguage);
         h.gc().subselections(new ArrayList<String>());
 
-        view.deselectLanguage(oldLanguage);
         view.selectLanguage(newLanguage);
 
         fillRowOfSubSelections();
