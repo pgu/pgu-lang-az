@@ -62,23 +62,21 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
         placeController = null;
 
         place = null;
-        lg = null;
-        subSelections = null;
     }
 
     @Override
     public HashBiMap<String, String> getAvailableSymbols() {
-        return lg.getAlphabet().availableSymbols(subSelections);
+        return h.gc().language().getAlphabet().availableSymbols(h.gc().subselections());
     }
 
     @Override
     public void goToWelcomePage() {
-        placeController.goTo(new WelcomePlace(lg, subSelections));
+        placeController.goTo(new WelcomePlace());
     }
 
     @Override
     public void reload() {
-        placeController.goTo(new GamePlace(lg, subSelections));
+        placeController.goTo(new GamePlace(h.gc().language(), h.gc().subselections()));
     }
 
 }
