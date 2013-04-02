@@ -52,14 +52,22 @@ public class AppHelper {
     public void resetGameSettings() {
         final Language lg = Language.HIRAGANA;
 
-        final String firstPartOfHiraga = Hiragana.INSTANCE.availableLevels().get(0);
         final ArrayList<String> subSelections = new ArrayList<String>();
-        subSelections.add(firstPartOfHiraga);
+        subSelections.add(Hiragana.INSTANCE.availableLevels().get(0));
+
+        writeLanguageToGameSettings(lg);
+        writeSubSelectionsToGameSettings(subSelections);
+    }
+
+    public void writeLanguageToGameSettings(final Language lg ) {
 
         final String str_lgName = lg.label();
-        final String str_lgSel = subSelections.toString();
-
         writeLanguageToGameSettingsInternal(str_lgName);
+    }
+
+    public void writeSubSelectionsToGameSettings(final ArrayList<String> subSelections) {
+
+        final String str_lgSel = subSelections.toString();
         writeSubSelectionsToGameSettingsInternal(str_lgSel);
     }
 
@@ -119,7 +127,7 @@ public class AppHelper {
         }
     }
 
-    private Language readLanguageOfGameSettings() {
+    public Language readLanguageOfGameSettings() {
 
         final String str_lgName = readLanguageOfGameSettingsInternal();
 

@@ -37,8 +37,8 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
             return;
         }
 
-        final String currentLevel = "<div><p>" + h.gc().language() + "</p><p class=\"ellipsis_for_long_text\">"
-                + h.gc().subselections() + "</p></div>";
+        final String currentLevel = "<div><p>" + h.readLanguageOfGameSettings().label() + "</p><p class=\"ellipsis_for_long_text\">"
+                + h.readSubSelectionsOfGameSettings() + "</p></div>";
         view.setCurrentLevel(currentLevel);
 
         panel.setWidget(view.asWidget());
@@ -50,7 +50,7 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
             return;
         }
 
-        placeController.goTo(new GamePlace(h.gc().language(), h.gc().subselections()));
+        placeController.goTo(new GamePlace(h.readLanguageOfGameSettings(), h.readSubSelectionsOfGameSettings()));
     }
 
     @Override
@@ -68,21 +68,21 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
     @Override
     public boolean isCurrentLanguage(final Language otherLanguage) {
-        return h.gc().language() == otherLanguage;
+        return h.readLanguageOfGameSettings() == otherLanguage;
     }
 
     @Override
     public void fillRowOfSubSelections() {
-        view.fillRowOfSubSelections(h.gc().language().getAlphabet().availableLevels(), h.gc().subselections());
+        view.fillRowOfSubSelections(h.readLanguageOfGameSettings().getAlphabet().availableLevels(), h.readSubSelectionsOfGameSettings());
     }
 
     @Override
     public void selectNewLanguage(final Language newLanguage) {
-        final Language oldLanguage = h.gc().language();
+        final Language oldLanguage = h.readLanguageOfGameSettings();
         view.deselectLanguage(oldLanguage);
 
-        h.gc().language(newLanguage);
-        h.gc().subselections(new ArrayList<String>());
+        h.writeLanguageToGameSettings(newLanguage);
+        h.writeSubSelectionsToGameSettings(new ArrayList<String>());
 
         view.selectLanguage(newLanguage);
 
@@ -91,18 +91,18 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
     @Override
     public void removeSubSelection(final String subSelection) {
-        final ArrayList<String> newSubSelections = h.gc().subselections();
+        final ArrayList<String> newSubSelections = h.readSubSelectionsOfGameSettings();
         newSubSelections.remove(subSelection);
 
-        h.gc().subselections(newSubSelections);
+        h.writeSubSelectionsToGameSettings(newSubSelections);
     }
 
     @Override
     public void addSubSelection(final String subSelection) {
-        final ArrayList<String> newSubSelections = h.gc().subselections();
+        final ArrayList<String> newSubSelections = h.readSubSelectionsOfGameSettings();
         newSubSelections.add(subSelection);
 
-        h.gc().subselections(newSubSelections);
+        h.writeSubSelectionsToGameSettings(newSubSelections);
     }
 
 }

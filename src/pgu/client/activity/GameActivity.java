@@ -30,8 +30,8 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view.setPresenter(this);
 
-        h.gc().language(place.getLanguage());
-        h.gc().subselections(place.getSubselections());
+        h.writeLanguageToGameSettings(place.getLanguage());
+        h.writeSubSelectionsToGameSettings(place.getSubselections());
 
         if (h.areInvalidGameSettings()) {
 
@@ -66,7 +66,7 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
 
     @Override
     public HashBiMap<String, String> getAvailableSymbols() {
-        return h.gc().language().getAlphabet().availableSymbols(h.gc().subselections());
+        return h.readLanguageOfGameSettings().getAlphabet().availableSymbols(h.readSubSelectionsOfGameSettings());
     }
 
     @Override
@@ -76,7 +76,7 @@ public class GameActivity extends AbstractActivity implements GameView.Presenter
 
     @Override
     public void reload() {
-        placeController.goTo(new GamePlace(h.gc().language(), h.gc().subselections()));
+        placeController.goTo(new GamePlace(h.readLanguageOfGameSettings(), h.readSubSelectionsOfGameSettings()));
     }
 
 }
