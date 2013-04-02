@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import pgu.client.enums.Language;
+import pgu.client.language.Alphabet;
 import pgu.client.ui.utils.AppCell;
 import pgu.client.ui.utils.AppCell.Skin;
 
@@ -32,7 +33,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     @UiField
     HTMLPanel rowOfCurrentLevel, rowOfLevelSettings, rowOfStart;
     @UiField
-    HTMLPanel rowOfLanguages, rowOfSubSelections;
+    HTMLPanel rowOfLanguages, rowOfSubSelections, rowOfAlphabet;
 
     @UiField(provided=true)
     AppCell levelBtn, startBtn;
@@ -253,6 +254,13 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         }
 
         rowOfSubSelections.clear();
+        rowOfAlphabet.clear();
+    }
+
+    @Override
+    public void fillRowOfAlphabet(final Alphabet alphabet) {
+        rowOfAlphabet.clear();
+
     }
 
 }

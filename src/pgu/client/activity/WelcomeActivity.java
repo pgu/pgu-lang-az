@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import pgu.client.AppHelper;
 import pgu.client.enums.Language;
+import pgu.client.language.Alphabet;
 import pgu.client.mvp.HasPlace;
 import pgu.client.place.GamePlace;
 import pgu.client.place.WelcomePlace;
@@ -73,7 +74,10 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
 
     @Override
     public void fillRowOfSubSelections() {
-        view.fillRowOfSubSelections(h.readLanguageOfGameSettings().getAlphabet().availableLevels(), h.readSubSelectionsOfGameSettings());
+        final Alphabet alphabet = h.readLanguageOfGameSettings().getAlphabet();
+
+        view.fillRowOfSubSelections(alphabet.availableLevels(), h.readSubSelectionsOfGameSettings());
+        view.fillRowOfAlphabet(alphabet);
     }
 
     @Override

@@ -35,10 +35,7 @@
         .btn {
             margin: 100px auto;
         }
-        .row_lg {
-            margin-top: 50px;
-        }
-        .row_sub {
+        .sub_row {
             margin-top: 50px;
         }
     </ui:style>
@@ -55,8 +52,9 @@
                 
             </g:HTMLPanel>
             <g:HTMLPanel ui:field="rowOfLevelSettings" addStyleNames="{style.menu-area-row}">
-                <g:HTMLPanel ui:field="rowOfLanguages" addStyleNames="clearfix {style.row_lg}" />
-                <g:HTMLPanel ui:field="rowOfSubSelections" addStyleNames="clearfix {style.row_sub}" />
+                <g:HTMLPanel ui:field="rowOfLanguages" addStyleNames="clearfix {style.sub_row}" />
+                <g:HTMLPanel ui:field="rowOfSubSelections" addStyleNames="clearfix {style.sub_row}" />
+                <g:HTMLPanel ui:field="rowOfAlphabet" addStyleNames="clearfix {style.sub_row}" />
             </g:HTMLPanel>
             <g:HTMLPanel ui:field="rowOfStart" addStyleNames="{style.menu-area-row}">
             

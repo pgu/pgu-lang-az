@@ -3,6 +3,7 @@ package pgu.client.ui.welcome;
 import java.util.ArrayList;
 
 import pgu.client.enums.Language;
+import pgu.client.language.Alphabet;
 
 import com.google.gwt.user.client.ui.IsWidget;
 
@@ -35,5 +36,7 @@ public interface WelcomeView extends IsWidget {
     void deselectLanguage(Language oldLanguage);
 
     void selectLanguage(Language newLanguage);
+
+    void fillRowOfAlphabet(Alphabet alphabet);
 
 }
