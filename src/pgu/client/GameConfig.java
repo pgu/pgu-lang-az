@@ -10,9 +10,6 @@ import pgu.client.utils.guava.Lists;
 
 public class GameConfig {
 
-    private String str_lgName;
-    private String str_lgSel;
-
     private GameSize                size;
     private Language                language;
     private LanguageGranularity     granularity;
@@ -63,26 +60,5 @@ public class GameConfig {
         subselections.clear();
         subselections.addAll(selections);
     }
-
-    private boolean isBlank(final String str) {
-        return str == null || str.trim().isEmpty();
-    }
-
-    public void str_lgName(final String str_lgName) {
-        this.str_lgName = str_lgName;
-    }
-
-    public void str_lgSel(final String str_lgSel) {
-        this.str_lgSel = str_lgSel;
-    }
-
-    public String str_lgName() {
-        return str_lgName;
-    }
-
-    public String str_lgSel() {
-        return str_lgSel;
-    }
-
 
 }

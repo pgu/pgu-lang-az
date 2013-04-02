@@ -22,34 +22,30 @@ public class AppHelper {
     //		$doc.getElementById('mask').style.display = 'inline';
     //    }-*/;
 
+    private static String str_lgName;
+    private static String str_lgSel;
+
     private static GameConfig gameConfig = new GameConfig();
 
+    private boolean isBlank(final String str) {
+        return str == null || str.trim().isEmpty();
+    }
+
     public boolean areInvalidGameSettings() {
-        return gc().language() == null //
-                || gc().subselections().isEmpty();
+        return readLanguageOfGameSettings() == null //
+                || readSubSelectionsOfGameSettings().isEmpty();
     }
 
     public native void console(String msg) /*-{
         $wnd.console.log(msg);
     }-*/;
 
-    public GameConfig gc() {
-        return gameConfig;
-    }
-
     private static final String KEY_LG = "pgu_lang_az_language";
     private static final String KEY_SS = "pgu_lang_az_sub_selections";
 
     public void initGameSettings() {
 
-        final String str_lgName = readLanguageOfGameSettings();
-        final String str_lgSel = readSubSelectionsOfGameSettings();
-
-        final Language gameLanguage = findLanguageFromName(str_lgName);
-        final ArrayList<String> gameSubSelections = findSubSelections(str_lgSel);
-
-        if (gameLanguage == null //
-                || gameSubSelections.isEmpty()) {
+        if (areInvalidGameSettings()) {
             resetGameSettings();
         }
 
@@ -78,7 +74,7 @@ public class AppHelper {
             Cookies.setCookie(KEY_LG, str_lgName);
 
         } else {
-            gc().str_lgName(str_lgName);
+            AppHelper.str_lgName = str_lgName;
         }
     }
 
@@ -91,7 +87,7 @@ public class AppHelper {
             Cookies.setCookie(KEY_SS, str_lgSel);
 
         } else {
-            gc().str_lgSel(str_lgSel);
+            AppHelper.str_lgSel = str_lgSel;
         }
     }
 
@@ -99,7 +95,7 @@ public class AppHelper {
         $wnd.localStorage[key] = value;
     }-*/;
 
-    private String readLanguageOfGameSettings() {
+    private String readLanguageOfGameSettingsInternal() {
 
         if (supportsLocalStorage()) {
             return readFromLocalStorage(KEY_LG);
@@ -108,11 +104,11 @@ public class AppHelper {
             return Cookies.getCookie(KEY_LG);
 
         } else {
-            return gc().str_lgName();
+            return str_lgName;
         }
     }
 
-    private String readSubSelectionsOfGameSettings() {
+    private String readSubSelectionsOfGameSettingsInternal() {
 
         if (supportsLocalStorage()) {
             return readFromLocalStorage(KEY_SS);
@@ -121,13 +117,16 @@ public class AppHelper {
             return Cookies.getCookie(KEY_SS);
 
         } else {
-            return gc().str_lgSel();
+            return str_lgSel;
         }
     }
 
-    private Language findLanguageFromName(final String lgName) {
+    private Language readLanguageOfGameSettings() {
+
+        final String str_lgName = readLanguageOfGameSettingsInternal();
+
         for (final Language language : Language.values()) {
-            if (language.label().equals(lgName)) {
+            if (language.label().equals(str_lgName)) {
                 return language;
             }
         }
@@ -135,7 +134,10 @@ public class AppHelper {
     }
 
     /* visibility for tests */
-    public ArrayList<String> findSubSelections(final String str_lgSel) {
+    public ArrayList<String> readSubSelectionsOfGameSettings() {
+
+        final String str_lgSel = readSubSelectionsOfGameSettingsInternal();
+
         if (str_lgSel == null || //
                 !str_lgSel.startsWith("[") || //
                 !str_lgSel.endsWith("]") || //
