@@ -39,4 +39,7 @@
 <!--     <extend-property name="locale" values="en" /> -->
 <!--     <set-property-fallback name="locale" value="en" /> -->
 
+    <define-linker class="pgu.linker.OfflineLinker" name="offline" />
+    <add-linker name="offline" />
+
 </module>
