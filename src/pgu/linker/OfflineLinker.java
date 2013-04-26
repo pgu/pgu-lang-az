@@ -31,8 +31,19 @@ public class OfflineLinker extends AbstractLinker {
                 continue;
             }
 
-            sb.append(emitted.getPartialPath()).append("\n");
+            final String partialPath = emitted.getPartialPath();
+            if (partialPath.endsWith("symbolMap")) {
+                continue;
+            }
+
+            sb.append(partialPath).append("\n");
         }
+
+        sb.append("pgu_lang_az.nocache.js\n");
+        sb.append("../Pgu_lang_az.css\n");
+        sb.append("\n");
+        sb.append("NETWORK:\n");
+        sb.append("http://www.google-analytics.com/ga.js\n");
 
         final EmittedArtifact manifest = emitString(logger, sb.toString(), "offline.manifest");
         artifactSet.add(manifest);
