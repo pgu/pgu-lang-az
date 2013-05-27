@@ -42,6 +42,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
 
     private final pgu.client.ui.style.PguGameResources.Style style;
 
+    private static final String ID_OF_ROW_OF_LEVELS = "pgu-row-of-levels";
+
     public WelcomeViewImpl() {
 
         levelBtn = new AppCell(AppCell.Skin.ICE);
@@ -50,6 +52,8 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         initWidget(uiBinder.createAndBindUi(this));
 
         style = PguGameResources.INSTANCE.style();
+
+        rowOfLevelSettings.getElement().setId(ID_OF_ROW_OF_LEVELS);
 
         startBtn.setHTML("<div><p>START</p></div>");
 
@@ -86,7 +90,7 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
     @UiHandler("levelBtn")
     public void clickLevel(final ClickEvent e) {
         rowOfCurrentLevel.setVisible(false);
-        rowOfLevelSettings.setVisible(true);
+        fadeIn(ID_OF_ROW_OF_LEVELS);
 
         // alphabet
         for (final Entry<Language, AppCell> en : lg2cell.entrySet()) {
@@ -97,6 +101,10 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
         // subselections
         presenter.fillRowOfSubSelections();
     }
+
+    private native void fadeIn(String id) /*-{
+        $wnd.$('#' + id).fadeIn('slow');
+    }-*/;
 
     @Override
     public void fillRowOfSubSelections(final ArrayList<String> availableLevels, final ArrayList<String> subSelections) {

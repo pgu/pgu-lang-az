@@ -668,8 +668,8 @@ public class GameViewImpl extends Composite implements GameView {
             final long stopInMs = new Date().getTime();
 
             score.setHTML("<p>Congratulations!</p><p>" + fmtTime(stopInMs, startInMs) + "</p>");
-            score.setVisible(true);
-            restartBtn.setVisible(true);
+            score.fadeIn();
+            restartBtn.fadeIn();
         }
     }
 

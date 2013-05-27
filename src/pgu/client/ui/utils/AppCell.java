@@ -35,10 +35,16 @@ public class AppCell extends Composite implements HasClickHandlers {
 
     private Skin skin;
 
+    private static int count = 0;
+    private final String id;
+
     public AppCell(final Skin skin) {
         initWidget(uiBinder.createAndBindUi(this));
 
         style = PguGameResources.INSTANCE.style();
+
+        id = "pgu-appCell-" + count++;
+        getElement().setId(id);
 
         setSkin(skin);
     }
@@ -140,5 +146,13 @@ public class AppCell extends Composite implements HasClickHandlers {
         }
 
     }
+
+    public void fadeIn() {
+        fadeInInternal(id);
+    }
+
+    private native void fadeInInternal(String id) /*-{
+        $wnd.$('#' + id).fadeIn('slow');
+    }-*/;
 
 }
