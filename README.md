@@ -2,6 +2,8 @@ Website
 ---
 [**&#8594; Play!**] [pgu_lang_az]
 
+![](lang-az.gif)
+
 Purpose
 ---
 Game for learning alphabets, step by step. The rule is simply to associate the symbols to their latin counterparts.
